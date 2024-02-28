@@ -1,3 +1,4 @@
+import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PApplet;
 
@@ -26,8 +27,13 @@ public class Gameobject {
         this.Sprite = p.loadImage(spritePath);
     }
 
-    // Call this every frame to draw the gameobject using it's current position
+    Transform getTransform(){
+        return this.Transform;
+    }
+
+    // Call this every frame to draw the gameobject using its current position
     public void draw(){
+        p.imageMode(PConstants.CENTER);
         p.image(this.Sprite, this.Transform.x, this.Transform.y);
     }
 }

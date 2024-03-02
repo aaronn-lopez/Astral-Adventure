@@ -7,7 +7,7 @@ import processing.core.PApplet;
  */
 public class Gameobject {
     // Reference to the "canvas"---where we are drawing the sprites
-    private static PApplet p;
+    protected static PApplet p;
 
     // Class to hold the position, rotation, and scale of the gameobject
     public Transform Transform;
@@ -34,6 +34,6 @@ public class Gameobject {
     // Call this every frame to draw the gameobject using its current position
     public void draw(){
         p.imageMode(PConstants.CENTER);
-        p.image(this.Sprite, this.Transform.x, this.Transform.y);
+        p.image(this.Sprite, this.Transform.x, this.Transform.y, Sprite.width * this.Transform.scale, Sprite.height * this.Transform.scale);
     }
 }

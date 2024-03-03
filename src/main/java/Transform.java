@@ -16,10 +16,15 @@ public class Transform {
         this.x = x;
         this.y = y;
 
-        this.gridX = (int)x;
-        this.gridY = (int)y;
-
         this.rotation = rot;
         this.scale = scale;
+    }
+
+    Transform(){
+        this.x = 0;
+        this.y = 0;
+
+        this.rotation = 0;
+        this.scale = 1;
     }
 }

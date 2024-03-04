@@ -36,8 +36,17 @@ public class Processing extends PApplet {
         int startY = (height - numRows * tileSize) / 2;
 
         gameManager.instantiate(Objects.Player, 0, 0);
-        gameManager.instantiate(Objects.Battery, 0, 0);
-        gameManager.instantiate(Objects.Blackhole, 0, 0);
+        gameManager.instantiate(Objects.Battery, 4, 4);
+        gameManager.instantiate(Objects.Blackhole, 7, 7);
+
+        gameManager.instantiate(Objects.Blackhole, 0, 5);
+        gameManager.instantiate(Objects.Blackhole, 1, 5);
+        gameManager.instantiate(Objects.Blackhole, 2, 5);
+        gameManager.instantiate(Objects.Blackhole, 3, 5);
+        gameManager.instantiate(Objects.Blackhole, 4, 5);
+        gameManager.instantiate(Objects.Blackhole, 5, 5);
+        gameManager.instantiate(Objects.Blackhole, 6, 5);
+        gameManager.instantiate(Objects.Blackhole, 7, 5);
 
         bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
 
@@ -70,19 +79,13 @@ public class Processing extends PApplet {
         bg.draw();
 
         // Need to draw each component separately to keep proper layer order
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                cliffSprites[i][j].draw();
-            }
-        }
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                outlineSprites[i][j].draw();
-            }
-        }
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                pathSprites[i][j].draw();
+        for(int pass = 0; pass < 3; pass++) {
+            for (int i = 0; i < numRows; i++) {
+                for (int j = 0; j < numCols; j++) {
+                    if (!gameManager.cells[i][j].isEmpty) {
+                        gameManager.cells[i][j].drawTile(pass);
+                    }
+                }
             }
         }
 

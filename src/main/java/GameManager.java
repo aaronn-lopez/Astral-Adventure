@@ -17,7 +17,7 @@ public class GameManager {
 
         for(int i = 0; i < gridX; i++){
             for(int j = 0; j < gridY; j++){
-                cells[i][j] = new Cell();
+                cells[i][j] = new Cell(i, j);
             }
         }
     }
@@ -26,17 +26,17 @@ public class GameManager {
         // instantiate an object at a given x, y coordinate
         switch(object){
             case Player:
-                cells[x][y].entity = new Player(new Transform());
+                cells[x][y].entity = new Player(new Transform(x * 64, y * 64, 0, 1));
             case WalkingAlien:
-                cells[x][y].entity = new WalkingAlien(new Transform());
+                cells[x][y].entity = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
             case HidingAlien:
-                cells[x][y].entity = new HidingAlien(new Transform());
+                cells[x][y].entity = new HidingAlien(new Transform(x * 64, y * 64, 0, 1));
             case OxygenTank:
-                cells[x][y].entity = new OxygenTank(new Transform());
+                cells[x][y].entity = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
             case Battery:
-                cells[x][y].entity = new Battery(new Transform());
+                cells[x][y].entity = new Battery(new Transform(x * 64, y * 64, 0, 1));
             case Blackhole:
-                cells[x][y].entity = new Blackhole(new Transform(), 0);
+                cells[x][y].entity = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
         }
     }
 }

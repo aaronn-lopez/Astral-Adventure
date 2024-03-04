@@ -12,6 +12,8 @@ public class Processing extends PApplet {
     Gameobject[][] outlineSprites;
     Gameobject[][] pathSprites;
 
+    GameManager gameManager;
+
     int tileSize = 64;
     int numRows = 8;
     int numCols = 8;
@@ -27,18 +29,17 @@ public class Processing extends PApplet {
     public void setup() {
         // send static reference of the PApplet
         Gameobject.init(this);
+        gameManager = new GameManager();
 
         // Calculate the starting position for the grid to be centered
         int startX = (width - numCols * tileSize) / 2;
         int startY = (height - numRows * tileSize) / 2;
 
-        // Example of drawing tiles
-        bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
-        player = new Gameobject(new Transform(500, 480, 0, 1), "src/main/Sprites/Astronaut.png");
+        gameManager.instantiate(Objects.Player, 0, 0);
+        gameManager.instantiate(Objects.Battery, 0, 0);
+        gameManager.instantiate(Objects.Blackhole, 0, 0);
 
-        battery = new Battery(new Transform(550, 400, 0, 1));
-        blackhole = new Blackhole(new Transform(600, 520, 0, 1), 1);
-        oxygentank = new OxygenTank(new Transform(630, 440, 0, 1));
+        bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
 
         // There are three sprites per 'ground' tile so that we get the cool 'layering' effect
         cliffSprites = new Gameobject[numRows][numCols];
@@ -85,9 +86,12 @@ public class Processing extends PApplet {
             }
         }
 
-        player.draw();
-        battery.draw();
-        blackhole.draw();
-        oxygentank.draw();
+        for(int i = 0; i < numRows; i++){
+            for(int j = 0; j < numCols; j++){
+                if(gameManager.cells[i][j].entity != null) {
+                    gameManager.cells[i][j].entity.draw();
+                }
+            }
+        }
     }
 }

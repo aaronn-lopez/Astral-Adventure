@@ -4,6 +4,7 @@ import processing.core.PApplet;
 public class Processing extends PApplet {
     Gameobject bg;
     GameManager gameManager;
+    Map testingMap;
 
     int numRows = 8;
     int numCols = 8;
@@ -20,6 +21,10 @@ public class Processing extends PApplet {
         // send static reference of the PApplet
         Gameobject.init(this);
         gameManager = new GameManager();
+        testingMap = new Map(8, 8);
+
+        gameManager.updateMap(testingMap);
+
 
         gameManager.instantiate(Objects.Player, 0, 0);
         gameManager.instantiate(Objects.Battery, 4, 4);

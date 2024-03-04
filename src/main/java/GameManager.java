@@ -13,6 +13,13 @@ public class GameManager {
     Cell[][] cells;
 
     GameManager(){
+
+    }
+
+    void updateMap(Map map){
+        gridX = map.gridX;
+        gridY = map.gridY;
+
         cells = new Cell[gridX][gridY];
 
         for(int i = 0; i < gridX; i++){

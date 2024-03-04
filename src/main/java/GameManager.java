@@ -25,18 +25,26 @@ public class GameManager {
     void instantiate(Objects object, int x, int y){
         // instantiate an object at a given x, y coordinate
         switch(object){
-            case Player:
+            case Objects.Player:
                 cells[x][y].entity = new Player(new Transform(x * 64, y * 64, 0, 1));
-            case WalkingAlien:
+                break;
+            case Objects.WalkingAlien:
                 cells[x][y].entity = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
-            case HidingAlien:
+                break;
+            case Objects.HidingAlien:
                 cells[x][y].entity = new HidingAlien(new Transform(x * 64, y * 64, 0, 1));
-            case OxygenTank:
+                break;
+            case Objects.OxygenTank:
                 cells[x][y].entity = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
-            case Battery:
+                break;
+            case Objects.Battery:
                 cells[x][y].entity = new Battery(new Transform(x * 64, y * 64, 0, 1));
-            case Blackhole:
+                break;
+            case Objects.Blackhole:
                 cells[x][y].entity = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
+                break;
+            default:
+                return;
         }
     }
 }

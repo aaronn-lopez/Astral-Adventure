@@ -3,18 +3,8 @@ import processing.core.PApplet;
 // Pseudo 'main' class---where we want to do our logic programming
 public class Processing extends PApplet {
     Gameobject bg;
-    Gameobject player;
-    Gameobject battery;
-    Gameobject blackhole;
-    Gameobject oxygentank;
-
-    Gameobject[][] cliffSprites;
-    Gameobject[][] outlineSprites;
-    Gameobject[][] pathSprites;
-
     GameManager gameManager;
 
-    int tileSize = 64;
     int numRows = 8;
     int numCols = 8;
 
@@ -38,7 +28,7 @@ public class Processing extends PApplet {
         gameManager.instantiate(Objects.Blackhole, 0, 5);
         gameManager.instantiate(Objects.Blackhole, 1, 5);
         gameManager.instantiate(Objects.Blackhole, 2, 5);
-        gameManager.instantiate(Objects.Blackhole, 3, 5);
+        gameManager.instantiate(Objects.Battery, 3, 5);
         gameManager.instantiate(Objects.Blackhole, 4, 5);
         gameManager.instantiate(Objects.Blackhole, 5, 5);
         gameManager.instantiate(Objects.Blackhole, 6, 5);

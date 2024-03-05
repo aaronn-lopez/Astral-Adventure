@@ -4,7 +4,7 @@ public class WalkingAlien extends Alien{
         dir = Directions.Right;
     }
 
-    Directions dir;
+    public Directions dir;
     void Patrol(){
         if(!move(dir)){
             switch(dir){

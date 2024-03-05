@@ -16,21 +16,11 @@ public class GameManager {
 
     }
 
-    void updateMap(Map map){
-        gridX = map.gridX;
-        gridY = map.gridY;
+    static void updateMap(Map map){
 
-        cells = new Cell[gridX][gridY];
-
-        for(int i = 0; i < gridX; i++){
-            for(int j = 0; j < gridY; j++){
-                cells[i][j] = new Cell(i, j);
-                cells[i][j].isEmpty = false;
-            }
-        }
     }
 
-    Gameobject instantiate(Objects object, int x, int y){
+    public static Gameobject instantiate(Objects object, int x, int y){
         // instantiate an object at a given x, y coordinate
         Gameobject gameobject = null;
         switch(object){

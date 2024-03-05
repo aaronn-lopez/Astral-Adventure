@@ -6,10 +6,6 @@ public class Processing extends PApplet {
     GameManager gameManager;
     Map testingMap;
     Player player;
-    WalkingAlien alien;
-
-    int numRows = 16;
-    int numCols = 10;
 
     // Window settings
     @Override
@@ -22,17 +18,12 @@ public class Processing extends PApplet {
     public void setup() {
         // send static reference of the PApplet
         Gameobject.init(this);
-        gameManager = new GameManager();
-        testingMap = new Map(16, 10);
+        testingMap = new Map();
+        testingMap.newMap("src/main/java/TestingMap1.txt");
 
-        gameManager.updateMap(testingMap);
+        player = (Player)GameManager.cells[testingMap.playerPos[0]][testingMap.playerPos[1]].entity;
 
-
-        player = (Player)gameManager.instantiate(Objects.Player, 15, 9);
-        alien = (WalkingAlien)gameManager.instantiate(Objects.WalkingAlien, 1, 1);
-        gameManager.instantiate(Objects.Battery, 4, 4);
-        gameManager.instantiate(Objects.Blackhole, 7, 7);
-
+        GameManager.updateMap(testingMap);
 
         bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
     }
@@ -40,14 +31,11 @@ public class Processing extends PApplet {
     // Called once every frame
     @Override
     public void draw(){
-        //frameRate(1);
         bg.draw();
 
         for(int pass = 0; pass < 3; pass++) {
-            for (int i = 0; i < numRows; i++) {
-                for (int j = 0; j < numCols; j++) {
-                    GameManager.cells[i][j].isEmpty = j % 5 != 0 && i % 8 != 0;
-
+            for (int i = 0; i < GameManager.gridX; i++) {
+                for (int j = 0; j < GameManager.gridY; j++) {
                     if (GameManager.cells[i][j].isEmpty) {
                         GameManager.cells[i][j].drawTile(pass);
                     }
@@ -55,14 +43,15 @@ public class Processing extends PApplet {
             }
         }
 
-        for(int i = 0; i < numRows; i++){
-            for(int j = 0; j < numCols; j++){
+        for(int i = 0; i < GameManager.gridX; i++){
+            for(int j = 0; j < GameManager.gridY; j++){
                 if(GameManager.cells[i][j].entity != null && GameManager.cells[i][j].isEmpty) {
                     GameManager.cells[i][j].entity.draw();
                 }
             }
         }
-        alien.Patrol();
+        //alien1.Patrol();
+        //alien2.Patrol();
     }
 
     @Override

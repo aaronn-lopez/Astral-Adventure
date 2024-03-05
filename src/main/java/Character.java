@@ -8,6 +8,7 @@ public abstract class Character extends Gameobject{
         super(transform, spritePath);
     }
 
+    // potentially change return type to hit gameobject for more modular collision detection
     boolean move(Directions direction) {
         int targetX = this.Transform.gridX;
         int targetY = this.Transform.gridY;

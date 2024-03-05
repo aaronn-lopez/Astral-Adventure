@@ -25,6 +25,7 @@ public class GameManager {
         for(int i = 0; i < gridX; i++){
             for(int j = 0; j < gridY; j++){
                 cells[i][j] = new Cell(i, j);
+                cells[i][j].isEmpty = false;
             }
         }
     }

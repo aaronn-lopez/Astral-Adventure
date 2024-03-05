@@ -10,18 +10,18 @@ public class Player extends Character{
         if(p.keyPressed){
             if(p.key == 'w' || p.key == 'W')
             {
-                this.Transform.y -= 1;
+                this.Transform.y -= 4;
             }
             else if(p.key == 'a' || p.key == 'A')
             {
-                this.Transform.x -= 1;
+                this.Transform.x -= 4;
             }
             else if(p.key == 's' || p.key == 'S')
             {
-                this.Transform.y += 1;
+                this.Transform.y += 4;
             }
             else if(p.key == 'd' || p.key == 'D') {
-                this.Transform.x += 1;
+                this.Transform.x += 4;
             }
         }
     }

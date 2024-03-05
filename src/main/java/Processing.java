@@ -6,8 +6,8 @@ public class Processing extends PApplet {
     GameManager gameManager;
     Map testingMap;
 
-    int numRows = 8;
-    int numCols = 8;
+    int numRows = 16;
+    int numCols = 10;
 
     // Window settings
     @Override
@@ -21,23 +21,15 @@ public class Processing extends PApplet {
         // send static reference of the PApplet
         Gameobject.init(this);
         gameManager = new GameManager();
-        testingMap = new Map(8, 8);
+        testingMap = new Map(16, 10);
 
         gameManager.updateMap(testingMap);
 
 
-        gameManager.instantiate(Objects.Player, 0, 0);
+        gameManager.instantiate(Objects.Player, 3, 3);
         gameManager.instantiate(Objects.Battery, 4, 4);
         gameManager.instantiate(Objects.Blackhole, 7, 7);
 
-        gameManager.instantiate(Objects.Blackhole, 0, 5);
-        gameManager.instantiate(Objects.Blackhole, 1, 5);
-        gameManager.instantiate(Objects.Blackhole, 2, 5);
-        gameManager.instantiate(Objects.Battery, 3, 5);
-        gameManager.instantiate(Objects.Blackhole, 4, 5);
-        gameManager.instantiate(Objects.Blackhole, 5, 5);
-        gameManager.instantiate(Objects.Blackhole, 6, 5);
-        gameManager.instantiate(Objects.Blackhole, 7, 5);
 
         bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
     }
@@ -48,9 +40,10 @@ public class Processing extends PApplet {
         bg.draw();
 
         for(int pass = 0; pass < 3; pass++) {
-            for (int i = 0; i < numRows; i++) {
-                for (int j = 0; j < numCols; j++) {
-                    if (!gameManager.cells[i][j].isEmpty) {
+            for (int i = 2; i < numRows; i++) {
+                for (int j = 2; j < numCols; j++) {
+                    gameManager.cells[i][j].isEmpty = true;
+                    if (gameManager.cells[i][j].isEmpty) {
                         gameManager.cells[i][j].drawTile(pass);
                     }
                 }
@@ -59,7 +52,7 @@ public class Processing extends PApplet {
 
         for(int i = 0; i < numRows; i++){
             for(int j = 0; j < numCols; j++){
-                if(gameManager.cells[i][j].entity != null) {
+                if(gameManager.cells[i][j].entity != null && gameManager.cells[i][j].isEmpty) {
                     gameManager.cells[i][j].entity.draw();
                 }
             }

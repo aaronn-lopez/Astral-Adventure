@@ -4,13 +4,13 @@ public class GameManager {
     int tickSpeed;
     int score;
 
-    int gridX = 8;
-    int gridY = 8;
+    static int gridX = 8;
+    static int gridY = 8;
 
     Scoreboard scoreboard;
 
     ArrayList<Gameobject> gameobjects;
-    Cell[][] cells;
+    static Cell[][] cells;
 
     GameManager(){
 
@@ -30,12 +30,17 @@ public class GameManager {
         }
     }
 
-    void instantiate(Objects object, int x, int y){
+    Gameobject instantiate(Objects object, int x, int y){
         // instantiate an object at a given x, y coordinate
+        Gameobject gameobject = null;
         switch(object){
             case Objects.Player:
-                cells[x][y].entity = new Player(new Transform(x * 64, y * 64, 0, 1));
+                gameobject = new Player(new Transform(x * 64, y * 64, 0, 1));
+                cells[x][y].entity = gameobject;
+                cells[x][y].entity.Transform.gridX = x;
+                cells[x][y].entity.Transform.gridY = y;
                 break;
+                //TODO: assign instantiated entity to gameobject for everything else
             case Objects.WalkingAlien:
                 cells[x][y].entity = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
                 break;
@@ -52,7 +57,8 @@ public class GameManager {
                 cells[x][y].entity = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
                 break;
             default:
-                return;
+                break;
         }
+        return gameobject;
     }
 }

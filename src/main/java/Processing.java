@@ -5,6 +5,7 @@ public class Processing extends PApplet {
     Gameobject bg;
     GameManager gameManager;
     Map testingMap;
+    Player player;
 
     int numRows = 16;
     int numCols = 10;
@@ -26,7 +27,7 @@ public class Processing extends PApplet {
         gameManager.updateMap(testingMap);
 
 
-        gameManager.instantiate(Objects.Player, 3, 3);
+        player = (Player)gameManager.instantiate(Objects.Player, 15, 9);
         gameManager.instantiate(Objects.Battery, 4, 4);
         gameManager.instantiate(Objects.Blackhole, 7, 7);
 
@@ -37,14 +38,16 @@ public class Processing extends PApplet {
     // Called once every frame
     @Override
     public void draw(){
+        //frameRate(1);
         bg.draw();
 
         for(int pass = 0; pass < 3; pass++) {
-            for (int i = 2; i < numRows; i++) {
-                for (int j = 2; j < numCols; j++) {
-                    gameManager.cells[i][j].isEmpty = true;
-                    if (gameManager.cells[i][j].isEmpty) {
-                        gameManager.cells[i][j].drawTile(pass);
+            for (int i = 0; i < numRows; i++) {
+                for (int j = 0; j < numCols; j++) {
+                    GameManager.cells[i][j].isEmpty = j % 5 != 0 && i % 8 != 0;
+
+                    if (GameManager.cells[i][j].isEmpty) {
+                        GameManager.cells[i][j].drawTile(pass);
                     }
                 }
             }
@@ -52,10 +55,28 @@ public class Processing extends PApplet {
 
         for(int i = 0; i < numRows; i++){
             for(int j = 0; j < numCols; j++){
-                if(gameManager.cells[i][j].entity != null && gameManager.cells[i][j].isEmpty) {
-                    gameManager.cells[i][j].entity.draw();
+                if(GameManager.cells[i][j].entity != null && GameManager.cells[i][j].isEmpty) {
+                    GameManager.cells[i][j].entity.draw();
                 }
             }
+        }
+    }
+
+    @Override
+    public void keyPressed(){
+        switch(key){
+            case 'w':
+                player.move(Directions.Up);
+                break;
+            case 'd':
+                player.move(Directions.Right);
+                break;
+            case 's':
+                player.move(Directions.Down);
+                break;
+            case 'a':
+                player.move(Directions.Left);
+                break;
         }
     }
 }

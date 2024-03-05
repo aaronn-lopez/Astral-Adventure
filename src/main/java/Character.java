@@ -8,5 +8,5 @@ public abstract class Character extends Gameobject{
         super(transform, spritePath);
     }
 
-    void move(){};
+    void move(Directions direction){};
 }

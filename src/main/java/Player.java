@@ -5,6 +5,7 @@ public class Player extends Character{
         super(transform, "src/main/Sprites/Astronaut.png");
     }
 
+    // If while pressing and holding one key and then press another direction and release, it will move in the second direction until first key is released
     void move()
     {
         if(p.keyPressed){

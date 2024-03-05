@@ -6,6 +6,7 @@ public class Processing extends PApplet {
     GameManager gameManager;
     Map testingMap;
     Player player;
+    WalkingAlien alien;
 
     int numRows = 16;
     int numCols = 10;
@@ -28,6 +29,7 @@ public class Processing extends PApplet {
 
 
         player = (Player)gameManager.instantiate(Objects.Player, 15, 9);
+        alien = (WalkingAlien)gameManager.instantiate(Objects.WalkingAlien, 1, 1);
         gameManager.instantiate(Objects.Battery, 4, 4);
         gameManager.instantiate(Objects.Blackhole, 7, 7);
 
@@ -60,6 +62,7 @@ public class Processing extends PApplet {
                 }
             }
         }
+        alien.Patrol();
     }
 
     @Override

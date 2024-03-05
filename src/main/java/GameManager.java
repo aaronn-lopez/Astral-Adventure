@@ -40,21 +40,35 @@ public class GameManager {
                 cells[x][y].entity.Transform.gridX = x;
                 cells[x][y].entity.Transform.gridY = y;
                 break;
-                //TODO: assign instantiated entity to gameobject for everything else
             case Objects.WalkingAlien:
-                cells[x][y].entity = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
+                gameobject = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
+                cells[x][y].entity = gameobject;
+                cells[x][y].entity.Transform.gridX = x;
+                cells[x][y].entity.Transform.gridY = y;
                 break;
             case Objects.HidingAlien:
-                cells[x][y].entity = new HidingAlien(new Transform(x * 64, y * 64, 0, 1));
+                gameobject = new HidingAlien(new Transform(x * 64, y * 64, 0, 1));
+                cells[x][y].entity = gameobject;
+                cells[x][y].entity.Transform.gridX = x;
+                cells[x][y].entity.Transform.gridY = y;
                 break;
             case Objects.OxygenTank:
-                cells[x][y].entity = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
+                gameobject = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
+                cells[x][y].entity = gameobject;
+                cells[x][y].entity.Transform.gridX = x;
+                cells[x][y].entity.Transform.gridY = y;
                 break;
             case Objects.Battery:
-                cells[x][y].entity = new Battery(new Transform(x * 64, y * 64, 0, 1));
+                gameobject = new Battery(new Transform(x * 64, y * 64, 0, 1));
+                cells[x][y].entity = gameobject;
+                cells[x][y].entity.Transform.gridX = x;
+                cells[x][y].entity.Transform.gridY = y;
                 break;
             case Objects.Blackhole:
-                cells[x][y].entity = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
+                gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
+                cells[x][y].entity = gameobject;
+                cells[x][y].entity.Transform.gridX = x;
+                cells[x][y].entity.Transform.gridY = y;
                 break;
             default:
                 break;

@@ -3,7 +3,9 @@ import java.util.ArrayList;
 public class GameManager {
     static GameManager gameManager;
     int tickSpeed;
-    int score;
+    int score = 0;
+    int completionCount = 0;
+    int oxygen = 100;
 
     int gridX = 8;
     int gridY = 8;

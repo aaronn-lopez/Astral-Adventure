@@ -25,6 +25,9 @@ public class Gameobject {
     Gameobject(Transform transform, String spritePath){
         this.Transform = transform;
         this.Sprite = p.loadImage(spritePath);
+        if(this instanceof Character || this instanceof Blackhole || this instanceof Collectable){
+            this.Transform.offsetY = -32;
+        }
     }
 
     Transform getTransform(){
@@ -33,7 +36,14 @@ public class Gameobject {
 
     // Call this every frame to draw the gameobject using its current position
     public void draw(){
+        if(this instanceof Character || this instanceof Blackhole || this instanceof Collectable){
+            p.fill(0, 0, 0,100);
+            p.noStroke();
+            p.ellipseMode(PConstants.CENTER);
+            p.ellipse(this.Transform.x, this.Transform.y, 48, 32);
+        }
+
         p.imageMode(PConstants.CENTER);
-        p.image(this.Sprite, this.Transform.x, this.Transform.y, Sprite.width * this.Transform.scale, Sprite.height * this.Transform.scale);
+        p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY, Sprite.width * this.Transform.scale, Sprite.height * this.Transform.scale);
     }
 }

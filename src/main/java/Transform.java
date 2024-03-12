@@ -11,6 +11,10 @@ public class Transform {
     float rotation;
     float scale;
 
+    // Optional position offset parameters
+    public float offsetX = 0;
+    public float offsetY = 0;
+
     // Constructor
     Transform(float x, float y, float rot, float scale){
         this.x = x;

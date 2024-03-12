@@ -3,7 +3,7 @@ import processing.core.PApplet;
 // Pseudo 'main' class---where we want to do our logic programming
 public class Processing extends PApplet {
     Gameobject bg;
-    GameManager gameManager;
+    GameManager gameManager = new GameManager();
     Map testingMap;
     Player player;
 
@@ -21,7 +21,7 @@ public class Processing extends PApplet {
         testingMap = new Map();
         testingMap.newMap("src/main/java/TestingMap1.txt");
 
-        player = (Player)GameManager.cells[testingMap.playerPos[0]][testingMap.playerPos[1]].entity;
+        player = (Player)gameManager.player;
 
         GameManager.updateMap(testingMap);
 
@@ -34,24 +34,26 @@ public class Processing extends PApplet {
         bg.draw();
 
         for(int pass = 0; pass < 3; pass++) {
-            for (int i = 0; i < GameManager.gridX; i++) {
-                for (int j = 0; j < GameManager.gridY; j++) {
-                    if (GameManager.cells[i][j].isEmpty) {
-                        GameManager.cells[i][j].drawTile(pass);
+            for (int i = 0; i < gameManager.gridX; i++) {
+                for (int j = 0; j < gameManager.gridY; j++) {
+                    if (gameManager.cells[i][j].isEmpty) {
+                        gameManager.cells[i][j].drawTile(pass);
                     }
                 }
             }
         }
 
-        for(int i = 0; i < GameManager.gridX; i++){
-            for(int j = 0; j < GameManager.gridY; j++){
-                if(GameManager.cells[i][j].entity != null && GameManager.cells[i][j].isEmpty) {
-                    GameManager.cells[i][j].entity.draw();
+        for(int i = 0; i < gameManager.gridX; i++){
+            for(int j = 0; j < gameManager.gridY; j++){
+                for(int k = 0; k < gameManager.cells[i][j].entities.size(); k++) {
+                    if (gameManager.cells[i][j].entities.get(k) != null && gameManager.cells[i][j].isEmpty) {
+                        gameManager.cells[i][j].entities.get(k).draw();
+                    }
                 }
             }
         }
-        //alien1.Patrol();
-        //alien2.Patrol();
+        gameManager.player.draw();
+        ((Player)gameManager.player).checkCollisions();
     }
 
     @Override

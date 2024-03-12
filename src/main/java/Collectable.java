@@ -12,9 +12,14 @@ public abstract class Collectable extends Mapobject{
     abstract void collect();
 
     public void draw(){
-        this.Transform.y += (float) (sin((float) p.frameCount / 10) * 1.1);
+        this.Transform.offsetY += (float) (-sin((float) p.frameCount / 10) * 1.1);
+
+        p.fill(0, 0, 0,100);
+        p.noStroke();
+        p.ellipseMode(PConstants.CENTER);
+        p.ellipse(this.Transform.x, this.Transform.y, 48, 32);
 
         p.imageMode(PConstants.CENTER);
-        p.image(this.Sprite, this.Transform.x, this.Transform.y);
+        p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY);
     }
 }

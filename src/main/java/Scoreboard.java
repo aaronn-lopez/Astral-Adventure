@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Scoreboard {
     ArrayList<Integer> scores;
 
+    // adding scores to the scoreboard
     public void updateScoreboard(int score){
         if(scores.isEmpty()){
             scores.add(score);

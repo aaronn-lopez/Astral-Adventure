@@ -23,8 +23,6 @@ public class Processing extends PApplet {
 
         player = (Player)gameManager.player;
 
-        GameManager.updateMap(testingMap);
-
         bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
     }
 

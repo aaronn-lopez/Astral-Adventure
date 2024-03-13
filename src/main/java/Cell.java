@@ -18,20 +18,13 @@ public class Cell {
         this.x = x;
         this.y = y;
 
+        // the three 'layers' of each tile
         tile = new Gameobject[3];
         tile[0] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), cliffSprite);
         tile[1] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), outlineSprite);
         tile[2] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), pathSprite);
 
         entities = new ArrayList<Gameobject>();
-    }
-
-    void addTile(){
-
-    }
-
-    void addEntity(){
-
     }
 
     // call draw tile 3 times to draw each layer at a time

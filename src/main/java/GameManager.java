@@ -23,10 +23,6 @@ public class GameManager {
         gameManager = this;
     }
 
-    static void updateMap(Map map){
-
-    }
-
     public static Gameobject instantiate(Objects object, int x, int y){
         // instantiate an object at a given x, y coordinate
         Gameobject gameobject = null;

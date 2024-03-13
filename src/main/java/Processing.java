@@ -51,6 +51,8 @@ public class Processing extends PApplet {
                 }
             }
         }
+
+        //Every frame checks the current oxygen and simultaneously reduces
         ((Player)gameManager.player).checkOxygen();
         gameManager.player.draw();
         ((Player)gameManager.player).checkCollisions();

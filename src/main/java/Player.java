@@ -16,6 +16,10 @@ public class Player extends Character{
             Gameobject hit = currentCell.entities.getFirst();
             if(hit instanceof WalkingAlien || hit instanceof HidingAlien){
                 println("Hit enemy!");
+                //if you hit hiding alien you lose 5 seconds worth of oxygen
+                if(hit instanceof HidingAlien){
+                    GameManager.gameManager.oxygen -= 480;
+                }
                 currentCell.entities.remove(hit);
             }
             else if(hit instanceof Blackhole){
@@ -24,25 +28,37 @@ public class Player extends Character{
             }
             else if(hit instanceof Battery){
                 println("Hit battery!");
+                GameManager.gameManager.score += 100;
                 GameManager.gameManager.completionCount++;
                 currentCell.entities.remove(hit);
             }
             else if(hit instanceof OxygenTank){
+                //if your oxygen is above half then there will be "overflow"
+                if(GameManager.gameManager.oxygen > 2000)
+                {
+                    //multiply score by bonus "overflow"
+                    GameManager.gameManager.score *= (int) ((double) (GameManager.gameManager.oxygen - 2000) /40);
+                }
+                //nerfed the oxygen tank replenish amount as 75/100 points was overtuned
+                GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 2000);
                 println("Hit oxygen tank!");
-                GameManager.gameManager.oxygen = PApplet.min(2400, GameManager.gameManager.oxygen + 1600);
+                println(GameManager.gameManager.score);
                 currentCell.entities.remove(hit);
             }
         }
     }
 
+
+    //Decreases at an accurate frame-to-second ratio
+    //giving the player an initial 60 seconds before they run out of oxygen.
     public void checkOxygen(){
         GameManager.gameManager.oxygen -= 1;
         println(GameManager.gameManager.oxygen);
         if(GameManager.gameManager.oxygen < 0)
         {
             println("Oxygen ran out you lose");
+            println(GameManager.gameManager.score);
             System.exit(0);
         }
     }
-
 }

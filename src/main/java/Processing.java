@@ -30,6 +30,7 @@ public class Processing extends PApplet {
     @Override
     public void draw(){
         bg.draw();
+        frameRate(40);
 
         for(int pass = 0; pass < 3; pass++) {
             for (int i = 0; i < gameManager.gridX; i++) {
@@ -50,9 +51,12 @@ public class Processing extends PApplet {
                 }
             }
         }
+        ((Player)gameManager.player).checkOxygen();
         gameManager.player.draw();
         ((Player)gameManager.player).checkCollisions();
+
     }
+
 
     @Override
     public void keyPressed(){

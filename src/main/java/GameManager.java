@@ -5,7 +5,7 @@ public class GameManager {
     int tickSpeed;
     int score = 0;
     int completionCount = 0;
-    int oxygen = 100;
+    int oxygen = 2400;
 
     int gridX = 8;
     int gridY = 8;

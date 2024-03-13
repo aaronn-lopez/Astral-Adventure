@@ -29,9 +29,19 @@ public class Player extends Character{
             }
             else if(hit instanceof OxygenTank){
                 println("Hit oxygen tank!");
-                GameManager.gameManager.oxygen = PApplet.min(100, GameManager.gameManager.oxygen + 75);
+                GameManager.gameManager.oxygen = PApplet.min(2400, GameManager.gameManager.oxygen + 1600);
                 currentCell.entities.remove(hit);
             }
+        }
+    }
+
+    public void checkOxygen(){
+        GameManager.gameManager.oxygen -= 1;
+        println(GameManager.gameManager.oxygen);
+        if(GameManager.gameManager.oxygen < 0)
+        {
+            println("Oxygen ran out you lose");
+            System.exit(0);
         }
     }
 

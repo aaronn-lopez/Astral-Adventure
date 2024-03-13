@@ -39,7 +39,7 @@ public class Player extends Character{
                     //multiply score by bonus "overflow"
                     GameManager.gameManager.score *= (int) ((double) (GameManager.gameManager.oxygen - 2000) /40);
                 }
-                //nerfed the oxygen tank replenish amount as 75/100 points was overtuned
+                //nerfed the oxygen tank replenish amount to 50 as 75 points was overtuned
                 GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 2000);
                 println("Hit oxygen tank!");
                 println(GameManager.gameManager.score);

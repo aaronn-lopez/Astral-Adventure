@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class GameManager {
     static GameManager gameManager;
-    int tickSpeed;
+    int framesPerTick = 40;
     int score = 0;
     int completionCount = 0;
     int oxygen = 4000;
@@ -18,9 +18,11 @@ public class GameManager {
     Cell[][] cells;
 
     public Gameobject player;
+    public ArrayList<Gameobject> enemies;
 
     GameManager(){
         gameManager = this;
+        gameManager.enemies = new ArrayList<Gameobject>();
     }
 
     public static Gameobject instantiate(Objects object, int x, int y){
@@ -36,31 +38,33 @@ public class GameManager {
                 break;
             case WalkingAlien:
                 gameobject = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entities.add(gameobject);
+                gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
+                gameManager.enemies.add(gameobject);
                 break;
             case HidingAlien:
                 gameobject = new HidingAlien(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entities.add(gameobject);
+                gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
+                gameManager.enemies.add(gameobject);
                 break;
             case OxygenTank:
                 gameobject = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entities.add(gameobject);
+                gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;
             case Battery:
                 gameobject = new Battery(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entities.add(gameobject);
+                gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;
             case Blackhole:
                 gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
-                gameManager.cells[x][y].entities.add(gameobject);
+                gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;

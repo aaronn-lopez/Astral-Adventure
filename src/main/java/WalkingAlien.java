@@ -1,28 +1,23 @@
 public class WalkingAlien extends Alien{
     WalkingAlien(Transform transform){
         super(transform, "src/main/Sprites/Battery.png");
-        dir = Directions.Right;
     }
 
     public Directions dir;
-    void Patrol(){
-        if(!move(dir)){
-            switch(dir){
-                case Directions.Up:
-                    dir = Directions.Down;
-                    break;
-                case Directions.Down:
-                    dir = Directions.Up;
-                    break;
-                case Directions.Right:
-                    dir = Directions.Left;
-                    break;
-                case Directions.Left:
-                    dir = Directions.Right;
-                    break;
-                default:
-                    break;
-            }
+    void Patrol() {
+        int playerX = GameManager.gameManager.player.Transform.gridX;
+        int playerY = GameManager.gameManager.player.Transform.gridY;
+
+        if (playerX < this.Transform.gridX) {
+            dir = Directions.Left;
+        } else if (playerX > this.Transform.gridX) {
+            dir = Directions.Right;
+        } else if (playerY < this.Transform.gridY) {
+            dir = Directions.Up;
+        } else if (playerY > this.Transform.gridY) {
+            dir = Directions.Down;
         }
+
+        move(dir);
     }
 }

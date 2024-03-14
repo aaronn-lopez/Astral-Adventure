@@ -6,7 +6,7 @@ public class Cell {
 
     boolean isEmpty = false; // determines if a given cell can be walked on--empty cells behave like walls
 
-    ArrayList<Gameobject> entities;
+    Gameobject entity;
     Gameobject[] tile;
     Gameobject player;
 
@@ -23,8 +23,6 @@ public class Cell {
         tile[0] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), cliffSprite);
         tile[1] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), outlineSprite);
         tile[2] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), pathSprite);
-
-        entities = new ArrayList<Gameobject>();
     }
 
     // call draw tile 3 times to draw each layer at a time

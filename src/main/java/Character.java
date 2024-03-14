@@ -8,7 +8,6 @@ public abstract class Character extends Gameobject{
         super(transform, spritePath);
     }
 
-    // potentially change return type to hit gameobject for more modular collision detection
     boolean move(Directions direction) {
         int targetX = this.Transform.gridX;
         int targetY = this.Transform.gridY;
@@ -29,13 +28,17 @@ public abstract class Character extends Gameobject{
         }
 
         if (inBounds(targetX, targetY)) {
-            if(this.getClass() == Player.class){
+            if(this instanceof Player){
                 GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].player = null;
                 GameManager.gameManager.cells[targetX][targetY].player = this;
             }
             else {
-                GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].entities.remove(this);
-                GameManager.gameManager.cells[targetX][targetY].entities.add(this);
+                if(this instanceof WalkingAlien && GameManager.gameManager.cells[targetX][targetY].entity != null){
+                    return false;
+                }
+
+                GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].entity = null;
+                GameManager.gameManager.cells[targetX][targetY].entity = this;
             }
 
             this.Transform.gridX = targetX;

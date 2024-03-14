@@ -44,10 +44,8 @@ public class Processing extends PApplet {
 
         for(int i = 0; i < gameManager.gridX; i++){
             for(int j = 0; j < gameManager.gridY; j++){
-                for(int k = 0; k < gameManager.cells[i][j].entities.size(); k++) {
-                    if (gameManager.cells[i][j].entities.get(k) != null && gameManager.cells[i][j].isEmpty) {
-                        gameManager.cells[i][j].entities.get(k).draw();
-                    }
+                if (gameManager.cells[i][j].entity != null && gameManager.cells[i][j].isEmpty) {
+                    gameManager.cells[i][j].entity.draw();
                 }
             }
         }
@@ -62,8 +60,19 @@ public class Processing extends PApplet {
         text("Score: " + GameManager.gameManager.score, 1000, 50);
         text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1000, 90);
 
+        gameClock();
     }
 
+    public void gameClock(){
+        if(frameCount % gameManager.framesPerTick == 0){
+            // code to be executed once every game tick
+            for(int i = 0; i < gameManager.enemies.size(); i++){
+                if(gameManager.enemies.get(i) instanceof WalkingAlien){
+                    ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
+                }
+            }
+        }
+    }
 
     @Override
     public void keyPressed(){

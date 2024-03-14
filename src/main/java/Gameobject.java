@@ -21,7 +21,6 @@ public class Gameobject {
     }
 
     // Constructor; requires a transform, and a string containing a path to the image.
-    // TODO: default path containing blank image
     Gameobject(Transform transform, String spritePath){
         this.Transform = transform;
         this.Sprite = p.loadImage(spritePath);

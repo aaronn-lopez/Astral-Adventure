@@ -12,15 +12,19 @@ public class Player extends Character{
 
     public void checkCollisions(){
         Cell currentCell = GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY];
-        if(!currentCell.entities.isEmpty()){
-            Gameobject hit = currentCell.entities.getFirst();
+        if(currentCell.entity != null){
+            Gameobject hit = currentCell.entity;
             if(hit instanceof WalkingAlien || hit instanceof HidingAlien){
                 println("Hit enemy!");
                 //if you hit hiding alien you lose 5 seconds worth of oxygen
                 if(hit instanceof HidingAlien){
                     GameManager.gameManager.oxygen -= 480;
                 }
-                currentCell.entities.remove(hit);
+                if(hit instanceof WalkingAlien){
+                    GameManager.gameManager.oxygen -= 480 * 2;
+                }
+                currentCell.entity = null;
+                GameManager.gameManager.enemies.remove(hit);
             }
             else if(hit instanceof Blackhole){
                 println("Hit blackhole!");
@@ -30,7 +34,7 @@ public class Player extends Character{
                 println("Hit battery!");
                 GameManager.gameManager.score += 100;
                 GameManager.gameManager.completionCount++;
-                currentCell.entities.remove(hit);
+                currentCell.entity = null;
             }
             else if(hit instanceof OxygenTank){
                 //if your oxygen is above half then there will be "overflow"
@@ -43,7 +47,7 @@ public class Player extends Character{
                 GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 2000);
                 println("Hit oxygen tank!");
                 println(GameManager.gameManager.score);
-                currentCell.entities.remove(hit);
+                currentCell.entity = null;
             }
         }
     }

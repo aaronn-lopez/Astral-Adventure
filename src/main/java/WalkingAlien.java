@@ -1,6 +1,6 @@
 public class WalkingAlien extends Alien{
     WalkingAlien(Transform transform){
-        super(transform, "src/main/Sprites/Battery.png");
+        super(transform, "src/main/Sprites/Slime.png");
     }
 
     public Directions dir;

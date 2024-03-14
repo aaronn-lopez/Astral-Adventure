@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 
 // Pseudo 'main' class---where we want to do our logic programming
 public class Processing extends PApplet {
@@ -6,6 +7,8 @@ public class Processing extends PApplet {
     GameManager gameManager = new GameManager();
     Map testingMap;
     Player player;
+
+    PFont font;
 
     // Window settings
     @Override
@@ -24,6 +27,9 @@ public class Processing extends PApplet {
         player = (Player)gameManager.player;
 
         bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
+
+        font = createFont("src/main/Sprites/pixelFont.ttf", 32);
+        textFont(font);
     }
 
     // Called once every frame

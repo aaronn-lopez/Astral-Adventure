@@ -35,7 +35,7 @@ public class Gameobject {
 
     // Call this every frame to draw the gameobject using its current position
     public void draw(){
-        if(this instanceof Character || this instanceof Blackhole || this instanceof Collectable){
+        if(this instanceof WalkingAlien || this instanceof Blackhole || this instanceof Collectable){
             p.fill(0, 0, 0,100);
             p.noStroke();
             p.ellipseMode(PConstants.CENTER);

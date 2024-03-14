@@ -44,7 +44,7 @@ public class GameManager {
                 gameManager.enemies.add(gameobject);
                 break;
             case HidingAlien:
-                gameobject = new HidingAlien(new Transform(x * 64, y * 64, 0, 1));
+                gameobject = new Spike(new Transform(x * 64, y * 64, 0, 1));
                 gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;

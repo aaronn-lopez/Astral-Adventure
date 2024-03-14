@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PConstants;
 
 import static processing.core.PApplet.max;
 import static processing.core.PApplet.println;
@@ -14,10 +13,10 @@ public class Player extends Character{
         Cell currentCell = GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY];
         if(currentCell.entity != null){
             Gameobject hit = currentCell.entity;
-            if(hit instanceof WalkingAlien || hit instanceof HidingAlien){
+            if(hit instanceof WalkingAlien || hit instanceof Spike){
                 println("Hit enemy!");
                 //if you hit hiding alien you lose 5 seconds worth of oxygen
-                if(hit instanceof HidingAlien){
+                if(hit instanceof Spike){
                     GameManager.gameManager.oxygen -= 480;
                 }
                 if(hit instanceof WalkingAlien){

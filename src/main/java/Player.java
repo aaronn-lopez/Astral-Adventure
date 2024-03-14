@@ -15,7 +15,7 @@ public class Player extends Character{
             Gameobject hit = currentCell.entity;
             if(hit instanceof WalkingAlien || hit instanceof Spike){
                 println("Hit enemy!");
-                //if you hit hiding alien you lose 5 seconds worth of oxygen
+                //if you hit a spike you lose 5 seconds worth of oxygen
                 if(hit instanceof Spike){
                     GameManager.gameManager.oxygen -= 480;
                 }

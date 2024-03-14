@@ -57,6 +57,11 @@ public class Processing extends PApplet {
         gameManager.player.draw();
         ((Player)gameManager.player).checkCollisions();
 
+        fill(255);
+        textSize(32);
+        text("Score: " + GameManager.gameManager.score, 1000, 50);
+        text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1000, 90);
+
     }
 
 

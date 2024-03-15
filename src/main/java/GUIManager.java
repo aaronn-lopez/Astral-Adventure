@@ -11,6 +11,8 @@ public class GUIManager {
 
     Button startButton;
     Button instructionsButton;
+    Button backButton;
+    Button leaderboardButton;
 
 
     GUIManager(PApplet p){
@@ -19,6 +21,8 @@ public class GUIManager {
 
         startButton = new Button(1280 / 2 - 200, 720 / 2 + 200, 300, 150, "Start Game", p.color(255, 100));
         instructionsButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 300, 150, "Instructions", p.color(255, 100));
+        backButton = new Button(60, 60, 100, 80, "Back", p.color(255, 100));
+        leaderboardButton = new Button(1100, 60, 300, 80, "Leaderboard", p.color(255, 100));
     }
 
     class Button {
@@ -108,16 +112,37 @@ public class GUIManager {
         else if(instructionsButton.checkMouse()) {
             state = GUIState.Help;
         }
+        else if(leaderboardButton.checkMouse()){
+            state = GUIState.Scoreboard;
+        }
 
         startButton.draw();
         instructionsButton.draw();
+        leaderboardButton.draw();
     }
 
     void scoreboardScreen(){
         state = GUIState.Scoreboard;
+
+        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
+        p.image(image, 0, 0, 1280, 720);
+
+        if(backButton.checkMouse()){
+            state = GUIState.Start;
+        }
+        backButton.draw();
+
     }
 
     void helpScreen(){
-            state = GUIState.Help;
+        state = GUIState.Help;
+
+        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
+        p.image(image, 0, 0, 1280, 720);
+
+        if(backButton.checkMouse()){
+            state = GUIState.Start;
+        }
+        backButton.draw();
     }
 }

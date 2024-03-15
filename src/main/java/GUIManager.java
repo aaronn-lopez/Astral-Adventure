@@ -4,7 +4,6 @@ import processing.core.PImage;
 
 public class GUIManager {
     public GUIState state = GUIState.Start;
-    private boolean pauseBuffer = true;
 
     GUIManager  guiManager;
     PApplet p;
@@ -13,6 +12,7 @@ public class GUIManager {
     Button instructionsButton;
     Button backButton;
     Button leaderboardButton;
+    Button mainMenuButton;
 
 
     GUIManager(PApplet p){
@@ -23,6 +23,7 @@ public class GUIManager {
         instructionsButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 300, 150, "Instructions", p.color(255, 100));
         backButton = new Button(60, 60, 100, 80, "Back", p.color(255, 100));
         leaderboardButton = new Button(1100, 60, 300, 80, "Leaderboard", p.color(255, 100));
+        mainMenuButton = new Button(1280 / 2, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
     }
 
     class Button {
@@ -70,32 +71,45 @@ public class GUIManager {
         }
     }
 
+    void gameGUI(){
+        p.fill(255);
+        p.textSize(32);
+        p.textAlign(PConstants.LEFT, PConstants.CENTER);
+        p.text("Score: " + GameManager.gameManager.score, 1050, 30);
+        p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1050, 55);
+        p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 80);
+    }
+
     void pause(){
         state = GUIState.Pause;
 
-        if(pauseBuffer) {
-            p.fill(0, 180);
-            p.noStroke();
-            p.rectMode(PConstants.CORNERS);
-            p.rect(0, 0, 1280, 720);
+        p.fill(0);
+        p.noStroke();
+        p.rectMode(PConstants.CORNERS);
+        p.rect(0, 0, 1280, 720);
 
-            p.fill(255);
-            p.textSize(100);
-            p.textAlign(PConstants.CENTER, PConstants.CENTER);
-            p.text("Paused", 1280/2, 720/3);
-            pauseBuffer = false;
+        p.fill(255);
+        p.textSize(100);
+        p.textAlign(PConstants.CENTER, PConstants.CENTER);
+        p.text("Paused", 1280/2, 720/3);
+
+        if(mainMenuButton.checkMouse()){
+            state = GUIState.Start;
         }
+        mainMenuButton.draw();
+
     }
 
     void resume(){
         state = GUIState.Game;
-        pauseBuffer = true;
     }
 
 
     void startScreen(){
         state = GUIState.Start;
 
+        p.imageMode(PConstants.CORNERS);
+        p.rectMode(PConstants.CORNERS);
         PImage image = p.loadImage("src/main/Sprites/StartScreenBackground.png");
         p.image(image, 0, 0, 1280, 720);
 
@@ -105,6 +119,8 @@ public class GUIManager {
         p.textSize(100);
         p.textAlign(PConstants.CENTER, PConstants.CENTER);
         p.text("Astral Adventures", 1280/2, 720/5);
+
+        p.imageMode(PConstants.CORNER);
 
         if(startButton.checkMouse()){
             state = GUIState.Game;

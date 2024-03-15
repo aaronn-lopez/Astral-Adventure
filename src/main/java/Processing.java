@@ -23,7 +23,7 @@ public class Processing extends PApplet {
         // send static reference of the PApplet
         Gameobject.init(this);
         map = new Map();
-        map.newMap("src/main/maps/Level2Map.txt");
+        map.newMap("src/main/maps/Level3Map.txt");
 
         player = (Player)gameManager.player;
 

@@ -20,4 +20,5 @@ public class WalkingAlien extends Alien{
 
         move(dir);
     }
+
 }

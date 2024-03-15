@@ -74,7 +74,7 @@ public class Processing extends PApplet {
             // code to be executed once every game tick
             for(int i = 0; i < gameManager.enemies.size(); i++){
                 if(gameManager.enemies.get(i) instanceof WalkingAlien){
-                    ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
+                         ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
                 }
             }
         }

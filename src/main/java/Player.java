@@ -53,6 +53,8 @@ public class Player extends Character{
                 if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
                 {
                     println("Collected all batteries and hit end tile. You win!");
+                    println("Calculating your final score: ");
+                    GameManager.gameManager.score -= GameManager.gameManager.elapsedTime * 2;
                     println(GameManager.gameManager.score);
                     System.exit(0);
                 }

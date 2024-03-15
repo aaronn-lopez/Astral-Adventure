@@ -10,7 +10,6 @@ public class GameManager {
     int oxygenRate = 1;
     int gridX = 8;
     int gridY = 8;
-    int blackHoleID = 0;
 
     Scoreboard scoreboard;
 
@@ -65,7 +64,7 @@ public class GameManager {
                 gameobject.Transform.gridY = y;
                 break;
             case Blackhole:
-                gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), gameManager.blackHoleID);
+                gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
                 gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;

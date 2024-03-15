@@ -73,17 +73,20 @@ public class Map {
                         case '1':
                             // blackhole tile
                             GameManager.gameManager.cells[j][i].isEmpty = true;
-                            GameManager.gameManager.blackHoleID = 1;
                             GameManager.instantiate(Objects.Blackhole, j, i);
+                            ((Blackhole)GameManager.gameManager.cells[j][i].entity).id = 1;
                             break;
                         case '2':
                             // a potential second blackhole tile
                             GameManager.gameManager.cells[j][i].isEmpty = true;
-                            GameManager.gameManager.blackHoleID = 2;
                             GameManager.instantiate(Objects.Blackhole, j, i);
-
-                            // Change this to set the id---add more cases
-                            ((Blackhole)GameManager.gameManager.cells[j][i].entity).id = 0;
+                            ((Blackhole)GameManager.gameManager.cells[j][i].entity).id = 2;
+                            break;
+                        case '3':
+                            // a potential third blackhole tile
+                            GameManager.gameManager.cells[j][i].isEmpty = true;
+                            GameManager.instantiate(Objects.Blackhole, j, i);
+                            ((Blackhole)GameManager.gameManager.cells[j][i].entity).id = 3;
                             break;
                         case 'B':
                             // battery tile

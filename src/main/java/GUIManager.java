@@ -73,11 +73,11 @@ public class GUIManager {
 
     void gameGUI(){
         p.fill(255);
-        p.textSize(32);
+        p.textSize(30);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
-        p.text("Score: " + GameManager.gameManager.score, 1050, 30);
-        p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1050, 55);
-        p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 80);
+        p.text("Score: " + GameManager.gameManager.score, 1050, 25);
+        p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1050, 50);
+        p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 75);
     }
 
     void pause(){

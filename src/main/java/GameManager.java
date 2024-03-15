@@ -8,7 +8,7 @@ public class GameManager {
 
     int totalBatteries = 0;
     int oxygen = 4000;
-
+    int oxygenRate = 1;
     int gridX = 8;
     int gridY = 8;
 

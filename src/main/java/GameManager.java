@@ -5,6 +5,8 @@ public class GameManager {
     int framesPerTick = 40;
     int score = 0;
     int completionCount = 0;
+
+    int totalBatteries = 0;
     int oxygen = 4000;
 
     int gridX = 8;
@@ -64,6 +66,12 @@ public class GameManager {
                 break;
             case Blackhole:
                 gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
+                gameManager.cells[x][y].entity = gameobject;
+                gameobject.Transform.gridX = x;
+                gameobject.Transform.gridY = y;
+                break;
+            case EndTile:
+                gameobject = new EndTile(new Transform(x * 64, y * 64, 0, 1), 0);
                 gameManager.cells[x][y].entity = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;

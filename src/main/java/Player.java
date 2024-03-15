@@ -48,6 +48,19 @@ public class Player extends Character{
                 println(GameManager.gameManager.score);
                 currentCell.entity = null;
             }
+            else if(hit instanceof EndTile){
+                println("Hit end tile!");
+                if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
+                {
+                    println("Collected all batteries and hit end tile. You win!");
+                    println(GameManager.gameManager.score);
+                    System.exit(0);
+                }
+                else
+                {
+                    println("You didn't collect all the batteries, go back and get them!");
+                }
+            }
         }
     }
 

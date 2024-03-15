@@ -78,7 +78,13 @@ public class Map {
                         case 'B':
                             // battery tile
                             GameManager.gameManager.cells[j][i].isEmpty = true;
+                            GameManager.gameManager.totalBatteries++;
                             GameManager.instantiate(Objects.Battery, j, i);
+                            break;
+                        case 'E':
+                            // end tile
+                            GameManager.gameManager.cells[j][i].isEmpty = true;
+                            GameManager.instantiate(Objects.EndTile, j, i);
                             break;
                     }
                 }

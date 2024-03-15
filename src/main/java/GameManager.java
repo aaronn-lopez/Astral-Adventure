@@ -5,7 +5,6 @@ public class GameManager {
     int framesPerTick = 40;
     int score = 0;
     int completionCount = 0;
-
     int totalBatteries = 0;
     int oxygen = 4000;
     int oxygenRate = 1;

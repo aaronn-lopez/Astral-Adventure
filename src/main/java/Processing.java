@@ -93,8 +93,8 @@ public class Processing extends PApplet {
 
         fill(255);
         textSize(32);
-        text("Score: " + GameManager.gameManager.score, 1000, 50);
-        text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1000, 90);
+        text("Score: " + GameManager.gameManager.score, 1050, 44);
+        text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1050, 70);
 
         gameClock();
     }

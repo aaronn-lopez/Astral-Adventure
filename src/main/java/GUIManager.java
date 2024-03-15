@@ -14,6 +14,7 @@ public class GUIManager {
     Button backButton;
     Button leaderboardButton;
     Button mainMenuButton;
+    Button[] levels;
 
 
     GUIManager(PApplet p){
@@ -25,6 +26,13 @@ public class GUIManager {
         backButton = new Button(60, 60, 100, 80, "Back", p.color(255, 100));
         leaderboardButton = new Button(1100, 60, 300, 80, "Leaderboard", p.color(255, 100));
         mainMenuButton = new Button(1280 / 2, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
+
+        levels = new Button[5];
+        levels[0] = new Button(1280 / 2 - 150, 720 / 2, 50, 50, "1", p.color(255, 100));
+        levels[1] = new Button(1280 / 2 - 75, 720 / 2, 50, 50, "2", p.color(255, 100));
+        levels[2] = new Button(1280 / 2, 720 / 2, 50, 50, "3", p.color(255, 100));
+        levels[3] = new Button(1280 / 2 + 75, 720 / 2, 50, 50, "4", p.color(255, 100));
+        levels[4] = new Button(1280 / 2 + 150, 720 / 2, 50, 50, "5", p.color(255, 100));
     }
 
     class Button {
@@ -125,7 +133,7 @@ public class GUIManager {
         p.imageMode(PConstants.CORNER);
 
         if(startButton.checkMouse()){
-            state = GUIState.Game;
+            state = GUIState.DifficultySelect;
         }
         else if(instructionsButton.checkMouse()) {
             state = GUIState.Help;
@@ -181,5 +189,33 @@ public class GUIManager {
             state = GUIState.Start;
         }
         backButton.draw();
+    }
+
+    void difficultyScreen(){
+        state = GUIState.DifficultySelect;
+
+        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
+        p.image(image, 0, 0, 1280, 720);
+
+        p.textSize(64);
+        p.text("Select Difficulty", 1280/2, 720/4);
+
+        if(backButton.checkMouse()){
+            state = GUIState.Start;
+        }
+        for(int i = 0; i < levels.length; i++){
+            if(levels[i].checkMouse()){
+                GameManager.gameManager.startLevel(i + 1);
+                Processing.player = (Player)GameManager.gameManager.player;
+                state = GUIState.Game;
+            }
+        }
+
+        backButton.draw();
+        for(int i = 0; i < levels.length; i++){
+            levels[i].draw();
+        }
+
+
     }
 }

@@ -1,3 +1,3 @@
 public enum GUIState {
-    Game, Pause, Start, End, Scoreboard, Help
+    Game, Pause, Start, End, Scoreboard, Help, DifficultySelect
 }

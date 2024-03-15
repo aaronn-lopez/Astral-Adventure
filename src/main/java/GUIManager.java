@@ -85,6 +85,7 @@ public class GUIManager {
         p.fill(255);
         p.textSize(30);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
+        p.text("Seconds Elapsed:\n" + GameManager.gameManager.elapsedTime, 10, 25);
         p.text("Score: " + GameManager.gameManager.score, 1050, 25);
         p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100) + "%", 1050, 50);
         p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 75);

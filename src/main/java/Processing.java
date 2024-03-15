@@ -92,6 +92,7 @@ public class Processing extends PApplet {
     public void gameClock(){
         if(frameCount % gameManager.framesPerTick == 0){
             // code to be executed once every game tick
+            gameManager.elapsedTime++;
             for(int i = 0; i < gameManager.enemies.size(); i++){
                 if(gameManager.enemies.get(i) instanceof WalkingAlien){
                          ((WalkingAlien)gameManager.enemies.get(i)).Patrol();

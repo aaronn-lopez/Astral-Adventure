@@ -11,7 +11,7 @@ public class GameManager {
     int oxygenRate = 1;
     int gridX = 8;
     int gridY = 8;
-
+    long elapsedTime = 0;
     Scoreboard scoreboard;
 
     boolean justTeleported = false;

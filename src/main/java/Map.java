@@ -81,6 +81,9 @@ public class Map {
                             GameManager.gameManager.cells[j][i].isEmpty = true;
                             GameManager.gameManager.blackHoleID = 2;
                             GameManager.instantiate(Objects.Blackhole, j, i);
+
+                            // Change this to set the id---add more cases
+                            ((Blackhole)GameManager.gameManager.cells[j][i].entity).id = 0;
                             break;
                         case 'B':
                             // battery tile

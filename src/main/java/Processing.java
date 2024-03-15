@@ -91,11 +91,6 @@ public class Processing extends PApplet {
         gameManager.player.draw();
         ((Player)gameManager.player).checkCollisions();
 
-        fill(255);
-        textSize(32);
-        text("Score: " + GameManager.gameManager.score, 1075, 39);
-        text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1090, 65);
-
         gameClock();
     }
 
@@ -107,6 +102,7 @@ public class Processing extends PApplet {
         switch(guiManager.state){
             case GUIState.Game:
                 gameUpdate();
+                guiManager.gameGUI();
                 break;
             case GUIState.Pause:
                 guiManager.pause();

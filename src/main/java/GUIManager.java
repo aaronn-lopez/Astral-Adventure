@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
+import processing.core.PFont;
 
 public class GUIManager {
     public GUIState state = GUIState.Start;
@@ -48,6 +49,7 @@ public class GUIManager {
         void draw(){
             p.noStroke();
             p.rectMode(PConstants.CENTER);
+            p.textAlign(PConstants.CENTER, PConstants.CENTER);
             p.textSize(40);
 
             p.fill(color);
@@ -155,6 +157,25 @@ public class GUIManager {
 
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.image(image, 0, 0, 1280, 720);
+
+        p.fill(255);
+        p.textSize(30);
+
+        PFont font1;
+        PFont font2;
+        font1 = p.createFont("src/main/Sprites/pixelFont.ttf", 30);
+        font2 = p.createFont("src/main/Sprites/pixelFont2.ttf", 30);
+        p.textFont(font2);
+        p.textAlign(PConstants.LEFT, PConstants.TOP);
+        p.text(
+                    "Your ship ran out of power, stranding you on an unknown planet\n\n" +
+                        "Your goal is to collect all of the batteries, \nin order to power your rocket and leave!\n\n" +
+                        "Oxygen is limited, \nso make sure to pick up some oxygen tanks on the way;\n" +
+                        "If you run out of oxygen, you lose\n\n" +
+                        "Avoid the spikes and alien creatures; \nhitting them causes you to lose oxygen!\n\n" +
+                        "Blackholes can teleport you to other blackholes! \nExplore to figure out which one leads where!\n",
+                100, 150);
+        p.textFont(font1);
 
         if(backButton.checkMouse()){
             state = GUIState.Start;

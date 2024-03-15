@@ -112,6 +112,7 @@ public class Processing extends PApplet {
                 guiManager.pause();
                 break;
             case GUIState.Start:
+                guiManager.startScreen();
                 break;
             case GUIState.End:
                 break;

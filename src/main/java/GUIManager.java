@@ -21,8 +21,8 @@ public class GUIManager {
         guiManager = this;
         this.p = p;
 
-        startButton = new Button(1280 / 2 - 200, 720 / 2 + 200, 300, 150, "Start Game", p.color(255, 100));
-        instructionsButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 300, 150, "Instructions", p.color(255, 100));
+        startButton = new Button(1280 / 2 - 200, 720 / 2 + 200, 300, 100, "Start Game", p.color(255, 100));
+        instructionsButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 300, 100, "Instructions", p.color(255, 100));
         backButton = new Button(60, 60, 100, 80, "Back", p.color(255, 100));
         leaderboardButton = new Button(1100, 60, 300, 80, "Leaderboard", p.color(255, 100));
         mainMenuButton = new Button(1280 / 2, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
@@ -126,9 +126,9 @@ public class GUIManager {
         p.noStroke();
 
         p.fill(255);
-        p.textSize(100);
+        p.textSize(132);
         p.textAlign(PConstants.CENTER, PConstants.CENTER);
-        p.text("Astral Adventures", 1280/2, 720/5);
+        p.text("Astral Adventures", 1280/2, 720/4);
 
         p.imageMode(PConstants.CORNER);
 

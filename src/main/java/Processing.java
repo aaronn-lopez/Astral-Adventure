@@ -23,7 +23,7 @@ public class Processing extends PApplet {
         // send static reference of the PApplet
         Gameobject.init(this);
         map = new Map();
-        map.newMap("src/main/java/TestingMap1.txt");
+        map.newMap("src/main/maps/Level1Map.txt");
 
         player = (Player)gameManager.player;
 
@@ -34,8 +34,35 @@ public class Processing extends PApplet {
     }
 
     public void startLevel(int level){
-        map.newMap("src/main/java/" + level + ".txt");
+        map.newMap("src/main/maps/Level" + level + "Map.txt");
         player = (Player)gameManager.player;
+
+        switch(level)
+        {
+            case 1:
+                gameManager.oxygen = 4000;
+                gameManager.oxygenRate = 1;
+                break;
+            case 2:
+                gameManager.oxygen = 3500;
+                gameManager.oxygenRate = 1;
+                break;
+            case 3:
+                gameManager.oxygen = 3000;
+                gameManager.oxygenRate = 1;
+                break;
+            case 4:
+                gameManager.oxygen = 2500;
+                gameManager.oxygenRate = 2;
+                break;
+            case 5:
+                gameManager.oxygen = 2000;
+                gameManager.oxygenRate = 2;
+                break;
+            default:
+                break;
+        }
+
     }
 
     public void gameUpdate(){
@@ -60,7 +87,7 @@ public class Processing extends PApplet {
         }
 
         //Every frame checks the current oxygen and simultaneously reduces
-        ((Player)gameManager.player).checkOxygen();
+        ((Player)gameManager.player).checkOxygen(gameManager.oxygenRate);
         gameManager.player.draw();
         ((Player)gameManager.player).checkCollisions();
 
@@ -103,7 +130,7 @@ public class Processing extends PApplet {
             // code to be executed once every game tick
             for(int i = 0; i < gameManager.enemies.size(); i++){
                 if(gameManager.enemies.get(i) instanceof WalkingAlien){
-                    ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
+                         ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
                 }
             }
         }

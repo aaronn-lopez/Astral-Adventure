@@ -20,7 +20,7 @@ public class Player extends Character{
                     GameManager.gameManager.oxygen -= 480;
                 }
                 if(hit instanceof WalkingAlien){
-                    GameManager.gameManager.oxygen -= 480 * 2;
+                    GameManager.gameManager.oxygen -= 480 * 4;
                 }
                 currentCell.entity = null;
                 GameManager.gameManager.enemies.remove(hit);
@@ -37,13 +37,13 @@ public class Player extends Character{
             }
             else if(hit instanceof OxygenTank){
                 //if your oxygen is above half then there will be "overflow"
-                if(GameManager.gameManager.oxygen > 2000)
+                if(GameManager.gameManager.oxygen > 1000)
                 {
                     //multiply score by bonus "overflow"
-                    GameManager.gameManager.score *= (int) ((double) (GameManager.gameManager.oxygen - 2000) /40);
+                    GameManager.gameManager.score *= (int) ((double) (GameManager.gameManager.oxygen - 1000) /40);
                 }
-                //nerfed the oxygen tank replenish amount to 50 as 75 points was overtuned
-                GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 2000);
+                //nerfed the oxygen tank replenish amount to 25 as 75 points was overtuned
+                GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 1000);
                 println("Hit oxygen tank!");
                 println(GameManager.gameManager.score);
                 currentCell.entity = null;
@@ -67,8 +67,8 @@ public class Player extends Character{
 
     //Decreases at an accurate frame-to-second ratio
     //giving the player an initial 60 seconds before they run out of oxygen.
-    public void checkOxygen(){
-        GameManager.gameManager.oxygen -= 1;
+    public void checkOxygen(int rate){
+        GameManager.gameManager.oxygen -= rate;
         println(GameManager.gameManager.oxygen);
         if(GameManager.gameManager.oxygen < 0)
         {

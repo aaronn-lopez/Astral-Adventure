@@ -5,7 +5,8 @@ import processing.core.PFont;
 public class Processing extends PApplet {
     Gameobject bg;
     GameManager gameManager = new GameManager();
-    Map testingMap;
+    GUIManager guiManager = new GUIManager(this);
+    Map map;
     Player player;
 
     PFont font;
@@ -21,8 +22,8 @@ public class Processing extends PApplet {
     public void setup() {
         // send static reference of the PApplet
         Gameobject.init(this);
-        testingMap = new Map();
-        testingMap.newMap("src/main/java/TestingMap1.txt");
+        map = new Map();
+        map.newMap("src/main/java/TestingMap1.txt");
 
         player = (Player)gameManager.player;
 
@@ -32,11 +33,13 @@ public class Processing extends PApplet {
         textFont(font);
     }
 
-    // Called once every frame
-    @Override
-    public void draw(){
+    public void startLevel(int level){
+        map.newMap("src/main/java/" + level + ".txt");
+        player = (Player)gameManager.player;
+    }
+
+    public void gameUpdate(){
         bg.draw();
-        frameRate(40);
 
         for(int pass = 0; pass < 3; pass++) {
             for (int i = 0; i < gameManager.gridX; i++) {
@@ -69,6 +72,31 @@ public class Processing extends PApplet {
         gameClock();
     }
 
+    // Called once every frame
+    @Override
+    public void draw(){
+        frameRate(40);
+
+        switch(guiManager.state){
+            case GUIState.Game:
+                gameUpdate();
+                break;
+            case GUIState.Pause:
+                guiManager.pause();
+                break;
+            case GUIState.Start:
+                break;
+            case GUIState.End:
+                break;
+            case GUIState.Scoreboard:
+                break;
+            case GUIState.Help:
+                break;
+            default:
+                break;
+        }
+    }
+
     public void gameClock(){
         if(frameCount % gameManager.framesPerTick == 0){
             // code to be executed once every game tick
@@ -82,19 +110,29 @@ public class Processing extends PApplet {
 
     @Override
     public void keyPressed(){
-        switch(key){
-            case 'w':
-                player.move(Directions.Up);
-                break;
-            case 'd':
-                player.move(Directions.Right);
-                break;
-            case 's':
-                player.move(Directions.Down);
-                break;
-            case 'a':
-                player.move(Directions.Left);
-                break;
+        if(guiManager.state == GUIState.Game) {
+            switch (key) {
+                case 'w':
+                    player.move(Directions.Up);
+                    break;
+                case 'd':
+                    player.move(Directions.Right);
+                    break;
+                case 's':
+                    player.move(Directions.Down);
+                    break;
+                case 'a':
+                    player.move(Directions.Left);
+                    break;
+            }
+        }
+
+        if(key == ESC){
+            key = 0;
+            if (guiManager.state == GUIState.Game)
+                guiManager.pause();
+            else if (guiManager.state == GUIState.Pause)
+                guiManager.resume();
         }
     }
 }

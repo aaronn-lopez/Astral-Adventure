@@ -6,8 +6,6 @@ import static processing.core.PApplet.print;
 import static processing.core.PApplet.println;
 
 public class Map {
-    int level;
-
     int gridX;
     int gridY;
 
@@ -29,6 +27,11 @@ public class Map {
             GameManager.gameManager.gridX = gridX;
             GameManager.gameManager.gridY = gridY;
             GameManager.gameManager.cells = new Cell[gridX][gridY];
+
+            GameManager.gameManager.score = 0;
+            GameManager.gameManager.enemies.clear();
+            GameManager.gameManager.completionCount = 0;
+            GameManager.gameManager.totalBatteries = 0;
 
             println(gridX, gridY);
 

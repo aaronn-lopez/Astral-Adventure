@@ -3,7 +3,7 @@ import static java.lang.Math.sin;
 public class EndTile extends Mapobject{
 
     EndTile(Transform transform){
-        super(transform, "src/main/Sprites/Spike.png");
+        super(transform, "src/main/Sprites/Rocket.png");
 
     }
 

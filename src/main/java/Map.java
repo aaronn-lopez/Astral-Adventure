@@ -70,9 +70,16 @@ public class Map {
                             GameManager.gameManager.cells[j][i].isEmpty = true;
                             GameManager.instantiate(Objects.OxygenTank, j, i);
                             break;
-                        case 'b':
+                        case '1':
                             // blackhole tile
                             GameManager.gameManager.cells[j][i].isEmpty = true;
+                            GameManager.gameManager.blackHoleID = 1;
+                            GameManager.instantiate(Objects.Blackhole, j, i);
+                            break;
+                        case '2':
+                            // a potential second blackhole tile
+                            GameManager.gameManager.cells[j][i].isEmpty = true;
+                            GameManager.gameManager.blackHoleID = 2;
                             GameManager.instantiate(Objects.Blackhole, j, i);
                             break;
                         case 'B':

@@ -23,7 +23,7 @@ public class Processing extends PApplet {
         // send static reference of the PApplet
         Gameobject.init(this);
         map = new Map();
-        map.newMap("src/main/maps/Level1Map.txt");
+        map.newMap("src/main/maps/Level2Map.txt");
 
         player = (Player)gameManager.player;
 
@@ -93,8 +93,8 @@ public class Processing extends PApplet {
 
         fill(255);
         textSize(32);
-        text("Score: " + GameManager.gameManager.score, 1050, 44);
-        text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1050, 70);
+        text("Score: " + GameManager.gameManager.score, 1075, 39);
+        text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / 4000) * 100) + "%", 1090, 65);
 
         gameClock();
     }

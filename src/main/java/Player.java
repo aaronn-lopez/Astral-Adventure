@@ -55,7 +55,7 @@ public class Player extends Character{
                     println("Collected all batteries and hit end tile. You win!");
                     println("Calculating your final score: ");
                     GameManager.gameManager.score -= GameManager.gameManager.elapsedTime * 2;
-                    GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score);
+                    GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
                 }
                 else
                 {
@@ -73,7 +73,8 @@ public class Player extends Character{
         println(GameManager.gameManager.oxygen);
         if(GameManager.gameManager.oxygen < 0)
         {
-            GUIManager.guiManager.gameEnd(false, GameManager.gameManager.score);
+            GameManager.gameManager.oxygen = 0;
+            GUIManager.guiManager.gameEnd(false, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
         }
     }
 }

@@ -259,8 +259,8 @@ public class GUIManager {
 
         p.text("Base Score: " + score, 1280/2, 720/6);
         p.text("+ oxygen: " + remainingOxygen, 1280/2, 720/4);
-        p.text("- time: " + totalTime, 1280/2, 720/3);
-        p.text("Final Score: " + (score + remainingOxygen - totalTime), 1280/2, 720/2);
+        p.text("/ time: " + totalTime, 1280/2, 720/3);
+        p.text("Final Score: " + ((score + remainingOxygen) / totalTime), 1280/2, 720/2);
 
         if(tryAgainButton.checkMouse()){
             GameManager.gameManager.startLevel(GameManager.gameManager.level);

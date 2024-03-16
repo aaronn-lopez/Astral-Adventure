@@ -7,8 +7,6 @@ public class OxygenTank extends Collectable{
         super(transform, "src/main/Sprites/OxygenTank.png");
     }
 
-    int timeToRemove = 10;
-
     public void draw(){
         this.Transform.offsetY += (float) (-sin((float) p.frameCount / 10) * 1.1);
 
@@ -17,8 +15,11 @@ public class OxygenTank extends Collectable{
         p.ellipseMode(PConstants.CENTER);
         p.ellipse(this.Transform.x, this.Transform.y, 48, 32);
 
-        if(GameManager.gameManager.elapsedTime == timeToRemove)
+        if(GameManager.gameManager.elapsedTime >= GameManager.gameManager.oxygenTankDisappearTime)
+        {
             GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].entity = null;
+        }
+
 
         p.imageMode(PConstants.CENTER);
         p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY);

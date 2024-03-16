@@ -13,6 +13,7 @@ public class GameManager {
     int gridY = 8;
     int elapsedTime = 0;
     int level;
+    int oxygenTankDisappearTime;
     Scoreboard scoreboard;
 
     boolean justTeleported = false;
@@ -93,22 +94,27 @@ public class GameManager {
             case 1:
                 gameManager.oxygen = 4000;
                 gameManager.oxygenRate = 1;
+                gameManager.oxygenTankDisappearTime = 45;
                 break;
             case 2:
                 gameManager.oxygen = 3500;
                 gameManager.oxygenRate = 1;
+                gameManager.oxygenTankDisappearTime = 30;
                 break;
             case 3:
                 gameManager.oxygen = 3000;
                 gameManager.oxygenRate = 1;
+                gameManager.oxygenTankDisappearTime = 20;
                 break;
             case 4:
                 gameManager.oxygen = 2500;
                 gameManager.oxygenRate = 2;
+                gameManager.oxygenTankDisappearTime = 20;
                 break;
             case 5:
                 gameManager.oxygen = 2000;
                 gameManager.oxygenRate = 2;
+                gameManager.oxygenTankDisappearTime = 15;
                 break;
             default:
                 break;

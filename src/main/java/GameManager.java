@@ -12,6 +12,7 @@ public class GameManager {
     int gridX = 8;
     int gridY = 8;
     int elapsedTime = 0;
+    int level;
     Scoreboard scoreboard;
 
     boolean justTeleported = false;
@@ -85,6 +86,7 @@ public class GameManager {
     public void startLevel(int level){
         Map map = new Map();
         map.newMap("src/main/maps/Level" + level + "Map.txt");
+        this.level = level;
 
         switch(level)
         {

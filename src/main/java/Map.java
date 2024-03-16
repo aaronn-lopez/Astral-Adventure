@@ -32,6 +32,7 @@ public class Map {
             GameManager.gameManager.enemies.clear();
             GameManager.gameManager.completionCount = 0;
             GameManager.gameManager.totalBatteries = 0;
+            GameManager.gameManager.elapsedTime = 0;
 
             println(gridX, gridY);
 

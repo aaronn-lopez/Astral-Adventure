@@ -3,10 +3,14 @@ import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PFont;
 
+import static processing.core.PApplet.println;
+import static processing.core.PConstants.CENTER;
+import static processing.core.PConstants.CORNERS;
+
 public class GUIManager {
     public GUIState state = GUIState.Start;
 
-    GUIManager  guiManager;
+    public static GUIManager  guiManager;
     PApplet p;
 
     Button startButton;
@@ -14,6 +18,8 @@ public class GUIManager {
     Button backButton;
     Button leaderboardButton;
     Button mainMenuButton;
+    Button tryAgainButton;
+    Button exitToMainMenuButton;
     Button[] levels;
 
 
@@ -33,6 +39,9 @@ public class GUIManager {
         levels[2] = new Button(1280 / 2, 720 / 2, 50, 50, "3", p.color(255, 100));
         levels[3] = new Button(1280 / 2 + 75, 720 / 2, 50, 50, "4", p.color(255, 100));
         levels[4] = new Button(1280 / 2 + 150, 720 / 2, 50, 50, "5", p.color(255, 100));
+
+        tryAgainButton = new Button(1280 / 2 - 200, 720 / 2 + 100, 200, 100, "Try Again?", p.color(255, 100));
+        exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
     }
 
     class Button {
@@ -85,7 +94,7 @@ public class GUIManager {
         p.fill(255);
         p.textSize(30);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
-        p.text("Seconds Elapsed:\n" + GameManager.gameManager.elapsedTime, 10, 25);
+        p.text("Time: " + GameManager.gameManager.elapsedTime, 10, 25);
         p.text("Score: " + GameManager.gameManager.score, 1050, 25);
         p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100) + "%", 1050, 50);
         p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 75);
@@ -216,7 +225,43 @@ public class GUIManager {
         for(int i = 0; i < levels.length; i++){
             levels[i].draw();
         }
+    }
 
+    boolean won;
+    int score;
+    void gameEnd(boolean won, int score){
+        this.won = won;
+        this.score = score;
+        state = GUIState.End;
+    }
 
+    void endingScreen(){
+        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
+        p.imageMode(CORNERS);
+        p.image(image, 0, 0, 1280, 720);
+
+        p.textAlign(CENTER,CENTER);
+        p.textSize(64);
+
+        if(won){
+            p.text("You won!", 1280/2, 720/3);
+        }
+        else{
+            p.text("You lost!", 1280/2, 720/3);
+        }
+
+        p.text("Score: " + score, 1280/2, 720/3 + 720/6);
+
+        if(tryAgainButton.checkMouse()){
+            GameManager.gameManager.startLevel(GameManager.gameManager.level);
+            Processing.player = (Player)GameManager.gameManager.player;
+            state = GUIState.Game;
+        }
+        if(exitToMainMenuButton.checkMouse()){
+            state = GUIState.Start;
+        }
+
+        tryAgainButton.draw();
+        exitToMainMenuButton.draw();
     }
 }

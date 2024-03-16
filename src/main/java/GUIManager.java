@@ -237,7 +237,7 @@ public class GUIManager {
     void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
         this.won = won;
         this.score = score;
-        this.remainingOxygen = remainingOxygen;
+        this.remainingOxygen = (int)(((float)remainingOxygen / GameManager.gameManager.maxOxygen) * 100);
         this.totalTime = totalTime;
         state = GUIState.End;
     }

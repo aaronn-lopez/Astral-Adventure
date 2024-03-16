@@ -92,27 +92,22 @@ public class GameManager {
         {
             case 1:
                 gameManager.oxygen = 4000;
-                gameManager.maxOxygen = 4000;
                 gameManager.oxygenRate = 1;
                 break;
             case 2:
                 gameManager.oxygen = 3500;
-                gameManager.maxOxygen = 3500;
                 gameManager.oxygenRate = 1;
                 break;
             case 3:
                 gameManager.oxygen = 3000;
-                gameManager.maxOxygen = 3000;
                 gameManager.oxygenRate = 1;
                 break;
             case 4:
                 gameManager.oxygen = 2500;
-                gameManager.maxOxygen = 2500;
                 gameManager.oxygenRate = 2;
                 break;
             case 5:
                 gameManager.oxygen = 2000;
-                gameManager.maxOxygen = 2000;
                 gameManager.oxygenRate = 2;
                 break;
             default:

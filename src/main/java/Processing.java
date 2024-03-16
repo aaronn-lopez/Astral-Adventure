@@ -85,6 +85,10 @@ public class Processing extends PApplet {
                 break;
             case GUIState.DifficultySelect:
                 guiManager.difficultyScreen();
+                break;
+            case GUIState.Controls:
+                guiManager.controlsScreen();
+                break;
             default:
                 break;
         }

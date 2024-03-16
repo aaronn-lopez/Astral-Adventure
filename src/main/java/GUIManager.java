@@ -40,8 +40,8 @@ public class GUIManager {
         levels[3] = new Button(1280 / 2 + 75, 720 / 2, 50, 50, "4", p.color(255, 100));
         levels[4] = new Button(1280 / 2 + 150, 720 / 2, 50, 50, "5", p.color(255, 100));
 
-        tryAgainButton = new Button(1280 / 2 - 200, 720 / 2 + 100, 200, 100, "Try Again?", p.color(255, 100));
-        exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
+        tryAgainButton = new Button(1280 / 2 - 200, 720 / 2 + 200, 200, 100, "Try Again?", p.color(255, 100));
+        exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 200, 100, "Main Menu", p.color(255, 100));
     }
 
     class Button {
@@ -85,8 +85,10 @@ public class GUIManager {
             } else{
                 isHovered = false;
             }
-
-            return p.mouseX < x + w/2 && p.mouseX > x - w/2 && p.mouseY < y + h/2 && p.mouseY > y - h/2 && p.mousePressed;
+            boolean pressed = p.mouseX < x + w/2 && p.mouseX > x - w/2 && p.mouseY < y + h/2 && p.mouseY > y - h/2 && p.mousePressed;
+            if(pressed)
+                p.mousePressed = false;
+            return pressed;
         }
     }
 

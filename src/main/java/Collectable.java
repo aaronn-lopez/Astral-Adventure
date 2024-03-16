@@ -9,8 +9,6 @@ public abstract class Collectable extends Mapobject{
         super(transform, spritePath);
     }
 
-    abstract void collect();
-
     public void draw(){
         this.Transform.offsetY += (float) (-sin((float) p.frameCount / 10) * 1.1);
 

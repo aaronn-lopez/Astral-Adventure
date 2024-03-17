@@ -22,6 +22,7 @@ public class GUIManager {
     Button exitToMainMenuButton;
     Button[] levels;
     Button controlsButton;
+    Button restartLvButton;
 
 
     GUIManager(PApplet p){
@@ -34,13 +35,14 @@ public class GUIManager {
         backButton = new Button(60, 60, 100, 70, "Back", p.color(255, 100));
         leaderboardButton = new Button(1100, 60, 300, 70, "Leaderboard", p.color(255, 100));
         mainMenuButton = new Button(1280 / 2, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
+        restartLvButton = new Button(1280 / 2, 720 / 2 + 225, 300, 100, "Restart Level", p.color(255, 100));
 
         levels = new Button[5];
-        levels[0] = new Button(1280 / 2 - 150, 720 / 2, 50, 50, "1", p.color(255, 100));
-        levels[1] = new Button(1280 / 2 - 75, 720 / 2, 50, 50, "2", p.color(255, 100));
-        levels[2] = new Button(1280 / 2, 720 / 2, 50, 50, "3", p.color(255, 100));
-        levels[3] = new Button(1280 / 2 + 75, 720 / 2, 50, 50, "4", p.color(255, 100));
-        levels[4] = new Button(1280 / 2 + 150, 720 / 2, 50, 50, "5", p.color(255, 100));
+        levels[0] = new Button(1280 / 2, 720 / 2 - 68, 325, 50, "1-Easy", p.color(255, 100));
+        levels[1] = new Button(1280 / 2, 720 / 2, 325, 50, "2-Normal", p.color(255, 100));
+        levels[2] = new Button(1280 / 2, 720 / 2 + 68, 325, 50, "3-Intermediate", p.color(255, 100));
+        levels[3] = new Button(1280 / 2, 720 / 2 + 136, 325, 50, "4-Hard", p.color(255, 100));
+        levels[4] = new Button(1280 / 2, 720 / 2 + 204, 325, 50, "5-Very Hard", p.color(255, 100));
 
         tryAgainButton = new Button(1280 / 2 - 200, 720 / 2 + 200, 200, 100, "Try Again?", p.color(255, 100));
         exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 200, 100, "Main Menu", p.color(255, 100));
@@ -122,7 +124,13 @@ public class GUIManager {
         if(mainMenuButton.checkMouse()){
             state = GUIState.Start;
         }
+        else if(restartLvButton.checkMouse()){
+            GameManager.gameManager.startLevel(GameManager.gameManager.level);
+            Processing.player = (Player)GameManager.gameManager.player;
+            state = GUIState.Game;
+        }
         mainMenuButton.draw();
+        restartLvButton.draw();
 
     }
 

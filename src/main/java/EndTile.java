@@ -17,7 +17,7 @@ public class EndTile extends Mapobject{
     public void gameEndCheck(){
         if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
         {
-            GameManager.gameManager.score = (GameManager.gameManager.baseScore + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100)) / GameManager.gameManager.elapsedTime;
+            GameManager.gameManager.score = (GameManager.gameManager.baseScore + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100)) - GameManager.gameManager.elapsedTime;
             PApplet.println(GameManager.gameManager.baseScore);
             PApplet.println((int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100));
             PApplet.println(GameManager.gameManager.elapsedTime);

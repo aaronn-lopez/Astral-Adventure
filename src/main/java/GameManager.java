@@ -30,59 +30,51 @@ public class GameManager {
         gameManager.scoreboard = new Scoreboard();
     }
 
-    public static Gameobject instantiate(Objects object, int x, int y){
+    public static void instantiate(Objects object, int x, int y){
         // instantiate an object at a given x, y coordinate
         Gameobject gameobject = null;
         switch(object){
             case Player:
                 gameobject = new Player(new Transform(x * 64, y * 64, 0, 1));
                 gameManager.cells[x][y].player = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 gameManager.player = gameobject;
                 break;
             case WalkingAlien:
                 gameobject = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).enemy = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 gameManager.enemies.add(gameobject);
                 break;
             case HidingAlien:
                 gameobject = new Spike(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).enemy = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 gameManager.enemies.add(gameobject);
                 break;
             case OxygenTank:
                 gameobject = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).interactable = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 break;
             case Battery:
                 gameobject = new Battery(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).interactable = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 break;
             case Blackhole:
                 gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
                 getCell(x, y).interactable = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 break;
             case EndTile:
                 gameobject = new EndTile(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).interactable = gameobject;
-                gameobject.Transform.gridX = x;
-                gameobject.Transform.gridY = y;
+                gameobject.setPosition(x, y);
                 break;
             default:
                 break;
         }
-        return gameobject;
     }
 
     public static void reset(){

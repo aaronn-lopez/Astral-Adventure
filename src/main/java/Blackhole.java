@@ -18,8 +18,7 @@ public class Blackhole extends Mapobject{
                 if(GameManager.getObject(i, j) instanceof Blackhole && ((Blackhole)GameManager.getObject(i, j)).id == this.id && (GameManager.getObject(i, j)) != this){
                     blackhole = (Blackhole) GameManager.getObject(i, j);
                     if(!GameManager.gameManager.justTeleported) {
-                        player.Transform.gridX = blackhole.Transform.gridX;
-                        player.Transform.gridY = blackhole.Transform.gridY;
+                        player.setPosition(blackhole.Transform.gridX, blackhole.Transform.gridY);
                         GameManager.gameManager.justTeleported = true;
                     }
                 }

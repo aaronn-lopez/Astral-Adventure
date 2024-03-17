@@ -29,8 +29,11 @@ public class Gameobject {
         }
     }
 
-    Transform getTransform(){
-        return this.Transform;
+    public void setPosition(int x, int y){
+        Transform.gridX = x;
+        Transform.gridY = y;
+        Transform.x = Transform.gridX * 64;
+        Transform.y = Transform.gridY * 64;
     }
 
     // Call this every frame to draw the gameobject using its current position

@@ -23,6 +23,7 @@ public class Processing extends PApplet {
         // send static reference of the PApplet
         Gameobject.init(this);
 
+        // Create a backdrop
         bg = new Gameobject(new Transform(640, 360, 0, 1), "src/main/Sprites/Space Background.png");
 
         font = createFont("src/main/Sprites/pixelFont.ttf", 32);
@@ -32,6 +33,7 @@ public class Processing extends PApplet {
     public void gameUpdate(){
         bg.draw();
 
+        // draw tiles in 3 separate passes
         for(int pass = 0; pass < 3; pass++) {
             for (int i = 0; i < gameManager.gridX; i++) {
                 for (int j = 0; j < gameManager.gridY; j++) {
@@ -42,6 +44,7 @@ public class Processing extends PApplet {
             }
         }
 
+        // draw the entities
         for(int i = 0; i < gameManager.gridX; i++){
             for(int j = 0; j < gameManager.gridY; j++){
                 if (GameManager.getEnemy(i, j)!= null && GameManager.getCell(i, j).isEmpty) {
@@ -56,8 +59,8 @@ public class Processing extends PApplet {
 
         //Every frame checks the current oxygen and simultaneously reduces
         ((Player)gameManager.player).checkOxygen(gameManager.oxygenRate);
-        gameManager.player.draw();
         ((Player)gameManager.player).checkCollisions();
+        gameManager.player.draw();
 
         gameClock();
     }

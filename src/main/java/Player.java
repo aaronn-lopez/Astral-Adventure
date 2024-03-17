@@ -9,6 +9,7 @@ public class Player extends Character{
     public void checkCollisions(){
         Cell currentCell = GameManager.getCell(this.Transform.gridX, this.Transform.gridY);
         Gameobject hit = null;
+
         if(currentCell.enemy != null){
             hit = currentCell.enemy;
         }
@@ -24,12 +25,8 @@ public class Player extends Character{
                     GameManager.gameManager.enemies.remove(hit);
                 }
                 case Blackhole blackhole -> blackhole.teleport();
-                case Battery battery -> {
-                    battery.collect();
-                    currentCell.interactable = null;
-                }
-                case OxygenTank oxygenTank -> {
-                    oxygenTank.collect();
+                case Collectable collectable -> {
+                    collectable.collect();
                     currentCell.interactable = null;
                 }
                 case EndTile endTile -> endTile.gameEndCheck();

@@ -10,6 +10,7 @@ public class GUIManager {
     public GUIState state = GUIState.Start;
 
     public static GUIManager  guiManager;
+    public static GameManager gameManager;
     PApplet p;
 
     Button startButton;
@@ -26,6 +27,7 @@ public class GUIManager {
 
     GUIManager(PApplet p){
         guiManager = this;
+        gameManager = GameManager.gameManager;
         this.p = p;
 
         startButton = new Button(1280 / 2, 720 / 2 + 150, 300, 70, "Start Game", p.color(255, 100));
@@ -99,10 +101,10 @@ public class GUIManager {
         p.fill(255);
         p.textSize(30);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
-        p.text("Time: " + GameManager.gameManager.elapsedTime, 10, 25);
-        p.text("Score: " + GameManager.gameManager.baseScore, 1050, 25);
-        p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100) + "%", 1050, 50);
-        p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 75);
+        p.text("Time: " + gameManager.elapsedTime, 10, 25);
+        p.text("Score: " + gameManager.baseScore, 1050, 25);
+        p.text("Oxygen: " + (int)(((float)gameManager.oxygen / gameManager.maxOxygen) * 100) + "%", 1050, 50);
+        p.text("Batteries: " + gameManager.completionCount + "/" + gameManager.totalBatteries, 1050, 75);
     }
 
     void pause(){
@@ -124,8 +126,8 @@ public class GUIManager {
             state = GUIState.Start;
         }
         else if(restartLvButton.checkMouse()){
-            GameManager.gameManager.startLevel(GameManager.gameManager.level);
-            Processing.player = (Player)GameManager.gameManager.player;
+            gameManager.startLevel(gameManager.level);
+            Processing.player = (Player)gameManager.player;
             state = GUIState.Game;
         }
         mainMenuButton.draw();
@@ -194,7 +196,7 @@ public class GUIManager {
                 p.textAlign(PConstants.LEFT, PConstants.TOP);
                 p.text("1st\n2nd\n3rd", 150 + j * xspacing, 90 + i * yspacing);
                 p.textAlign(PConstants.RIGHT, PConstants.TOP);
-                p.text(GameManager.gameManager.scoreboard.getScores(2*i+j+1), 550 + j * xspacing, 90 + i * yspacing);
+                p.text(gameManager.scoreboard.getScores(2*i+j+1), 550 + j * xspacing, 90 + i * yspacing);
             }
         }
 
@@ -204,7 +206,7 @@ public class GUIManager {
         p.textAlign(PConstants.LEFT, PConstants.TOP);
         p.text("1st\n2nd\n3rd", 390, 467);
         p.textAlign(PConstants.RIGHT, PConstants.TOP);
-        p.text(GameManager.gameManager.scoreboard.getScores(5), 805, 467);
+        p.text(gameManager.scoreboard.getScores(5), 805, 467);
 
 
         if(backButton.checkMouse()){
@@ -294,8 +296,8 @@ public class GUIManager {
         }
         for(int i = 0; i < levels.length; i++){
             if(levels[i].checkMouse()){
-                GameManager.gameManager.startLevel(i + 1);
-                Processing.player = (Player)GameManager.gameManager.player;
+                gameManager.startLevel(i + 1);
+                Processing.player = (Player)gameManager.player;
                 state = GUIState.Game;
             }
         }
@@ -314,7 +316,7 @@ public class GUIManager {
     void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
         this.won = won;
         this.score = score;
-        this.remainingOxygen = (int)(((float)remainingOxygen / GameManager.gameManager.maxOxygen) * 100);
+        this.remainingOxygen = (int)(((float)remainingOxygen / gameManager.maxOxygen) * 100);
         this.totalTime = totalTime;
         state = GUIState.End;
     }
@@ -341,15 +343,15 @@ public class GUIManager {
         p.fill(255,255,255);
         p.textSize(45);
 
-        p.text("Base Score: " + GameManager.gameManager.baseScore, 1280/2 + 175, 720/6 + 125);
+        p.text("Base Score: " + gameManager.baseScore, 1280/2 + 175, 720/6 + 125);
         p.text("+ oxygen: " + remainingOxygen, 1280/2 + 175, 720/4 + 100);
         p.text("- time: " + totalTime, 1280/2 + 175, 720/3 + 70);
         p.line(465,720/3 + 90,825 ,720/3 + 90);
         p.text("Final Score: " + score, 1280/2 + 175, 720/3 + 115);
 
         if(playAgainButton.checkMouse()){
-            GameManager.gameManager.startLevel(GameManager.gameManager.level);
-            Processing.player = (Player)GameManager.gameManager.player;
+            gameManager.startLevel(gameManager.level);
+            Processing.player = (Player)gameManager.player;
             state = GUIState.Game;
         }
         if(exitToMainMenuButton.checkMouse()){

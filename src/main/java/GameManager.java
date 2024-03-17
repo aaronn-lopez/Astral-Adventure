@@ -4,6 +4,7 @@ public class GameManager {
     static GameManager gameManager;
     int framesPerTick = 40;
     int score = 0;
+    int baseScore = 0;
     int completionCount = 0;
     int totalBatteries = 0;
     int oxygen = 4000;

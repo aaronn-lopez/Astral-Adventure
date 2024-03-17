@@ -101,7 +101,7 @@ public class GUIManager {
         p.textSize(30);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
         p.text("Time: " + GameManager.gameManager.elapsedTime, 10, 25);
-        p.text("Score: " + GameManager.gameManager.score, 1050, 25);
+        p.text("Score: " + GameManager.gameManager.baseScore, 1050, 25);
         p.text("Oxygen: " + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100) + "%", 1050, 50);
         p.text("Batteries: " + GameManager.gameManager.completionCount + "/" + GameManager.gameManager.totalBatteries, 1050, 75);
     }
@@ -309,8 +309,8 @@ public class GUIManager {
 
     boolean won;
     int score;
-    int remainingOxygen;
-    int totalTime;
+    public int remainingOxygen;
+    public int totalTime;
 
     void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
         this.won = won;
@@ -339,10 +339,10 @@ public class GUIManager {
 
         p.fill(255,255,255);
         p.textSize(45);
-        p.text("Base Score: " + score, 1280/2, 720/6 + 125);
+        p.text("Base Score: " + GameManager.gameManager.baseScore, 1280/2, 720/6 + 125);
         p.text("+ oxygen: " + remainingOxygen, 1280/2, 720/4 + 100);
         p.text("/ time: " + totalTime, 1280/2, 720/3 + 70);
-        p.text("Final Score: " + ((score + remainingOxygen) / totalTime), 1280/2, 720/3 + 100);
+        p.text("Final Score: " + score, 1280/2, 720/3 + 100);
 
         if(playAgainButton.checkMouse()){
             GameManager.gameManager.startLevel(GameManager.gameManager.level);

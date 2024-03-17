@@ -1,80 +1,61 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Scoreboard {
-    ArrayList<Integer> level1Scores;
-    ArrayList<Integer> level2Scores;
-    ArrayList<Integer> level3Scores;
-    ArrayList<Integer> level4Scores;
-    ArrayList<Integer> level5Scores;
+    ArrayList<Integer>[] levelScores;
 
-    Scoreboard(){
-        level1Scores = new ArrayList<Integer>();
-        level2Scores = new ArrayList<Integer>();
-        level3Scores = new ArrayList<Integer>();
-        level4Scores = new ArrayList<Integer>();
-        level5Scores = new ArrayList<Integer>();
-    }
-
-    // adding scores to the scoreboard
-    public void updateScoreboard(int score, int level){
-        switch(level){
-            case 1:
-                level1Scores.add(score);
-                level1Scores.sort(Comparator.reverseOrder());
-                break;
-            case 2:
-                level2Scores.add(score);
-                level2Scores.sort(Comparator.reverseOrder());
-                break;
-            case 3:
-                level3Scores.add(score);
-                level3Scores.sort(Comparator.reverseOrder());
-                break;
-            case 4:
-                level4Scores.add(score);
-                level4Scores.sort(Comparator.reverseOrder());
-                break;
-            case 5:
-                level5Scores.add(score);
-                level5Scores.sort(Comparator.reverseOrder());
-                break;
-            default:
-                break;
+    Scoreboard() {
+        // load scoreboard scores on creation (in setup)
+        levelScores = new ArrayList[5];
+        for (int i = 0; i < 5; i++) {
+            levelScores[i] = new ArrayList<>();
+            loadScoresFromFile(i + 1);
         }
     }
 
-    String getScores(int level){
-        String output = "";
-        switch (level){
-            case 1:
-                for(int i = 0; i < Math.min(level1Scores.size(), 3); i++){
-                   output += level1Scores.get(i) + "\n";
-                }
-                break;
-            case 2:
-                for(int i = 0; i < Math.min(level2Scores.size(), 3); i++){
-                    output += level2Scores.get(i) + "\n";
-                }
-                break;
-            case 3:
-                for(int i = 0; i < Math.min(level3Scores.size(), 3); i++){
-                    output += level3Scores.get(i) + "\n";
-                }
-                break;
-            case 4:
-                for(int i = 0; i < Math.min(level4Scores.size(), 3); i++){
-                    output += level4Scores.get(i) + "\n";
-                }
-                break;
-            case 5:
-                for(int i = 0; i < Math.min(level5Scores.size(), 3); i++){
-                    output += level5Scores.get(i) + "\n";
-                }
-                break;
-            default:
-                break;
+    public void updateScoreboard(int score, int level) {
+        if (level >= 1 && level <= 5) {
+            levelScores[level - 1].add(score);
+            levelScores[level - 1].sort(Comparator.reverseOrder());
+            saveScoresToFile(level);
         }
-        return output;
+    }
+
+    String getScores(int level) {
+        StringBuilder output = new StringBuilder();
+        if (level >= 1 && level <= 5) {
+            for (int i = 0; i < Math.min(levelScores[level - 1].size(), 3); i++) {
+                output.append(levelScores[level - 1].get(i)).append("\n");
+            }
+        }
+        return output.toString();
+    }
+
+    // save the scores whenever a new score is added to the 'scores' folder
+    private void saveScoresToFile(int level) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/scores/level" + level + "_scores.txt"));
+            for (Integer score : levelScores[level - 1]) {
+                writer.write(score + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+
+        }
+    }
+
+    // load scores for a specific level from a text file
+    private void loadScoresFromFile(int level) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/scores/level" + level + "_scores.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                levelScores[level - 1].add(Integer.parseInt(line));
+            }
+            reader.close();
+        } catch (IOException e) {
+
+        }
     }
 }

@@ -25,7 +25,7 @@ public class Player extends Character{
                 ((Blackhole) hit).teleport();
             }
             else if(hit instanceof Battery){
-                GameManager.gameManager.score += 100;
+                GameManager.gameManager.baseScore += 100;
                 GameManager.gameManager.completionCount++;
                 currentCell.entity = null;
             }
@@ -34,7 +34,7 @@ public class Player extends Character{
                 if(GameManager.gameManager.oxygen > 1000)
                 {
                     //multiply score by bonus "overflow"
-                    GameManager.gameManager.score *= (int) ((double) (GameManager.gameManager.oxygen - 1000) /40);
+                    GameManager.gameManager.baseScore *= (int) ((double) (GameManager.gameManager.oxygen - 1000) /40);
                 }
                 //nerfed the oxygen tank replenish amount to 25 as 75 points was overtuned
                 GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 1000);
@@ -43,6 +43,10 @@ public class Player extends Character{
             else if(hit instanceof EndTile){
                 if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
                 {
+                    GameManager.gameManager.score = (GameManager.gameManager.baseScore + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100)) / GameManager.gameManager.elapsedTime;
+                    PApplet.println(GameManager.gameManager.baseScore);
+                    PApplet.println((int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100));
+                    PApplet.println(GameManager.gameManager.elapsedTime);
                     GameManager.gameManager.scoreboard.updateScoreboard(GameManager.gameManager.score, GameManager.gameManager.level);
                     GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
                 }
@@ -58,6 +62,7 @@ public class Player extends Character{
         if(GameManager.gameManager.oxygen < 0)
         {
             GameManager.gameManager.oxygen = 0;
+            GameManager.gameManager.score = (GameManager.gameManager.baseScore + GUIManager.guiManager.remainingOxygen) / GameManager.gameManager.elapsedTime;
             GUIManager.guiManager.gameEnd(false, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
         }
     }

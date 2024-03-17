@@ -18,7 +18,7 @@ public class GUIManager {
     Button backButton;
     Button leaderboardButton;
     Button mainMenuButton;
-    Button tryAgainButton;
+    Button playAgainButton;
     Button exitToMainMenuButton;
     Button[] levels;
     Button controlsButton;
@@ -34,8 +34,8 @@ public class GUIManager {
         controlsButton = new Button(1280 / 2 - 160 , 720 / 2 + 250 , 300, 70, "Controls", p.color(255, 100));
         backButton = new Button(60, 60, 100, 70, "Back", p.color(255, 100));
         leaderboardButton = new Button(1100, 60, 300, 70, "Leaderboard", p.color(255, 100));
-        mainMenuButton = new Button(1280 / 2, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
-        restartLvButton = new Button(1280 / 2, 720 / 2 + 225, 300, 100, "Restart Level", p.color(255, 100));
+        mainMenuButton = new Button(1280 / 2, 720 / 2 + 190, 300, 75, "Main Menu", p.color(255, 100));
+        restartLvButton = new Button(1280 / 2, 720 / 2 + 105, 400, 75, "Restart Level", p.color(255, 100));
 
         levels = new Button[5];
         levels[0] = new Button(1280 / 2, 720 / 2 - 68, 325, 50, "1-Easy", p.color(255, 100));
@@ -44,8 +44,8 @@ public class GUIManager {
         levels[3] = new Button(1280 / 2, 720 / 2 + 136, 325, 50, "4-Hard", p.color(255, 100));
         levels[4] = new Button(1280 / 2, 720 / 2 + 204, 325, 50, "5-Very Hard", p.color(255, 100));
 
-        tryAgainButton = new Button(1280 / 2 - 200, 720 / 2 + 200, 200, 100, "Try Again?", p.color(255, 100));
-        exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 200, 200, 100, "Main Menu", p.color(255, 100));
+        playAgainButton = new Button(1280 / 2 - 200, 720 / 2 + 125, 270, 70, "Play Again?", p.color(255, 100));
+        exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 125, 240, 70, "Main Menu", p.color(255, 100));
     }
 
     class Button {
@@ -118,8 +118,8 @@ public class GUIManager {
         p.textSize(100);
         p.textAlign(PConstants.CENTER, PConstants.CENTER);
         p.text("Paused", 1280/2, 720/3);
-        p.textSize(50);
-        p.text("(Press ESC to unpause)", 1280/2, 720/2);
+        p.textSize(35);
+        p.text("(Press ESC to unpause)", 1280/2, 720/2 - 30);
 
         if(mainMenuButton.checkMouse()){
             state = GUIState.Start;
@@ -326,15 +326,15 @@ public class GUIManager {
         p.image(image, 0, 0, 1280, 720);
 
         p.textAlign(CENTER,CENTER);
-        p.textSize(90);
+        p.textSize(95);
 
         if(won){
             p.fill(200, 200, 0);
-            p.text("You won!", 1280/2, 720/9 + 10);
+            p.text("You won!", 1280/2, 720/9 + 15);
         }
         else{
             p.fill(129, 59, 9);
-            p.text("You lost!", 1280/2, 720/9);
+            p.text("You lost!", 1280/2, 720/9 + 15);
         }
 
         p.fill(255,255,255);
@@ -344,7 +344,7 @@ public class GUIManager {
         p.text("/ time: " + totalTime, 1280/2, 720/3 + 70);
         p.text("Final Score: " + ((score + remainingOxygen) / totalTime), 1280/2, 720/3 + 100);
 
-        if(tryAgainButton.checkMouse()){
+        if(playAgainButton.checkMouse()){
             GameManager.gameManager.startLevel(GameManager.gameManager.level);
             Processing.player = (Player)GameManager.gameManager.player;
             state = GUIState.Game;
@@ -353,7 +353,7 @@ public class GUIManager {
             state = GUIState.Start;
         }
 
-        tryAgainButton.draw();
+        playAgainButton.draw();
         exitToMainMenuButton.draw();
     }
 }

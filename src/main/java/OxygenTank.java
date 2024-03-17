@@ -1,10 +1,16 @@
 import processing.core.PApplet;
-import processing.core.PConstants;
-import static processing.core.PApplet.sin;
 
 public class OxygenTank extends Collectable{
     OxygenTank(Transform transform){
         super(transform, "src/main/Sprites/OxygenTank.png");
+    }
+
+    public void draw(){
+        if(GameManager.gameManager.elapsedTime >= GameManager.gameManager.oxygenTankDisappearTime){
+            GameManager.getCell(this.Transform.gridX, this.Transform.gridY).interactable = null;
+        }
+
+        super.draw();
     }
 
     @Override

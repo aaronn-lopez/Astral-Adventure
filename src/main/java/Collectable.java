@@ -19,10 +19,6 @@ public abstract class Collectable extends Mapobject{
 
         p.imageMode(PConstants.CENTER);
         p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY);
-
-        if(this instanceof OxygenTank && GameManager.gameManager.elapsedTime >= GameManager.gameManager.oxygenTankDisappearTime){
-            GameManager.getCell(this.Transform.gridX, this.Transform.gridY).interactable = null;
-        }
     }
 
     public abstract void collect();

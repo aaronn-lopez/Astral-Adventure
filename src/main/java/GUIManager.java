@@ -31,8 +31,8 @@ public class GUIManager {
         startButton = new Button(1280 / 2, 720 / 2 + 150, 300, 70, "Start Game", p.color(255, 100));
         instructionsButton = new Button(1280 / 2 + 160, 720 / 2 + 250, 300, 70, "Instructions", p.color(255, 100));
         controlsButton = new Button(1280 / 2 - 160 , 720 / 2 + 250 , 300, 70, "Controls", p.color(255, 100));
-        backButton = new Button(60, 60, 100, 80, "Back", p.color(255, 100));
-        leaderboardButton = new Button(1100, 60, 300, 80, "Leaderboard", p.color(255, 100));
+        backButton = new Button(60, 60, 100, 70, "Back", p.color(255, 100));
+        leaderboardButton = new Button(1100, 60, 300, 70, "Leaderboard", p.color(255, 100));
         mainMenuButton = new Button(1280 / 2, 720 / 2 + 100, 200, 100, "Main Menu", p.color(255, 100));
 
         levels = new Button[5];
@@ -169,9 +169,36 @@ public class GUIManager {
 
     void scoreboardScreen(){
         state = GUIState.Scoreboard;
+        int xspacing = 600;
+        int yspacing = 175;
 
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.image(image, 0, 0, 1280, 720);
+
+        p.fill(255);
+        p.textSize(40);
+        p.stroke(255);
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                p.textAlign(PConstants.CENTER, PConstants.TOP);
+                p.text("Level " + (2*i+j+1) + " High Scores", 350 + j * xspacing, 50 + i * yspacing);
+                p.line(150 + j * xspacing,80 + i * yspacing,550 + j * xspacing,80 + i * yspacing);
+                p.textAlign(PConstants.LEFT, PConstants.TOP);
+                p.text("1st\n2nd\n3rd", 150 + j * xspacing, 90 + i * yspacing);
+                p.textAlign(PConstants.RIGHT, PConstants.TOP);
+                p.text("1st\n2nd\n3rd", 550 + j * xspacing, 90 + i * yspacing);
+            }
+        }
+
+        p.textAlign(PConstants.CENTER, PConstants.TOP);
+        p.text("Level 5 High Scores", 600 ,425);
+        p.line(390,454,805 ,454);
+        p.textAlign(PConstants.LEFT, PConstants.TOP);
+        p.text("1st\n2nd\n3rd", 390, 467);
+        p.textAlign(PConstants.RIGHT, PConstants.TOP);
+        p.text("1st\n2nd\n3rd", 805, 467);
+
 
         if(backButton.checkMouse()){
             state = GUIState.Start;

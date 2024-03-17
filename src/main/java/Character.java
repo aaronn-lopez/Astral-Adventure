@@ -29,16 +29,16 @@ public abstract class Character extends Gameobject{
 
         if (inBounds(targetX, targetY)) {
             if(this instanceof Player){
-                GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].player = null;
-                GameManager.gameManager.cells[targetX][targetY].player = this;
+                GameManager.getCell(this.Transform.gridX, this.Transform.gridY).player = null;
+                GameManager.getCell(targetX, targetY).player = this;
             }
             else {
-                if(this instanceof WalkingAlien && GameManager.gameManager.cells[targetX][targetY].entity != null){
+                if(this instanceof WalkingAlien && GameManager.getEnemy(targetX, targetY) != null){
                     return false;
                 }
 
-                GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].entity = null;
-                GameManager.gameManager.cells[targetX][targetY].entity = this;
+                GameManager.getCell(this.Transform.gridX, this.Transform.gridY).enemy = null;
+                GameManager.getCell(targetX, targetY).enemy = this;
             }
 
             this.Transform.gridX = targetX;

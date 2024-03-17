@@ -7,32 +7,34 @@ public class Player extends Character{
     }
 
     public void checkCollisions(){
-        Cell currentCell = GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY];
-        if(currentCell.entity != null){
-            Gameobject hit = currentCell.entity;
-            if(hit instanceof WalkingAlien || hit instanceof Spike){
-                if(hit instanceof Spike){
-                    ((Spike) hit).decreaseOxygen();
+        Cell currentCell = GameManager.getCell(this.Transform.gridX, this.Transform.gridY);
+        Gameobject hit = null;
+        if(currentCell.enemy != null){
+            hit = currentCell.enemy;
+        }
+        else if(currentCell.interactable != null){
+            hit = currentCell.interactable;
+        }
+
+        if(hit != null) {
+            switch (hit) {
+                case Enemy enemy -> {
+                    enemy.decreaseOxygen();
+                    currentCell.enemy = null;
+                    GameManager.gameManager.enemies.remove(hit);
                 }
-                if(hit instanceof WalkingAlien){
-                    ((WalkingAlien) hit).decreaseOxygen();
+                case Blackhole blackhole -> blackhole.teleport();
+                case Battery battery -> {
+                    battery.collect();
+                    currentCell.interactable = null;
                 }
-                currentCell.entity = null;
-                GameManager.gameManager.enemies.remove(hit);
-            }
-            else if(hit instanceof Blackhole){
-                ((Blackhole) hit).teleport();
-            }
-            else if(hit instanceof Battery){
-                ((Battery) hit).collect();
-                currentCell.entity = null;
-            }
-            else if(hit instanceof OxygenTank){
-                ((OxygenTank) hit).collect();
-                currentCell.entity = null;
-            }
-            else if(hit instanceof EndTile){
-                ((EndTile) hit).gameEndCheck();
+                case OxygenTank oxygenTank -> {
+                    oxygenTank.collect();
+                    currentCell.interactable = null;
+                }
+                case EndTile endTile -> endTile.gameEndCheck();
+                default -> {
+                }
             }
         }
     }

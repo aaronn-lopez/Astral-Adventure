@@ -15,8 +15,8 @@ public class Blackhole extends Mapobject{
         // iterate through all cells to find matching blackhole
         for(int i = 0; i < GameManager.gameManager.gridX; i++){
             for(int j = 0; j < GameManager.gameManager.gridY; j++){
-                if(GameManager.gameManager.cells[i][j].entity instanceof Blackhole && ((Blackhole)GameManager.gameManager.cells[i][j].entity).id == this.id && ((Blackhole)GameManager.gameManager.cells[i][j].entity) != this){
-                    blackhole = (Blackhole) GameManager.gameManager.cells[i][j].entity;
+                if(GameManager.getObject(i, j) instanceof Blackhole && ((Blackhole)GameManager.getObject(i, j)).id == this.id && (GameManager.getObject(i, j)) != this){
+                    blackhole = (Blackhole) GameManager.getObject(i, j);
                     if(!GameManager.gameManager.justTeleported) {
                         player.Transform.gridX = blackhole.Transform.gridX;
                         player.Transform.gridY = blackhole.Transform.gridY;

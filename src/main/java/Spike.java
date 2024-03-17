@@ -1,4 +1,4 @@
-public class Spike extends Alien{
+public class Spike extends Enemy {
     Spike(Transform transform){
         super(transform, "src/main/Sprites/Spike.png");
     }

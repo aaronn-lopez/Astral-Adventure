@@ -6,7 +6,8 @@ public class Cell {
 
     boolean isEmpty = false; // determines if a given cell can be walked on--empty cells behave like walls
 
-    Gameobject entity;
+    Gameobject interactable;
+    Gameobject enemy;
     Gameobject[] tile;
     Gameobject player;
 

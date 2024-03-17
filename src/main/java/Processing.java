@@ -44,8 +44,12 @@ public class Processing extends PApplet {
 
         for(int i = 0; i < gameManager.gridX; i++){
             for(int j = 0; j < gameManager.gridY; j++){
-                if (gameManager.cells[i][j].entity != null && gameManager.cells[i][j].isEmpty) {
-                    gameManager.cells[i][j].entity.draw();
+                if (GameManager.getEnemy(i, j)!= null && GameManager.getCell(i, j).isEmpty) {
+                    GameManager.getEnemy(i, j).draw();
+                }
+
+                if(GameManager.getObject(i, j) != null && GameManager.getCell(i, j).isEmpty){
+                    GameManager.getObject(i, j).draw();
                 }
             }
         }

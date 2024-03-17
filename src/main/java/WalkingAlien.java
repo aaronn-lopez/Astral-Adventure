@@ -1,4 +1,4 @@
-public class WalkingAlien extends Alien{
+public class WalkingAlien extends Enemy {
     WalkingAlien(Transform transform){
         super(transform, "src/main/Sprites/Slime.png");
     }

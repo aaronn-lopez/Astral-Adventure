@@ -17,7 +17,7 @@ public class OxygenTank extends Collectable{
 
         if(GameManager.gameManager.elapsedTime >= GameManager.gameManager.oxygenTankDisappearTime)
         {
-            GameManager.gameManager.cells[this.Transform.gridX][this.Transform.gridY].entity = null;
+            GameManager.getCell(this.Transform.gridX, this.Transform.gridY).interactable = null;
         }
 
 

@@ -19,7 +19,6 @@ public class GameManager {
 
     boolean justTeleported = false;
 
-    ArrayList<Gameobject> gameobjects;
     Cell[][] cells;
 
     public Gameobject player;
@@ -44,39 +43,39 @@ public class GameManager {
                 break;
             case WalkingAlien:
                 gameobject = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entity = gameobject;
+                getCell(x, y).enemy = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 gameManager.enemies.add(gameobject);
                 break;
             case HidingAlien:
                 gameobject = new Spike(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entity = gameobject;
+                getCell(x, y).enemy = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 gameManager.enemies.add(gameobject);
                 break;
             case OxygenTank:
                 gameobject = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entity = gameobject;
+                getCell(x, y).interactable = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;
             case Battery:
                 gameobject = new Battery(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entity = gameobject;
+                getCell(x, y).interactable = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;
             case Blackhole:
                 gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
-                gameManager.cells[x][y].entity = gameobject;
+                getCell(x, y).interactable = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;
             case EndTile:
                 gameobject = new EndTile(new Transform(x * 64, y * 64, 0, 1));
-                gameManager.cells[x][y].entity = gameobject;
+                getCell(x, y).interactable = gameobject;
                 gameobject.Transform.gridX = x;
                 gameobject.Transform.gridY = y;
                 break;
@@ -84,6 +83,14 @@ public class GameManager {
                 break;
         }
         return gameobject;
+    }
+
+    public static void reset(){
+        gameManager.score = 0;
+        gameManager.enemies.clear();
+        gameManager.completionCount = 0;
+        gameManager.totalBatteries = 0;
+        gameManager.elapsedTime = 0;
     }
 
     public void startLevel(int level){
@@ -121,5 +128,16 @@ public class GameManager {
             default:
                 break;
         }
+    }
+
+    public static Cell getCell(int x, int y){
+        return gameManager.cells[x][y];
+    }
+    public static Enemy getEnemy(int x, int y){
+        return (Enemy)getCell(x, y).enemy;
+    }
+
+    public static Gameobject getObject(int x, int y){
+        return getCell(x, y).interactable;
     }
 }

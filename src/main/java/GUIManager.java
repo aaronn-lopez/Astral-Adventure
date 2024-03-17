@@ -4,8 +4,7 @@ import processing.core.PImage;
 import processing.core.PFont;
 
 import static processing.core.PApplet.println;
-import static processing.core.PConstants.CENTER;
-import static processing.core.PConstants.CORNERS;
+import static processing.core.PConstants.*;
 
 public class GUIManager {
     public GUIState state = GUIState.Start;
@@ -337,12 +336,16 @@ public class GUIManager {
             p.text("You lost!", 1280/2, 720/9 + 15);
         }
 
+        p.textAlign(RIGHT,CENTER);
+        p.stroke(255);
         p.fill(255,255,255);
         p.textSize(45);
-        p.text("Base Score: " + GameManager.gameManager.baseScore, 1280/2, 720/6 + 125);
-        p.text("+ oxygen: " + remainingOxygen, 1280/2, 720/4 + 100);
-        p.text("/ time: " + totalTime, 1280/2, 720/3 + 70);
-        p.text("Final Score: " + score, 1280/2, 720/3 + 100);
+
+        p.text("Base Score: " + GameManager.gameManager.baseScore, 1280/2 + 175, 720/6 + 125);
+        p.text("+ oxygen: " + remainingOxygen, 1280/2 + 175, 720/4 + 100);
+        p.text("- time: " + totalTime, 1280/2 + 175, 720/3 + 70);
+        p.line(465,720/3 + 90,825 ,720/3 + 90);
+        p.text("Final Score: " + score, 1280/2 + 175, 720/3 + 115);
 
         if(playAgainButton.checkMouse()){
             GameManager.gameManager.startLevel(GameManager.gameManager.level);

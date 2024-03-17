@@ -24,4 +24,16 @@ public class OxygenTank extends Collectable{
         p.imageMode(PConstants.CENTER);
         p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY);
     }
+
+    @Override
+    public void collect() {
+        //if your oxygen is above 75% then there will be "overflow"
+        if(GameManager.gameManager.oxygen > 1000)
+        {
+            //add to score by bonus "overflow"
+            GameManager.gameManager.baseScore += (int) ((double) (GameManager.gameManager.oxygen - 1000) /40);
+        }
+        //Reduced the oxygen tank replenish amount to 25% as 75%  was too much
+        GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 1000);
+    }
 }

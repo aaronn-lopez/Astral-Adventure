@@ -21,4 +21,10 @@ public class WalkingAlien extends Alien{
         move(dir);
     }
 
+    //If you hit a Walking Alien, you lose 25 seconds or 25% of oxygen
+    @Override
+    public void decreaseOxygen() {
+        GameManager.gameManager.oxygen -= 480 * 5;
+
+    }
 }

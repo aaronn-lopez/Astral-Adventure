@@ -11,12 +11,11 @@ public class Player extends Character{
         if(currentCell.entity != null){
             Gameobject hit = currentCell.entity;
             if(hit instanceof WalkingAlien || hit instanceof Spike){
-                //if you hit a spike you lose 5 seconds worth of oxygen
                 if(hit instanceof Spike){
-                    GameManager.gameManager.oxygen -= 480;
+                    ((Spike) hit).decreaseOxygen();
                 }
                 if(hit instanceof WalkingAlien){
-                    GameManager.gameManager.oxygen -= 480 * 4;
+                    ((WalkingAlien) hit).decreaseOxygen();
                 }
                 currentCell.entity = null;
                 GameManager.gameManager.enemies.remove(hit);
@@ -25,31 +24,15 @@ public class Player extends Character{
                 ((Blackhole) hit).teleport();
             }
             else if(hit instanceof Battery){
-                GameManager.gameManager.baseScore += 100;
-                GameManager.gameManager.completionCount++;
+                ((Battery) hit).collect();
                 currentCell.entity = null;
             }
             else if(hit instanceof OxygenTank){
-                //if your oxygen is above half then there will be "overflow"
-                if(GameManager.gameManager.oxygen > 1000)
-                {
-                    //multiply score by bonus "overflow"
-                    GameManager.gameManager.baseScore *= (int) ((double) (GameManager.gameManager.oxygen - 1000) /40);
-                }
-                //nerfed the oxygen tank replenish amount to 25 as 75 points was overtuned
-                GameManager.gameManager.oxygen = PApplet.min(4000, GameManager.gameManager.oxygen + 1000);
+                ((OxygenTank) hit).collect();
                 currentCell.entity = null;
             }
             else if(hit instanceof EndTile){
-                if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
-                {
-                    GameManager.gameManager.score = (GameManager.gameManager.baseScore + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100)) / GameManager.gameManager.elapsedTime;
-                    PApplet.println(GameManager.gameManager.baseScore);
-                    PApplet.println((int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100));
-                    PApplet.println(GameManager.gameManager.elapsedTime);
-                    GameManager.gameManager.scoreboard.updateScoreboard(GameManager.gameManager.score, GameManager.gameManager.level);
-                    GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
-                }
+                ((EndTile) hit).gameEndCheck();
             }
         }
     }

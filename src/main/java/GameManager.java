@@ -27,6 +27,7 @@ public class GameManager {
     GameManager(){
         gameManager = this;
         gameManager.enemies = new ArrayList<Gameobject>();
+        gameManager.scoreboard = new Scoreboard();
     }
 
     public static Gameobject instantiate(Objects object, int x, int y){

@@ -195,7 +195,7 @@ public class GUIManager {
                 p.textAlign(PConstants.LEFT, PConstants.TOP);
                 p.text("1st\n2nd\n3rd", 150 + j * xspacing, 90 + i * yspacing);
                 p.textAlign(PConstants.RIGHT, PConstants.TOP);
-                p.text("1st\n2nd\n3rd", 550 + j * xspacing, 90 + i * yspacing);
+                p.text(GameManager.gameManager.scoreboard.getScores(2*i+j+1), 550 + j * xspacing, 90 + i * yspacing);
             }
         }
 
@@ -205,7 +205,7 @@ public class GUIManager {
         p.textAlign(PConstants.LEFT, PConstants.TOP);
         p.text("1st\n2nd\n3rd", 390, 467);
         p.textAlign(PConstants.RIGHT, PConstants.TOP);
-        p.text("1st\n2nd\n3rd", 805, 467);
+        p.text(GameManager.gameManager.scoreboard.getScores(5), 805, 467);
 
 
         if(backButton.checkMouse()){

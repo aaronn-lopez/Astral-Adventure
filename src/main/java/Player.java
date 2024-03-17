@@ -43,6 +43,7 @@ public class Player extends Character{
             else if(hit instanceof EndTile){
                 if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
                 {
+                    GameManager.gameManager.scoreboard.updateScoreboard(GameManager.gameManager.score, GameManager.gameManager.level);
                     GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
                 }
             }

@@ -1,7 +1,8 @@
-import processing.core.PApplet;
-
 import static java.lang.Math.sin;
 
+/**
+ * <p>The 'rocket ship' tile. Colliding with this object wins the game, if you have collected all of the batteries.</p>
+ */
 public class EndTile extends Mapobject{
 
     EndTile(Transform transform){
@@ -14,6 +15,9 @@ public class EndTile extends Mapobject{
         super.draw();
     }
 
+    /**
+     * <p>Check if the player has collected enough batteries to end the game.</p>
+     */
     public void gameEndCheck(){
         if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
         {

@@ -1,5 +1,8 @@
 import static java.lang.Math.sin;
 
+/**
+ * <p>Blackhole object that teleports the player to the connected blackhole of the same ID.</p>
+ */
 public class Blackhole extends Mapobject{
     public int id;
 
@@ -8,6 +11,9 @@ public class Blackhole extends Mapobject{
         this.id = id;
     }
 
+    /**
+     * <p>Teleports the player to the corresponding blackhole on the game board.</p>
+     */
     public void teleport(){
         Gameobject player = GameManager.gameManager.player;
         Blackhole blackhole;

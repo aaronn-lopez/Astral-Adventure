@@ -1,11 +1,15 @@
-import processing.core.PApplet;
-
+/**
+ * <p>Player class, responsible for handling collision between itself, and other cells.</p>
+ */
 public class Player extends Character{
     Player(Transform transform){
         super(transform, "src/main/Sprites/Astronaut.png");
 
     }
 
+    /**
+     * <p>Check if the player is colliding with anything.</p>
+     */
     public void checkCollisions(){
         Cell currentCell = GameManager.getCell(this.Transform.gridX, this.Transform.gridY);
         Gameobject hit = null;
@@ -36,9 +40,10 @@ public class Player extends Character{
         }
     }
 
-
-    //Decreases at an accurate frame-to-second ratio
-    //giving the player an initial 60 seconds before they run out of oxygen.
+    /**
+     * <p>Decreases oxygen, and handles logic for ending the game if the player runs out.</p>
+     * @param rate the rate at which oxygen should be decreased by.
+     */
     public void checkOxygen(int rate){
         GameManager.gameManager.oxygen -= rate;
         if(GameManager.gameManager.oxygen < 0)

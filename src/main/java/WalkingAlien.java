@@ -4,6 +4,10 @@ public class WalkingAlien extends Enemy {
     }
 
     public Directions dir;
+
+    /**
+     * <p>Set the enemy's direction to move towards the player.</p>
+     */
     void Patrol() {
         int playerX = GameManager.gameManager.player.Transform.gridX;
         int playerY = GameManager.gameManager.player.Transform.gridY;
@@ -21,10 +25,10 @@ public class WalkingAlien extends Enemy {
         move(dir);
     }
 
-    //If you hit a Walking Alien, you lose 25 seconds or 25% of oxygen
+    //If you hit a Walking Alien, the game ends
     @Override
     public void decreaseOxygen() {
-        GameManager.gameManager.oxygen -= 480 * 5;
+        GameManager.gameManager.oxygen = 0;
 
     }
 }

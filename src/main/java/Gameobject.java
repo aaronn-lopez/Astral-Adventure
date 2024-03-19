@@ -16,6 +16,11 @@ public class Gameobject {
     public PImage Sprite;
 
     // Call this during setup to properly assign the canvas, so we know where to draw
+
+    /**
+     * <p>Initialize the canvas so the gameobject knows where to draw.</p>
+     * @param app reference to the PApplet
+     */
     public static void init(PApplet app){
         p = app;
     }
@@ -29,6 +34,11 @@ public class Gameobject {
         }
     }
 
+    /**
+     * <p>Updates the position of the gameobject</p>
+     * @param x grid X position
+     * @param y grid Y position
+     */
     public void setPosition(int x, int y){
         Transform.gridX = x;
         Transform.gridY = y;
@@ -36,7 +46,9 @@ public class Gameobject {
         Transform.y = Transform.gridY * 64;
     }
 
-    // Call this every frame to draw the gameobject using its current position
+    /**
+     * <p>Main method for drawing gameobjects to the screen, using it's position and scale.</p>
+     */
     public void draw(){
         if(this instanceof WalkingAlien || this instanceof Blackhole || this instanceof EndTile || this instanceof Collectable || this instanceof Player){
             p.fill(0, 0, 0,100);

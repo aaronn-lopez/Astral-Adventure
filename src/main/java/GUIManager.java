@@ -3,8 +3,11 @@ import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PFont;
 
-import static processing.core.PApplet.println;
 import static processing.core.PConstants.*;
+
+/**
+ * <p>Singleton. Allows for the transition of game states through GUI buttons.</p>
+ */
 
 public class GUIManager {
     public GUIState state = GUIState.Start;
@@ -49,6 +52,9 @@ public class GUIManager {
         exitToMainMenuButton = new Button(1280 / 2 + 200, 720 / 2 + 125, 240, 70, "Main Menu", p.color(255, 100));
     }
 
+    /**
+     * <p>Button class, for interactive GUI</p>
+     */
     class Button {
         float x;
         float y;
@@ -58,6 +64,16 @@ public class GUIManager {
         String text;
 
         boolean isHovered;
+
+        /**
+         * <p>Button constructor.</p>
+         * @param x screen x position
+         * @param y screen y position
+         * @param w button width
+         * @param h button height
+         * @param text button text
+         * @param color button color
+         */
         Button(float x, float y, float w, float h, String text, int color){
             this.x = x;
             this.y = y;
@@ -68,6 +84,9 @@ public class GUIManager {
             this.color = color;
         }
 
+        /**
+         * <p>Displays the button to the screen</p>
+         */
         void draw(){
             p.noStroke();
             p.rectMode(PConstants.CENTER);
@@ -84,6 +103,10 @@ public class GUIManager {
             p.text(text, x, y);
         }
 
+        /**
+         * <p>Check if the mouse is has clicked the button, or is hovering over it.</p>
+         * @return returns true if the button has been clicked.
+         */
         boolean checkMouse(){
             if(p.mouseX < x + w/2 && p.mouseX > x - w/2 && p.mouseY < y + h/2 && p.mouseY > y - h/2){
                 isHovered = true;
@@ -97,6 +120,9 @@ public class GUIManager {
         }
     }
 
+    /**
+     * <p>Game UI Overlay, drawn over the game every frame.</p>
+     */
     void gameGUI(){
         p.fill(255);
         p.textSize(30);
@@ -107,6 +133,9 @@ public class GUIManager {
         p.text("Batteries: " + gameManager.completionCount + "/" + gameManager.totalBatteries, 1050, 75);
     }
 
+    /**
+     * <p>Game Paused state.</p>
+     */
     void pause(){
         state = GUIState.Pause;
 
@@ -135,11 +164,16 @@ public class GUIManager {
 
     }
 
+    /**
+     * <p>Resume the game, without affecting progress.</p>
+     */
     void resume(){
         state = GUIState.Game;
     }
 
-
+    /**
+     * <p>Game Start screen. Draws the main menu.</p>
+     */
     void startScreen(){
         state = GUIState.Start;
 
@@ -176,6 +210,9 @@ public class GUIManager {
         leaderboardButton.draw();
     }
 
+    /**
+     * <p>Leaderboard screen.</p>
+     */
     void scoreboardScreen(){
         state = GUIState.Scoreboard;
         int xspacing = 600;
@@ -216,6 +253,9 @@ public class GUIManager {
 
     }
 
+    /**
+     * <p>Instructions screen.</p>
+     */
     void helpScreen(){
         state = GUIState.Help;
 
@@ -246,6 +286,10 @@ public class GUIManager {
         }
         backButton.draw();
     }
+
+    /**
+     * <p>Controls screen.</p>
+     */
     void controlsScreen(){
         state = GUIState.Controls;
 
@@ -282,6 +326,9 @@ public class GUIManager {
         backButton.draw();
     }
 
+    /**
+     * <p>Difficulty select screen.</p>
+     */
     void difficultyScreen(){
         state = GUIState.DifficultySelect;
 
@@ -313,6 +360,13 @@ public class GUIManager {
     public int remainingOxygen;
     public int totalTime;
 
+    /**
+     * <p>End the game, and send the player to the ending screen.</p>
+     * @param won if the game has been won, or lost
+     * @param score the base score the player achieved
+     * @param remainingOxygen the player's remaining oxygen
+     * @param totalTime the player's total time in the level
+     */
     void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
         this.won = won;
         this.score = score;
@@ -321,6 +375,9 @@ public class GUIManager {
         state = GUIState.End;
     }
 
+    /**
+     * <p>The ending screen.</p>
+     */
     void endingScreen(){
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.imageMode(CORNERS);

@@ -1,7 +1,13 @@
+/**
+ * <p>Abstract 'enemy' class for any entity that can cause damage to the player.</p>
+ */
 public abstract class Enemy extends Character {
     Enemy(Transform transform, String spritePath) {
         super(transform, spritePath);
     }
 
+    /**
+     * <p>Abstract method called on collision with player.</p>
+     */
     public abstract void decreaseOxygen();
 }

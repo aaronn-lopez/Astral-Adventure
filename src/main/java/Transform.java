@@ -1,3 +1,6 @@
+/**
+ * <p>Base class for an object's position, rotation, and scale.</p>
+ */
 public class Transform {
     // Floating point position -> for smooth movements
     float x;
@@ -16,19 +19,19 @@ public class Transform {
     public float offsetY = 0;
 
     // Constructor
+
+    /**
+     * <p>Create a new transform</p>
+     * @param x x position
+     * @param y y position
+     * @param rot rotation
+     * @param scale scale
+     */
     Transform(float x, float y, float rot, float scale){
         this.x = x;
         this.y = y;
 
         this.rotation = rot;
         this.scale = scale;
-    }
-
-    Transform(){
-        this.x = 0;
-        this.y = 0;
-
-        this.rotation = 0;
-        this.scale = 1;
     }
 }

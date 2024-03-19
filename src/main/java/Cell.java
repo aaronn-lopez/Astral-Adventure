@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-
+/**
+ * <p>Class to store information about any given cell on the game board. Includes references to objects on the given cell.</p>
+ */
 public class Cell {
     int x;
     int y;
@@ -26,7 +27,10 @@ public class Cell {
         tile[2] = new Gameobject(new Transform(x * 64, y * 64, 0, 1), pathSprite);
     }
 
-    // call draw tile 3 times to draw each layer at a time
+    /**
+     * <p>Method for drawing the cell tile. Call once for each pass in order to properly render the tiles in order.</p>
+     * @param drawPass 1-3
+     */
     void drawTile(int drawPass){
         tile[drawPass].draw();
     }

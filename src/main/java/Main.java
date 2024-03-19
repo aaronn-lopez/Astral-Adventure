@@ -1,7 +1,8 @@
 import processing.core.PApplet;
 
+// Program entry point
 public class Main {
-    // No need to write code here--do it in the "Processing.java" file
+    // Call the processing class to begin the game loop
     public static void main(String[] args){
         PApplet.main(Processing.class.getName());
     }

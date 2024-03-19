@@ -2,9 +2,10 @@ import processing.core.PConstants;
 
 import static processing.core.PApplet.sin;
 
+/**
+ * <p>Abstract class for anything collectable by the player, such as a battery, or oxygen tank.</p>
+ */
 public abstract class Collectable extends Mapobject{
-    int points;
-
     Collectable(Transform transform, String spritePath){
         super(transform, spritePath);
     }
@@ -21,5 +22,8 @@ public abstract class Collectable extends Mapobject{
         p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY);
     }
 
+    /**
+     * <p>Function to be called on collision with the player.</p>
+     */
     public abstract void collect();
 }

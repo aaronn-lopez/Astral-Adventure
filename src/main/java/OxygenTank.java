@@ -1,5 +1,8 @@
 import processing.core.PApplet;
 
+/**
+ * <p>Collectable oxygen tank that raises the player's oxygen on collision.</p>
+ */
 public class OxygenTank extends Collectable{
     OxygenTank(Transform transform){
         super(transform, "src/main/Sprites/OxygenTank.png");

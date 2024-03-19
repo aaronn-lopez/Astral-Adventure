@@ -2,9 +2,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * <p>A simple scoreboard for storing information about top scores on each level.</p>
+ */
 public class Scoreboard {
     ArrayList<Integer>[] levelScores;
 
+    /**
+     * <p>Create a new scoreboard.</p>
+     */
     Scoreboard() {
         // load scoreboard scores on creation (in setup)
         levelScores = new ArrayList[5];
@@ -14,6 +20,11 @@ public class Scoreboard {
         }
     }
 
+    /**
+     * <p>Update the scoreboard of the appropriate level with the new score.</p>
+     * @param score The score to be added
+     * @param level The level the score was achieved in
+     */
     public void updateScoreboard(int score, int level) {
         if (level >= 1 && level <= 5) {
             levelScores[level - 1].add(score);

@@ -1,7 +1,9 @@
 import processing.core.PApplet;
 import processing.core.PFont;
 
-// Pseudo 'main' class---where we want to do our logic programming
+/**
+ * <p>Program game loop. Where the game is updated every game tick.</p>
+ */
 public class Processing extends PApplet {
     Gameobject bg;
     GameManager gameManager = new GameManager();
@@ -30,6 +32,9 @@ public class Processing extends PApplet {
         textFont(font);
     }
 
+    /**
+     * <p>Called once every frame to handle the game logic.</p>
+     */
     public void gameUpdate(){
         bg.draw();
 
@@ -103,6 +108,9 @@ public class Processing extends PApplet {
 
     }
 
+    /**
+     * <p>Called once every game tick to handle enemy patrol.</p>
+     */
     public void gameClock(){
         if(frameCount % gameManager.framesPerTick == 0){
             // code to be executed once every game tick

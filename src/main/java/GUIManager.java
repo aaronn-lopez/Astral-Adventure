@@ -276,7 +276,8 @@ public class GUIManager {
                         "Your goal is to collect all of the batteries so\nthat you can power your rocket and leave!\n\n" +
                         "Oxygen is limited, so make sure to pick up some oxygen\ntanks on the way. But be careful, they will disappear!\n" +
                         "If you run out of oxygen, you will lose\n\n" +
-                        "Avoid the sharp spikes and alien creatures; \nhitting them causes you to lose oxygen!\n\n" +
+                        "Avoid the sharp spikes hitting them causes you to lose oxygen!\n\n" +
+                            "Hitting the walking aliens causes you to lose the game immediately!\n\n" +
                         "Blackholes can teleport you to other blackholes! \nExplore to figure out which one leads where!\n",
                 100, 150);
         p.textFont(font1);

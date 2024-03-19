@@ -5,26 +5,95 @@ import java.util.ArrayList;
  */
 public class GameManager {
     static GameManager gameManager;
+
+    /**
+     * <p>The amount of frames per game clock tick.</p>
+     */
     int framesPerTick = 40;
+
+    /**
+     * <p>The player's current, final score.</p>
+     */
     int score = 0;
+
+    /**
+     * <p>The player's score before additional calculations for extra oxygen, and time elapsed.</p>
+     */
     int baseScore = 0;
+
+    /**
+     * <p>The player's current amount of collected batteries.</p>
+     */
     int completionCount = 0;
+
+    /**
+     * <p>The total amount of batteries in the current level.</p>
+     */
     int totalBatteries = 0;
+
+    /**
+     * <p>The player's current oxygen levels.</p>
+     */
     int oxygen = 4000;
+
+    /**
+     * <p>The player's maximum oxygen.</p>
+     */
     int maxOxygen = 4000;
+
+    /**
+     * <p>The rate at which oxygen is decreased in the current level.</p>
+     */
     int oxygenRate = 1;
+
+    /**
+     * <p>The x dimension of the game board.</p>
+     */
     int gridX = 8;
+
+    /**
+     * <p>The y dimension of the game board.</p>
+     */
     int gridY = 8;
+
+    /**
+     * <p>The amount of time elapsed since starting the level.</p>
+     */
     int elapsedTime = 0;
+
+    /**
+     * <p>The current level number</p>
+     */
     int level;
+
+    /**
+     * <p>The amount of time that should pass before the oxygen tanks disappear.</p>
+     */
     int oxygenTankDisappearTime;
+
+    /**
+     * <p>Reference to the scoreboard object.</p>
+     */
     Scoreboard scoreboard;
 
+    /**
+     * <p>Boolean to check whether or not a player just entered a blackhole.</p>
+     */
     boolean justTeleported = false;
 
+    /**
+     * <p>The cells on the map. Each containing information about the entity on it.</p>
+     */
     Cell[][] cells;
 
+    /**
+     * <p>Reference to the player</p>
+     */
     public Gameobject player;
+
+    /**
+     * <p>Reference to the enemies</p>
+     */
     public ArrayList<Gameobject> enemies;
 
     GameManager(){

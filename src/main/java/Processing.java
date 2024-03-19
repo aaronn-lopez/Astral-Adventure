@@ -75,6 +75,7 @@ public class Processing extends PApplet {
     public void draw(){
         frameRate(40);
 
+        // Switch the state of the game to display different UI
         switch(guiManager.state){
             case GUIState.Game:
                 gameUpdate();
@@ -125,6 +126,7 @@ public class Processing extends PApplet {
 
     @Override
     public void keyPressed(){
+        // If the player is in game, detect their keyboard input
         if(guiManager.state == GUIState.Game) {
             switch (key) {
                 case 'w':
@@ -142,6 +144,7 @@ public class Processing extends PApplet {
             }
         }
 
+        // Toggle pause
         if(key == ESC){
             key = 0;
             if (guiManager.state == GUIState.Game)

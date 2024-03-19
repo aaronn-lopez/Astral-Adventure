@@ -23,6 +23,7 @@ public class Blackhole extends Mapobject{
             for(int j = 0; j < GameManager.gameManager.gridY; j++){
                 if(GameManager.getObject(i, j) instanceof Blackhole && ((Blackhole)GameManager.getObject(i, j)).id == this.id && (GameManager.getObject(i, j)) != this){
                     blackhole = (Blackhole) GameManager.getObject(i, j);
+                    // check if the player has just teleported, to avoid going back and forth instantly
                     if(!GameManager.gameManager.justTeleported) {
                         player.setPosition(blackhole.Transform.gridX, blackhole.Transform.gridY);
                         GameManager.gameManager.justTeleported = true;

@@ -7,9 +7,24 @@ public class Cell {
 
     boolean isEmpty = false; // determines if a given cell can be walked on--empty cells behave like walls
 
+    /**
+     * <p>A non-enemy interactable.</p>
+     */
     Gameobject interactable;
+
+    /**
+     * <p>The enemy currently on this cell.</p>
+     */
     Gameobject enemy;
+
+    /**
+     * The three tiles that make up a cell. Rendered in 3 passes to give illusion of connectivity.
+     */
     Gameobject[] tile;
+
+    /**
+     * <p>The player currently on this cell.</p>
+     */
     Gameobject player;
 
     String pathSprite = "src/main/Sprites/Path.png";

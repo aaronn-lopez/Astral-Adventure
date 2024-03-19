@@ -19,6 +19,7 @@ public class EndTile extends Mapobject{
      * <p>Check if the player has collected enough batteries to end the game.</p>
      */
     public void gameEndCheck(){
+        // check if the player's collected batteries is equal to the total amount of batteries
         if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
         {
             GameManager.gameManager.score = (GameManager.gameManager.baseScore + (int)(((float)GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100)) - GameManager.gameManager.elapsedTime;

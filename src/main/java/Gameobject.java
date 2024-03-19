@@ -50,6 +50,7 @@ public class Gameobject {
      * <p>Main method for drawing gameobjects to the screen, using it's position and scale.</p>
      */
     public void draw(){
+        // only draw shadows for certain entities
         if(this instanceof WalkingAlien || this instanceof Blackhole || this instanceof EndTile || this instanceof Collectable || this instanceof Player){
             p.fill(0, 0, 0,100);
             p.noStroke();

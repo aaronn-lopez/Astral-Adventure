@@ -14,6 +14,7 @@ public class Player extends Character{
         Cell currentCell = GameManager.getCell(this.Transform.gridX, this.Transform.gridY);
         Gameobject hit = null;
 
+        // check what the player hit
         if(currentCell.enemy != null){
             hit = currentCell.enemy;
         }
@@ -21,6 +22,7 @@ public class Player extends Character{
             hit = currentCell.interactable;
         }
 
+        // handle the hit differently
         if(hit != null) {
             switch (hit) {
                 case Enemy enemy -> {
@@ -46,6 +48,8 @@ public class Player extends Character{
      */
     public void checkOxygen(int rate){
         GameManager.gameManager.oxygen -= rate;
+
+        // end the game if the player's oxygen reaches below 0
         if(GameManager.gameManager.oxygen < 0)
         {
             GameManager.gameManager.oxygen = 0;

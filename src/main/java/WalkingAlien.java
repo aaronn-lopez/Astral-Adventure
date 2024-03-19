@@ -12,6 +12,7 @@ public class WalkingAlien extends Enemy {
         int playerX = GameManager.gameManager.player.Transform.gridX;
         int playerY = GameManager.gameManager.player.Transform.gridY;
 
+        // move towards the player
         if (playerX < this.Transform.gridX) {
             dir = Directions.Left;
         } else if (playerX > this.Transform.gridX) {

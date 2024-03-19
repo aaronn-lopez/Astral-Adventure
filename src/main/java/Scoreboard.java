@@ -34,6 +34,7 @@ public class Scoreboard {
     }
 
     String getScores(int level) {
+        // get and format the top three scores
         StringBuilder output = new StringBuilder();
         if (level >= 1 && level <= 5) {
             for (int i = 0; i < Math.min(levelScores[level - 1].size(), 3); i++) {
@@ -47,6 +48,7 @@ public class Scoreboard {
     private void saveScoresToFile(int level) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/scores/level" + level + "_scores.txt"));
+            // add the score to the text file
             for (Integer score : levelScores[level - 1]) {
                 writer.write(score + "\n");
             }
@@ -61,6 +63,7 @@ public class Scoreboard {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/main/scores/level" + level + "_scores.txt"));
             String line;
+            // read the score from the text file
             while ((line = reader.readLine()) != null) {
                 levelScores[level - 1].add(Integer.parseInt(line));
             }

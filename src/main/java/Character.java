@@ -16,6 +16,7 @@ public abstract class Character extends Gameobject{
         int targetX = this.Transform.gridX;
         int targetY = this.Transform.gridY;
 
+        // set the target position based on the movement direction
         switch(direction){
             case Directions.Up:
                 targetY -= 1;
@@ -31,25 +32,31 @@ public abstract class Character extends Gameobject{
                 break;
         }
 
+        // check if inbounds
         if (inBounds(targetX, targetY)) {
+            // if its a player, move the player
             if(this instanceof Player){
                 GameManager.getCell(this.Transform.gridX, this.Transform.gridY).player = null;
                 GameManager.getCell(targetX, targetY).player = this;
             }
             else {
+                // if its an enemy, and theres already an enemy on the target cell, dont move the current enemy
                 if(this instanceof WalkingAlien && GameManager.getEnemy(targetX, targetY) != null){
                     return false;
                 }
 
+                // if theres no enemy present, move th3e current enemy
                 GameManager.getCell(this.Transform.gridX, this.Transform.gridY).enemy = null;
                 GameManager.getCell(targetX, targetY).enemy = this;
             }
 
+            // set the object's transforms
             this.Transform.gridX = targetX;
             this.Transform.gridY = targetY;
             this.Transform.x = targetX * 64;
             this.Transform.y = targetY * 64;
 
+            // if the player moves, they can be teleported by blackholes again.
             if(this instanceof Player){
                 GameManager.gameManager.justTeleported = false;
             }

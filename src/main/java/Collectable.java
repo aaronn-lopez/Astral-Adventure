@@ -11,8 +11,10 @@ public abstract class Collectable extends Mapobject{
     }
 
     public void draw(){
+        // move the collectable in an oscillating up and down pattern
         this.Transform.offsetY += (float) (-sin((float) p.frameCount / 10) * 1.1);
 
+        // add a shadow
         p.fill(0, 0, 0,100);
         p.noStroke();
         p.ellipseMode(PConstants.CENTER);

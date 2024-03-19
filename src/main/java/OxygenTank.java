@@ -9,6 +9,7 @@ public class OxygenTank extends Collectable{
     }
 
     public void draw(){
+        // remove the oxygen tank if a certain amount of time passes
         if(GameManager.gameManager.elapsedTime >= GameManager.gameManager.oxygenTankDisappearTime){
             GameManager.getCell(this.Transform.gridX, this.Transform.gridY).interactable = null;
         }

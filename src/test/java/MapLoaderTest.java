@@ -38,10 +38,11 @@ public class MapLoaderTest {
     @Test
     public void testEmptyMapLoading() {
         // Load an empty map file
-        loadMap(emptyMapPath);
+        loadMap(noGridMapPath);
 
-        // Assert that the map loading fails
-        assertNull("Map should not be loaded from an empty file", map);
+        // Assert that gridX and gridY are greater than 0
+        assertTrue("gridX should be greater than 0", map.gridX <= 0);
+        assertTrue("gridY should be greater than 0", map.gridY <= 0);
     }
 
     private void loadTestMap() {

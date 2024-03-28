@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 public class TestGameManager {
 
+    /* I always get this error:
+     Errors:
+     TestGameManager.testStartLevel:18 ┬╗ NullPointer Cannot invoke "processing.core.PApplet.loadImage(String)" because "Gameobject.p" is null
+    */
     private GameManager gameManager;
 
     @Before

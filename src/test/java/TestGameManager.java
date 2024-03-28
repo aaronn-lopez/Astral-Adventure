@@ -2,6 +2,16 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import processing.core.PApplet;
+
+//// Program entry point
+//public class Main {
+//    // Call the processing class to begin the game loop
+//    public static void main(String[] args){
+//        PApplet.main(Processing.class.getName());
+//    }
+//}
+
 public class TestGameManager {
 
     /* I always get this error:
@@ -12,8 +22,8 @@ public class TestGameManager {
 
     @Before
     public void setUp() {
-        Processing game = new Processing();
-        gameManager = game.gameManager;
+        PApplet.main(Processing.class.getName());
+        gameManager = new GameManager();
     }
 
     @Test

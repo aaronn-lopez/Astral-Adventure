@@ -39,4 +39,11 @@ public class TestGameManager {
         assertEquals("Oxygen should be initialized to 3000 for level 3", 3000, gameManager.oxygen);
         assertEquals("Oxygen rate should be initialized to 1 on level 3", 1, gameManager.oxygenRate);
     }
+
+    @Test
+    public void testLevel4() {
+        gameManager.startLevel(4);
+        assertEquals("Oxygen should be initialized to 2500 for level 4", 2500, gameManager.oxygen);
+        assertEquals("Oxygen rate should be initialized to 2 on level 4", 2, gameManager.oxygenRate);
+    }
 }

@@ -64,4 +64,15 @@ public class TestInstantiateObjects {
         int actualNumBatteries = countBatteries();
         assertEquals("Number of batteries should match", expectedNumBatteries, actualNumBatteries);
     }
+    private int countBatteries() {
+        int count = 0;
+        for (int i = 0; i < gameManager.gridX; i++) {
+            for (int j = 0; j < gameManager.gridY; j++) {
+                if (GameManager.getCell(i, j).interactable instanceof Battery) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }

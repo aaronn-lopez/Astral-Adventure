@@ -85,7 +85,10 @@ public class TestGameManager {
 
         GameManager.reset();
 
-
+        assertEquals("Score should be reset to 0", 0, gameManager.score);
+        assertEquals("Completion count should be reset to 0", 0, gameManager.completionCount);
+        assertEquals("Total batteries should be reset to 0", 0, gameManager.totalBatteries);
+        assertEquals("Elapsed time should be reset to 0", 0, gameManager.elapsedTime);
     }
 
 }

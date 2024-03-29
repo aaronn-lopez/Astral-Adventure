@@ -24,6 +24,7 @@ public class TestGameManager {
         gameManager.startLevel(1);
         assertEquals("Oxygen should be initialized to 4000 for level 1", 4000, gameManager.oxygen);
         assertEquals("Oxygen rate should be initialized to 1 on level 1", 1, gameManager.oxygenRate);
+        assertEquals("Oxygen tank disappear time should be initialized to 45 for level 1", 45, gameManager.oxygenTankDisappearTime);
     }
 
     @Test

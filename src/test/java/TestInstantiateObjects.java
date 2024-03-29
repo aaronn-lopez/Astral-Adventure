@@ -64,6 +64,13 @@ public class TestInstantiateObjects {
         int actualNumBatteries = countObject(Battery.class);
         assertEquals("Number of batteries should match", expectedNumBatteries, actualNumBatteries);
     }
+    @Test
+    public void testInstantiateBlackholes() {
+        // Check if blackholes are instantiated
+        int expectedNumBlackholes = 1;
+        int actualNumBlackholes = countObject(Blackhole.class);
+        assertEquals("Number of blackholes should match", expectedNumBlackholes, actualNumBlackholes);
+    }
     private int countObject(Class<?> typeOfInteractable) {
         int count = 0;
         for (int i = 0; i < gameManager.gridX; i++) {

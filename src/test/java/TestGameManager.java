@@ -77,6 +77,14 @@ public class TestGameManager {
 
     @Test
     public void testReset() {
+        // Set initial values then test that it reset to 0
+        gameManager.score = 100;
+        gameManager.completionCount = 5;
+        gameManager.totalBatteries = 5;
+        gameManager.elapsedTime = 30;
+
+        GameManager.reset();
+
 
     }
 

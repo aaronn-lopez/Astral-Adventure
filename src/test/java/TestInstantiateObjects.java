@@ -61,14 +61,14 @@ public class TestInstantiateObjects {
     public void testInstantiateBatteries() {
         // Check if batteries are instantiated
         int expectedNumBatteries = 1;
-        int actualNumBatteries = countBatteries();
+        int actualNumBatteries = countObject(Battery.class);
         assertEquals("Number of batteries should match", expectedNumBatteries, actualNumBatteries);
     }
-    private int countBatteries() {
+    private int countObject(Class<?> typeOfInteractable) {
         int count = 0;
         for (int i = 0; i < gameManager.gridX; i++) {
             for (int j = 0; j < gameManager.gridY; j++) {
-                if (GameManager.getCell(i, j).interactable instanceof Battery) {
+                if (typeOfInteractable.isInstance(GameManager.getCell(i, j).interactable)) {
                     count++;
                 }
             }

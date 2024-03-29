@@ -91,4 +91,8 @@ public class TestGameManager {
         assertEquals("Elapsed time should be reset to 0", 0, gameManager.elapsedTime);
     }
 
+    @Test
+    public void testInstantiateWalkingAlien() {
+
+    }
 }

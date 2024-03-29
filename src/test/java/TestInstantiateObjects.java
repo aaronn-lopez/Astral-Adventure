@@ -21,7 +21,7 @@ public class TestInstantiateObjects {
     @Test
     public void testInstantiateWalkingAlien() {
         // Check the number of enemies present on the map
-        int expectedNumWalkingAliens = 1; // Assuming only one walking alien is present on the map
+        int expectedNumWalkingAliens = 1;
         int actualNumWalkingAliens = 0;
         for(int i = 0; i < gameManager.enemies.size(); i++){
             if(gameManager.enemies.get(i) instanceof Spike){
@@ -56,5 +56,12 @@ public class TestInstantiateObjects {
             }
         }
         assertEquals("Number of hiding aliens should match", expectedNumHidingAliens, actualNumHidingAliens);
+    }
+    @Test
+    public void testInstantiateBatteries() {
+        // Check if batteries are instantiated
+        int expectedNumBatteries = 1;
+        int actualNumBatteries = countBatteries();
+        assertEquals("Number of batteries should match", expectedNumBatteries, actualNumBatteries);
     }
 }

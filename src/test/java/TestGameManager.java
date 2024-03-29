@@ -58,4 +58,14 @@ public class TestGameManager {
         assertEquals("Oxygen rate should be initialized to 2 on level 5", 2, gameManager.oxygenRate);
         assertEquals("Oxygen tank disappear time should be initialized to 15 for level 5", 15, gameManager.oxygenTankDisappearTime);
     }
+
+    @Test
+    public void testInvalidLevel() {
+        // Start a level that doesn't exist, e.g., level 0
+        gameManager.startLevel(0);
+
+        assertEquals("GameManager should not modify oxygen for an invalid level", 0, gameManager.oxygen);
+        assertEquals("GameManager should not modify oxygen rate for an invalid level", 0, gameManager.oxygenRate);
+        assertEquals("GameManager should not modify oxygen tank disappear time for an invalid level", 0, gameManager.oxygenTankDisappearTime);
+    }
 }

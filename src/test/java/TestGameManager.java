@@ -32,6 +32,7 @@ public class TestGameManager {
         gameManager.startLevel(2);
         assertEquals("Oxygen should be initialized to 3500 for level 2", 3500, gameManager.oxygen);
         assertEquals("Oxygen rate should be initialized to 1 on level 2", 1, gameManager.oxygenRate);
+        assertEquals("Oxygen tank disappear time should be initialized to 30 for level 2", 30, gameManager.oxygenTankDisappearTime);
     }
 
     @Test
@@ -39,6 +40,7 @@ public class TestGameManager {
         gameManager.startLevel(3);
         assertEquals("Oxygen should be initialized to 3000 for level 3", 3000, gameManager.oxygen);
         assertEquals("Oxygen rate should be initialized to 1 on level 3", 1, gameManager.oxygenRate);
+        assertEquals("Oxygen tank disappear time should be initialized to 20 for level 3", 20, gameManager.oxygenTankDisappearTime);
     }
 
     @Test
@@ -46,6 +48,7 @@ public class TestGameManager {
         gameManager.startLevel(4);
         assertEquals("Oxygen should be initialized to 2500 for level 4", 2500, gameManager.oxygen);
         assertEquals("Oxygen rate should be initialized to 2 on level 4", 2, gameManager.oxygenRate);
+        assertEquals("Oxygen tank disappear time should be initialized to 20 for level 4", 20, gameManager.oxygenTankDisappearTime);
     }
 
     @Test
@@ -53,5 +56,6 @@ public class TestGameManager {
         gameManager.startLevel(5);
         assertEquals("Oxygen should be initialized to 2000 for level 5", 2000, gameManager.oxygen);
         assertEquals("Oxygen rate should be initialized to 2 on level 5", 2, gameManager.oxygenRate);
+        assertEquals("Oxygen tank disappear time should be initialized to 15 for level 5", 15, gameManager.oxygenTankDisappearTime);
     }
 }

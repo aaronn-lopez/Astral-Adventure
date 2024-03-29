@@ -75,4 +75,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should remain unchanged for an invalid level", initialOxygenTankDisappearTime, gameManager.oxygenTankDisappearTime);
     }
 
+    @Test
+    public void testReset() {
+
+    }
+
 }

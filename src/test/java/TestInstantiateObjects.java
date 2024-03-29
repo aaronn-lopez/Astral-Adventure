@@ -36,7 +36,7 @@ public class TestInstantiateObjects {
     @Test
     public void testNullInstantiateWalkingAlien() {
         Map map = new Map();
-        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroWalkingAliens.txt");
+        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroAliens.txt");
 
         // Check the number of enemies present on the map
         int expectedNumEnemies = 0;

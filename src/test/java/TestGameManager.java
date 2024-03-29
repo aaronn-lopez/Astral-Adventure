@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 
 public class TestGameManager {
@@ -93,6 +94,13 @@ public class TestGameManager {
 
     @Test
     public void testInstantiateWalkingAlien() {
+        Map map = new Map();
+        map.newMap("src/test/resources/TestLevels/dummyMap.txt");
 
+        // Check the number of enemies present on the map
+        int expectedNumEnemies = 1; // Assuming only one walking alien is present on the map
+        int actualNumEnemies = gameManager.enemies.size();
+
+        assertEquals("Number of walking aliens should match", expectedNumEnemies, actualNumEnemies);
     }
 }

@@ -107,6 +107,20 @@ public class TestInstantiateObjects {
         int actualNumBlackholes = countObject(Blackhole.class);
         assertEquals("Number of blackholes should match", expectedNumBlackholes, actualNumBlackholes);
     }
+    @Test
+    public void testNoOxygenTanks() {
+        Map map = new Map();
+        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroObjects.txt");
+
+        int actualNumOxygenTanks = countObject(OxygenTank.class);
+        assertEquals("Number of oxygen tanks should match", 0, actualNumOxygenTanks);
+    }
+    @Test
+    public void testInstantiateOxygenTanks() {
+        int expectedNumOxygenTanks = 1;
+        int actualNumOxygenTanks = countObject(OxygenTank.class);
+        assertEquals("Number of blackholes should match", expectedNumOxygenTanks, actualNumOxygenTanks);
+    }
     private int countObject(Class<?> typeOfInteractable) {
         int count = 0;
         for (int i = 0; i < gameManager.gridX; i++) {

@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CollisionTests {
 
@@ -11,23 +12,25 @@ public class CollisionTests {
 
     @Before
     public void setUp() {
+        // Create a mock for Gameobject
+        Gameobject gameobjectMock = mock(Gameobject.class);
+
+        // Mock the static init method
+        Gameobject.init(mock(Processing.class));
+
+        // Initialize GameManager
         gameManager = new GameManager();
     }
 
     @Test
     public void playerWalkingAlienCollision() {
-        // Create a mock Player object
-        Player playerMock = mock(Player.class);
-        // Set the player's position
-        playerMock.setPosition(0, 0);
-        // Set the player in the game manager
-        gameManager.player = playerMock;
+        // Create a player object
+        Player playerMock = new Player(new Transform(0, 0, 0, 0));
 
-        // Create a mock WalkingAlien object
-        WalkingAlien alienMock = mock(WalkingAlien.class);
-        // Set the alien's position
-        alienMock.setPosition(0, 0);
-        // Set the alien in the game manager
+        // Create a walking alien object
+        WalkingAlien alienMock = new WalkingAlien(new Transform(0, 0, 0, 0));
+
+        // Add the alien to the GameManager's enemies list
         gameManager.enemies.add(alienMock);
 
         // Perform collision check

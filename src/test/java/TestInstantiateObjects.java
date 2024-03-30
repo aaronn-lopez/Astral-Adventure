@@ -19,21 +19,6 @@ public class TestInstantiateObjects {
         assertNotNull("Player should be instantiated", player);
     }
     @Test
-    public void testInstantiateWalkingAlien() {
-        // Check the number of enemies present on the map
-        int expectedNumWalkingAliens = 1;
-        int actualNumWalkingAliens = 0;
-        for(int i = 0; i < gameManager.enemies.size(); i++){
-            if(gameManager.enemies.get(i) instanceof Spike){
-                actualNumWalkingAliens++;
-            }
-        }
-        int actualNumEnemies = gameManager.enemies.size();
-
-        assertEquals("Number of walking aliens should match", expectedNumWalkingAliens, actualNumWalkingAliens);
-    }
-
-    @Test
     public void testNullInstantiateWalkingAlien() {
         Map map = new Map();
         map.newMap("src/test/resources/TestLevels/dummyMapWithZeroObjects.txt");
@@ -48,6 +33,34 @@ public class TestInstantiateObjects {
         assertEquals("Number of walking aliens should match", 0, actualNumWalkingAliens);
     }
 
+    @Test
+    public void testInstantiateWalkingAlien() {
+        // Check the number of enemies present on the map
+        int expectedNumWalkingAliens = 1;
+        int actualNumWalkingAliens = 0;
+        for(int i = 0; i < gameManager.enemies.size(); i++){
+            if(gameManager.enemies.get(i) instanceof Spike){
+                actualNumWalkingAliens++;
+            }
+        }
+        int actualNumEnemies = gameManager.enemies.size();
+
+        assertEquals("Number of walking aliens should match", expectedNumWalkingAliens, actualNumWalkingAliens);
+    }
+    @Test
+    public void testNoHidingAlien() {
+        Map map = new Map();
+        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroObjects.txt");
+
+        int actualNumHidingAliens = 0;
+        for(int i = 0; i < gameManager.enemies.size(); i++){
+            if(gameManager.enemies.get(i) instanceof Spike){
+                actualNumHidingAliens++;
+            }
+        }
+
+        assertEquals("Number of walking aliens should match", 0, actualNumHidingAliens);
+    }
     @Test
     public void testInstantiateHidingAlien() {
         // Check if hiding alien is instantiated

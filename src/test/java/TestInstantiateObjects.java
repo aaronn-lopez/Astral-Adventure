@@ -60,6 +60,16 @@ public class TestInstantiateObjects {
         }
         assertEquals("Number of hiding aliens should match", expectedNumHidingAliens, actualNumHidingAliens);
     }
+
+    @Test
+    public void testNoBatteries() {
+        Map map = new Map();
+        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroObjects.txt");
+
+        int actualNumBatteries = countObject(Blackhole.class);
+        assertEquals("Number of blackholes should match", 0, actualNumBatteries);
+    }
+
     @Test
     public void testInstantiateBatteries() {
         // Check if batteries are instantiated

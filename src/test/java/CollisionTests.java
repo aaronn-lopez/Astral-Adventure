@@ -3,41 +3,37 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-/**
- * This class contains unit tests for collision detection and handling in the game.
- */
 public class CollisionTests {
 
-    //gameobject = new Player(new Transform(x * 64, y * 64, 0, 1));
-    //gameManager.cells[x][y].player = gameobject;
-    //gameobject.setPosition(x, y);
-    //gameManager.player = gameobject;
-    // break;
-    //case WalkingAlien:
-    //gameobject = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
-    //getCell(x, y).enemy = gameobject;
-    //gameobject.setPosition(x, y);
-    //gameManager.enemies.add(gameobject);
-    // break;
+    private GameManager gameManager;
 
-    /**
-     * Sets up the initial test sandbox game before each test method.
-     */
     @Before
     public void setUp() {
-        // Create a mock for Gameobject
-        Gameobject gameobjectMock = mock(Gameobject.class);
-
-        // Mock the static init method
-        Gameobject.init(mock(Processing.class));
-
-        // Initialize GameManager
-        GameManager gameManager = new GameManager();
+        gameManager = new GameManager();
     }
 
     @Test
-    public void PlayerWalkingAlienCollision() {
+    public void playerWalkingAlienCollision() {
+        // Create a mock Player object
+        Player playerMock = mock(Player.class);
+        // Set the player's position
+        playerMock.setPosition(0, 0);
+        // Set the player in the game manager
+        gameManager.player = playerMock;
 
+        // Create a mock WalkingAlien object
+        WalkingAlien alienMock = mock(WalkingAlien.class);
+        // Set the alien's position
+        alienMock.setPosition(0, 0);
+        // Set the alien in the game manager
+        gameManager.enemies.add(alienMock);
+
+        // Perform collision check
+        playerMock.checkCollisions();
+
+        // Verify that decreaseOxygen method is called on the alienMock
+        verify(alienMock).decreaseOxygen();
     }
 }

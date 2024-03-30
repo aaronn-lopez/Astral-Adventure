@@ -36,13 +36,16 @@ public class TestInstantiateObjects {
     @Test
     public void testNullInstantiateWalkingAlien() {
         Map map = new Map();
-        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroAliens.txt");
+        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroObjects.txt");
 
-        // Check the number of enemies present on the map
-        int expectedNumEnemies = 0;
-        int actualNumEnemies = gameManager.enemies.size();
+        int actualNumWalkingAliens = 0;
+        for(int i = 0; i < gameManager.enemies.size(); i++){
+            if(gameManager.enemies.get(i) instanceof WalkingAlien){
+                actualNumWalkingAliens++;
+            }
+        }
 
-        assertEquals("Number of walking aliens should match", expectedNumEnemies, actualNumEnemies);
+        assertEquals("Number of walking aliens should match", 0, actualNumWalkingAliens);
     }
 
     @Test
@@ -63,6 +66,16 @@ public class TestInstantiateObjects {
         int expectedNumBatteries = 1;
         int actualNumBatteries = countObject(Battery.class);
         assertEquals("Number of batteries should match", expectedNumBatteries, actualNumBatteries);
+    }
+
+    @Test
+    public void testNoBlackholes() {
+        Map map = new Map();
+        map.newMap("src/test/resources/TestLevels/dummyMapWithZeroObjects.txt");
+
+        // Check if no blackholes are instantiated
+        int actualNumBlackholes = countObject(Blackhole.class);
+        assertEquals("Number of blackholes should match", 0, actualNumBlackholes);
     }
     @Test
     public void testInstantiateBlackholes() {

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>Singleton. Contains a majority of the internal information about the current game state.</p>
@@ -235,5 +236,39 @@ public class GameManager {
      */
     public static Gameobject getObject(int x, int y){
         return getCell(x, y).interactable;
+    }
+
+    private List<GameEndListener> endListeners = new ArrayList<>();
+
+    /**
+     * Method to check for game end conditions.
+     */
+    public void checkForGameEnd() {
+        // Check if the player has run out of oxygen
+        if (oxygen <= 0) {
+            notifyGameEndListeners(false); // End the game with a loss
+        }
+        // Check if the player has reached the end tile
+        else if (player != null && getObject(player.Transform.gridX, player.Transform.gridY) instanceof EndTile) {
+            notifyGameEndListeners(true); // End the game with a win
+        }
+    }
+
+    /**
+     * Method to notify game end listeners.
+     * @param isWin true if the game ended with a win, false otherwise
+     */
+    private void notifyGameEndListeners(boolean isWin) {
+        for (GameEndListener listener : endListeners) {
+            listener.onGameEnd(isWin);
+        }
+    }
+
+    /**
+     * Method to add a game end listener.
+     * @param listener the listener to be added
+     */
+    public void addGameEndListener(GameEndListener listener) {
+        endListeners.add(listener);
     }
 }

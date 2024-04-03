@@ -18,5 +18,11 @@ public class HighScoreManagerTests {
         scoreboard = new Scoreboard();
     }
 
+    @Test
+    public void testUpdateScoreboard() {
+        Scoreboard scoreboard = new Scoreboard();
+        scoreboard.updateScoreboard(100, 1);
+        assertEquals("100\n", scoreboard.getScores(1)); // Checks if the score was added to level 1
+    }
 
 }

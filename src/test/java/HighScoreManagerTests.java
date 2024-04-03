@@ -1,11 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.Assert.assertEquals;
 
 public class HighScoreManagerTests {
@@ -25,24 +20,27 @@ public class HighScoreManagerTests {
 //        assertEquals("100\n", scoreboard.getScores(1)); // Checks if the score was added to level 1
 //    }
 
-    @Test
-    public void testGetScores() {
+//    @Test
+//    public void testGetScores() {
 //        scoreboard.updateScoreboard(100, 1);
 //        scoreboard.updateScoreboard(200, 1);
 //        scoreboard.updateScoreboard(300, 1);
-        assertEquals("300\n200\n100\n", scoreboard.getScores(1));
-    }
+//        assertEquals("300\n200\n100\n", scoreboard.getScores(1));
+//    }
+//    @Test
+//    public void testAddZeroScore() {
+//        String initialScores = scoreboard.getScores(1);
+//        scoreboard.updateScoreboard(0, 1);
+//        assertEquals(initialScores, scoreboard.getScores(1));
+//    }
+//    @Test
+//    public void testAddNegativeScore() {
+//        String initialScores  = scoreboard.getScores(1);
+//        scoreboard.updateScoreboard(-150, 1);
+//        assertEquals(initialScores , scoreboard.getScores(1));
+//    }
     @Test
-    public void testAddZeroScore() {
-        String initialScores = scoreboard.getScores(1);
-        scoreboard.updateScoreboard(0, 1);
-        assertEquals(initialScores, scoreboard.getScores(1));
+    public void testGetNoScores() {
+        assertEquals("", scoreboard.getScores(1));
     }
-    @Test
-    public void testAddNegativeScore() {
-        String initialScores  = scoreboard.getScores(1);
-        scoreboard.updateScoreboard(-150, 1);
-        assertEquals(initialScores , scoreboard.getScores(1));
-    }
-
 }

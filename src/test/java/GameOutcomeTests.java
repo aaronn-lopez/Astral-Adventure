@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class GameOutcomeTests {
@@ -15,7 +16,7 @@ public class GameOutcomeTests {
     }
 
     @Test
-    public void playerRunsOutOfOxygen_gameEndsInLoss() {
+    public void playerRunsOutOfOxygen() {
         // Create mock listener
         GameEndListener listenerMock = Mockito.mock(GameEndListener.class);
         gameManager.addGameEndListener(listenerMock);
@@ -29,4 +30,16 @@ public class GameOutcomeTests {
         // Verify that the listener is notified with a loss
         verify(listenerMock).onGameEnd(false);
     }
+
+//    @Test
+//    public void playerHas1_Oxygen() {
+//        GameEndListener listenerMock = Mockito.mock(GameEndListener.class);
+//        gameManager.addGameEndListener(listenerMock);
+//
+//        gameManager.oxygen = 1;
+//
+//        gameManager.checkForGameEnd();
+//
+//        verify(listenerMock).onGameEnd(true);
+//    }
 }

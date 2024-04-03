@@ -32,5 +32,17 @@ public class HighScoreManagerTests {
 //        scoreboard.updateScoreboard(300, 1);
         assertEquals("300\n200\n100\n", scoreboard.getScores(1));
     }
+    @Test
+    public void testAddZeroScore() {
+        String initialScores = scoreboard.getScores(1);
+        scoreboard.updateScoreboard(0, 1);
+        assertEquals(initialScores, scoreboard.getScores(1));
+    }
+    @Test
+    public void testAddNegativeScore() {
+        String initialScores  = scoreboard.getScores(1);
+        scoreboard.updateScoreboard(-150, 1);
+        assertEquals(initialScores , scoreboard.getScores(1));
+    }
 
 }

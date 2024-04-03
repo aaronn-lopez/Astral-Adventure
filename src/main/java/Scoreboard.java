@@ -26,7 +26,7 @@ public class Scoreboard {
      * @param level The level the score was achieved in
      */
     public void updateScoreboard(int score, int level) {
-        if (level >= 1 && level <= 5) {
+        if (level >= 1 && level <= 5 && score > 0) {
             levelScores[level - 1].add(score);
             levelScores[level - 1].sort(Comparator.reverseOrder());
             saveScoresToFile(level);

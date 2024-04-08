@@ -27,7 +27,7 @@ public class CollisionTests {
     public void playerWalkingAlienCollision() {
         Gameobject player = gameManager.player;
 
-        // Create a spike object
+        // Create a walking alien object
         GameManager.instantiate(Objects.WalkingAlien, player.Transform.gridX, player.Transform.gridY);
 
         // Perform collision check
@@ -81,6 +81,34 @@ public class CollisionTests {
 
         int afterOxygen = gameManager.oxygen;
         assertEquals(4000, afterOxygen);
+    }
+
+    @Test
+    public void playerBlackholeCollision(){
+        Gameobject player = gameManager.player;
+        // move player to blackhole
+        player.setPosition(5,3);
+
+        ((Player)player).checkCollisions();
+
+        // check to see if the player got teleported
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {12, 3});
+    }
+
+    @Test
+    public void playerMoveTestWall(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Left);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 2});
+    }
+
+    @Test
+    public void playerMoveTestFreeSpace(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Right);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {4, 2});
     }
 
 

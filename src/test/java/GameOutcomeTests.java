@@ -31,15 +31,18 @@ public class GameOutcomeTests {
         verify(listenerMock).onGameEnd(false);
     }
 
-//    @Test
-//    public void playerHas1_Oxygen() {
-//        GameEndListener listenerMock = Mockito.mock(GameEndListener.class);
-//        gameManager.addGameEndListener(listenerMock);
-//
-//        gameManager.oxygen = 1;
-//
-//        gameManager.checkForGameEnd();
-//
-//        verify(listenerMock).onGameEnd(true);
-//    }
+    @Test
+    public void playerHas1_Oxygen() {
+        GameEndListener listenerMock = Mockito.mock(GameEndListener.class);
+        gameManager.addGameEndListener(listenerMock);
+        gameManager.startLevel(1);
+
+        gameManager.completionCount = 3;
+
+        GameManager.instantiate(Objects.EndTile, gameManager.player.Transform.gridX, gameManager.player.Transform.gridY);
+
+        gameManager.checkForGameEnd();
+
+        verify(listenerMock).onGameEnd(true);
+    }
 }

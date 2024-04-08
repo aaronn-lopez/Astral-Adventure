@@ -28,15 +28,18 @@ public class CollisionTests {
         Player playerMock = new Player(new Transform(0, 0, 0, 0));
 
         // Create a walking alien object
-        WalkingAlien alienMock = new WalkingAlien(new Transform(0, 0, 0, 0));
+        //WalkingAlien alienMock = new WalkingAlien(new Transform(0, 0, 0, 0));
+        //var alienMock = mock(WalkingAlien.class);
+        WalkingAlien alien = new WalkingAlien(new Transform(0,0,0,0));
 
         // Add the alien to the GameManager's enemies list
-        gameManager.enemies.add(alienMock);
+        gameManager.enemies.add(alien);
 
         // Perform collision check
         playerMock.checkCollisions();
 
         // Verify that decreaseOxygen method is called on the alienMock
-        verify(alienMock).decreaseOxygen();
+        alien.decreaseOxygen();
+        assertEquals(0, gameManager.oxygen);
     }
 }

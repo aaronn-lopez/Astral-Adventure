@@ -30,6 +30,5 @@ public class WalkingAlien extends Enemy {
     @Override
     public void decreaseOxygen() {
         GameManager.gameManager.oxygen = 0;
-
     }
 }

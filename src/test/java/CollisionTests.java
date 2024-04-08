@@ -111,5 +111,15 @@ public class CollisionTests {
         assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {4, 2});
     }
 
+    @Test
+    public void enemyPatrol(){
+        Player player = (Player)gameManager.player;
+
+        GameManager.instantiate(Objects.WalkingAlien, 5, 2);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(5, 2);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {4, 2}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
 
 }

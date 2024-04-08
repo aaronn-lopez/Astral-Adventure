@@ -112,7 +112,23 @@ public class CollisionTests {
     }
 
     @Test
-    public void enemyPatrol(){
+    public void playerMoveUpWall(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Up);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 2});
+    }
+
+    @Test
+    public void playerMoveDownEmpty(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Down);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 3});
+    }
+
+    @Test
+    public void enemyPatrolLeft(){
         Player player = (Player)gameManager.player;
 
         GameManager.instantiate(Objects.WalkingAlien, 5, 2);
@@ -120,6 +136,42 @@ public class CollisionTests {
         enemy.Patrol();
 
         assertArrayEquals(new int[] {4, 2}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
+
+    @Test
+    public void enemyPatrolRight(){
+        Player player = (Player)gameManager.player;
+
+        player.setPosition(5, 4);
+
+        GameManager.instantiate(Objects.WalkingAlien, 3, 3);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(3, 3);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {4, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
+
+    @Test
+    public void enemyPatrolUp(){
+        Player player = (Player)gameManager.player;
+
+        GameManager.instantiate(Objects.WalkingAlien, 3, 4);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(3, 4);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {3, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
+
+    @Test
+    public void enemyPatrolDown(){
+        Player player = (Player)gameManager.player;
+        player.setPosition(3, 4);
+
+        GameManager.instantiate(Objects.WalkingAlien, 3, 2);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(3, 2);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {3, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
     }
 
 }

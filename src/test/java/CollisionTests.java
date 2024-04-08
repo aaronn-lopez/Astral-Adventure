@@ -20,24 +20,68 @@ public class CollisionTests {
 
         // Initialize GameManager
         gameManager = new GameManager();
+        gameManager.startLevel(1);
     }
 
     @Test
     public void playerWalkingAlienCollision() {
-        // Create a player object
-        Player playerMock = new Player(new Transform(0, 0, 0, 0));
+        Gameobject player = gameManager.player;
 
-        // Create a walking alien object
-        WalkingAlien alien = new WalkingAlien(new Transform(0,0,0,0));
-
-        // Add the alien to the GameManager's enemies list
-        gameManager.enemies.add(alien);
+        // Create a spike object
+        GameManager.instantiate(Objects.WalkingAlien, player.Transform.gridX, player.Transform.gridY);
 
         // Perform collision check
-        playerMock.checkCollisions();
+        ((Player)player).checkCollisions();
 
-        // Verify that decreaseOxygen method is called on the alienMock
-        alien.decreaseOxygen();
-        assertEquals(0, gameManager.oxygen);
+        int afterOxygen = gameManager.oxygen;
+        assertEquals(0, afterOxygen);
     }
+
+    @Test
+    public void playerSpikeCollision() {
+        Gameobject player = gameManager.player;
+        int beforeOxygen = gameManager.oxygen;
+
+        // Create a spike object
+        GameManager.instantiate(Objects.HidingAlien, player.Transform.gridX, player.Transform.gridY);
+
+        // Perform collision check
+        ((Player)player).checkCollisions();
+
+        int afterOxygen = gameManager.oxygen;
+        assertEquals(beforeOxygen - 480, afterOxygen);
+    }
+
+    @Test
+    public void playerBatteryCollision() {
+        Gameobject player = gameManager.player;
+
+        // Create a battery object
+        GameManager.instantiate(Objects.Battery, player.Transform.gridX, player.Transform.gridY);
+
+        // Perform collision check
+        ((Player)player).checkCollisions();
+
+        int afterCompletionCount = gameManager.completionCount;
+        assertEquals(1, afterCompletionCount);
+    }
+
+    @Test
+    public void playerOxygenTankCollision() {
+        Gameobject player = gameManager.player;
+
+        // remove some oxygen so that the tank can refill it
+        gameManager.oxygen -= 100;
+
+        // Create an oxygen tank object
+        GameManager.instantiate(Objects.OxygenTank, player.Transform.gridX, player.Transform.gridY);
+
+        // Perform collision check
+        ((Player)player).checkCollisions();
+
+        int afterOxygen = gameManager.oxygen;
+        assertEquals(4000, afterOxygen);
+    }
+
+
 }

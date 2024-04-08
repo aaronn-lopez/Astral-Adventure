@@ -11,8 +11,15 @@ public class Player extends Character{
      * <p>Check if the player is colliding with anything.</p>
      */
     public void checkCollisions(){
+
         Cell currentCell = GameManager.getCell(this.Transform.gridX, this.Transform.gridY);
         Gameobject hit = null;
+
+        // there can be no collision if there is no cell for the collision to take place!
+        if (currentCell == null)
+        {
+            return;
+        }
 
         // check what the player hit
         if(currentCell.enemy != null){

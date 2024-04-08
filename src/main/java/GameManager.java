@@ -215,6 +215,9 @@ public class GameManager {
      * @return returns the cell at the x, y, position
      */
     public static Cell getCell(int x, int y){
+        if (gameManager.cells == null) {
+            return null;
+        }
         return gameManager.cells[x][y];
     }
 

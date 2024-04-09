@@ -91,4 +91,15 @@ public class TestGameManager {
         assertEquals("Total batteries should be reset to 0", 0, gameManager.totalBatteries);
         assertEquals("Elapsed time should be reset to 0", 0, gameManager.elapsedTime);
     }
+
+    @Test
+    public void getEnemyTest(){
+        gameManager.startLevel(1);
+
+        Enemy enemy = (Enemy)GameManager.getCell(6, 5).enemy;
+        Enemy enemyTest = GameManager.getEnemy(6, 5);
+
+        assertEquals(enemy, enemyTest);
+
+    }
 }

@@ -27,7 +27,7 @@ public class CollisionTests {
     public void playerWalkingAlienCollision() {
         Gameobject player = gameManager.player;
 
-        // Create a spike object
+        // Create a walking alien object
         GameManager.instantiate(Objects.WalkingAlien, player.Transform.gridX, player.Transform.gridY);
 
         // Perform collision check
@@ -83,5 +83,95 @@ public class CollisionTests {
         assertEquals(4000, afterOxygen);
     }
 
+    @Test
+    public void playerBlackholeCollision(){
+        Gameobject player = gameManager.player;
+        // move player to blackhole
+        player.setPosition(5,3);
+
+        ((Player)player).checkCollisions();
+
+        // check to see if the player got teleported
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {12, 3});
+    }
+
+    @Test
+    public void playerMoveTestWall(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Left);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 2});
+    }
+
+    @Test
+    public void playerMoveTestFreeSpace(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Right);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {4, 2});
+    }
+
+    @Test
+    public void playerMoveUpWall(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Up);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 2});
+    }
+
+    @Test
+    public void playerMoveDownEmpty(){
+        Player player = (Player)gameManager.player;
+        player.move(Directions.Down);
+
+        assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 3});
+    }
+
+    @Test
+    public void enemyPatrolLeft(){
+        Player player = (Player)gameManager.player;
+
+        GameManager.instantiate(Objects.WalkingAlien, 5, 2);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(5, 2);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {4, 2}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
+
+    @Test
+    public void enemyPatrolRight(){
+        Player player = (Player)gameManager.player;
+
+        player.setPosition(5, 4);
+
+        GameManager.instantiate(Objects.WalkingAlien, 3, 3);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(3, 3);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {4, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
+
+    @Test
+    public void enemyPatrolUp(){
+        Player player = (Player)gameManager.player;
+
+        GameManager.instantiate(Objects.WalkingAlien, 3, 4);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(3, 4);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {3, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
+
+    @Test
+    public void enemyPatrolDown(){
+        Player player = (Player)gameManager.player;
+        player.setPosition(3, 4);
+
+        GameManager.instantiate(Objects.WalkingAlien, 3, 2);
+        WalkingAlien enemy = (WalkingAlien)GameManager.getEnemy(3, 2);
+        enemy.Patrol();
+
+        assertArrayEquals(new int[] {3, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
+    }
 
 }

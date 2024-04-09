@@ -6,15 +6,24 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Test class for GameOutcomeTests.
+ */
 public class GameOutcomeTests {
 
     private GameManager gameManager;
 
+    /**
+     * Set up method to initialize GameManager.
+     */
     @Before
     public void setUp() {
         gameManager = new GameManager();
     }
 
+    /**
+     * Test case for player running out of oxygen.
+     */
     @Test
     public void playerRunsOutOfOxygen() {
         // Create mock listener
@@ -31,6 +40,9 @@ public class GameOutcomeTests {
         verify(listenerMock).onGameEnd(false);
     }
 
+    /**
+     * Test case for player having sufficient oxygen with enough batteries and reaching the end tile.
+     */
     @Test
     public void playerHas1_Oxygen() {
         GameEndListener listenerMock = Mockito.mock(GameEndListener.class);

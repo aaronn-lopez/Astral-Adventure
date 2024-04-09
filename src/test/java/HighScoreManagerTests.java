@@ -3,19 +3,32 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test class for leaderboard management.
+ */
 public class HighScoreManagerTests {
 
     private Scoreboard scoreboard;
 
+    /**
+     * Set up method to initialize Scoreboard.
+     */
     @Before
     public void setUp() {
         scoreboard = new Scoreboard();
     }
 
+    /**
+     * Test case for retrieving scores when no scores are available.
+     */
     @Test
     public void testGetNoScores() {
         assertEquals("", scoreboard.getScores(6));
     }
+
+    /**
+     * Test case for updating the scoreboard with a new score.
+     */
     @Test
     public void testUpdateScoreboard() {
         Scoreboard scoreboard = new Scoreboard();
@@ -24,6 +37,9 @@ public class HighScoreManagerTests {
         scoreboard.clearTestFile();
     }
 
+    /**
+     * Test case for retrieving scores.
+     */
     @Test
     public void testGetScores() {
         scoreboard.updateScoreboard(100, 6);
@@ -32,6 +48,10 @@ public class HighScoreManagerTests {
         assertEquals("300\n200\n100\n", scoreboard.getScores(6));
         scoreboard.clearTestFile();
     }
+
+    /**
+     * Test case for adding a zero score.
+     */
     @Test
     public void testAddZeroScore() {
         String initialScores = scoreboard.getScores(6);
@@ -39,6 +59,10 @@ public class HighScoreManagerTests {
         assertEquals(initialScores, scoreboard.getScores(6));
         scoreboard.clearTestFile();
     }
+
+    /**
+     * Test case for adding a negative score.
+     */
     @Test
     public void testAddNegativeScore() {
         String initialScores  = scoreboard.getScores(6);

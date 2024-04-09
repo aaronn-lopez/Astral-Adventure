@@ -6,10 +6,16 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test class for collision interactions between game objects.
+ */
 public class CollisionTests {
 
     private GameManager gameManager;
 
+    /**
+     * Set up method to initialize the game environment for collision tests.
+     */
     @Before
     public void setUp() {
         // Create a mock for Gameobject
@@ -23,6 +29,9 @@ public class CollisionTests {
         gameManager.startLevel(1);
     }
 
+    /**
+     * Test case for collision between player and walking alien.
+     */
     @Test
     public void playerWalkingAlienCollision() {
         Gameobject player = gameManager.player;
@@ -37,6 +46,9 @@ public class CollisionTests {
         assertEquals(0, afterOxygen);
     }
 
+    /**
+     * Test case for collision between player and spike.
+     */
     @Test
     public void playerSpikeCollision() {
         Gameobject player = gameManager.player;
@@ -52,6 +64,9 @@ public class CollisionTests {
         assertEquals(beforeOxygen - 480, afterOxygen);
     }
 
+    /**
+     * Test case for collision between player and battery.
+     */
     @Test
     public void playerBatteryCollision() {
         Gameobject player = gameManager.player;
@@ -66,6 +81,9 @@ public class CollisionTests {
         assertEquals(1, afterCompletionCount);
     }
 
+    /**
+     * Test case for collision between player and oxygen tank.
+     */
     @Test
     public void playerOxygenTankCollision() {
         Gameobject player = gameManager.player;
@@ -83,6 +101,9 @@ public class CollisionTests {
         assertEquals(4000, afterOxygen);
     }
 
+    /**
+     * Test case for collision between player and black hole.
+     */
     @Test
     public void playerBlackholeCollision(){
         Gameobject player = gameManager.player;
@@ -95,6 +116,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {12, 3});
     }
 
+    /**
+     * Test case for player movement against a wall.
+     */
     @Test
     public void playerMoveTestWall(){
         Player player = (Player)gameManager.player;
@@ -103,6 +127,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 2});
     }
 
+    /**
+     * Test case for player movement in free space.
+     */
     @Test
     public void playerMoveTestFreeSpace(){
         Player player = (Player)gameManager.player;
@@ -111,6 +138,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {4, 2});
     }
 
+    /**
+     * Test case for player movement against a wall upwards.
+     */
     @Test
     public void playerMoveUpWall(){
         Player player = (Player)gameManager.player;
@@ -119,6 +149,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 2});
     }
 
+    /**
+     * Test case for player movement downwards in empty space.
+     */
     @Test
     public void playerMoveDownEmpty(){
         Player player = (Player)gameManager.player;
@@ -127,6 +160,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {player.Transform.gridX, player.Transform.gridY}, new int[] {3, 3});
     }
 
+    /**
+     * Test case for enemy patrolling to the left.
+     */
     @Test
     public void enemyPatrolLeft(){
         Player player = (Player)gameManager.player;
@@ -138,6 +174,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {4, 2}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
     }
 
+    /**
+     * Test case for enemy patrolling to the right.
+     */
     @Test
     public void enemyPatrolRight(){
         Player player = (Player)gameManager.player;
@@ -151,6 +190,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {4, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
     }
 
+    /**
+     * Test case for enemy patrolling upwards.
+     */
     @Test
     public void enemyPatrolUp(){
         Player player = (Player)gameManager.player;
@@ -162,6 +204,9 @@ public class CollisionTests {
         assertArrayEquals(new int[] {3, 3}, new int[] {enemy.Transform.gridX, enemy.Transform.gridY});
     }
 
+    /**
+     * Test case for enemy patrolling downwards.
+     */
     @Test
     public void enemyPatrolDown(){
         Player player = (Player)gameManager.player;

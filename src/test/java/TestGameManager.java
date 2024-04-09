@@ -1,13 +1,18 @@
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 
+/**
+ * Test class for GameManager functionality.
+ */
 public class TestGameManager {
 
     private GameManager gameManager;
 
+    /**
+     * Set up method to initialize GameManager and mock dependencies.
+     */
     @Before
     public void setUp() {
         // Create a mock for Gameobject
@@ -20,6 +25,9 @@ public class TestGameManager {
         gameManager = new GameManager();
     }
 
+    /**
+     * Test case for Level 1 settings.
+     */
     @Test
     public void testLevel1() {
         gameManager.startLevel(1);
@@ -28,6 +36,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should be initialized to 45 for level 1", 45, gameManager.oxygenTankDisappearTime);
     }
 
+    /**
+     * Test case for Level 2 settings.
+     */
     @Test
     public void testLevel2() {
         gameManager.startLevel(2);
@@ -36,6 +47,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should be initialized to 30 for level 2", 30, gameManager.oxygenTankDisappearTime);
     }
 
+    /**
+     * Test case for Level 3 settings.
+     */
     @Test
     public void testLevel3() {
         gameManager.startLevel(3);
@@ -44,6 +58,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should be initialized to 20 for level 3", 20, gameManager.oxygenTankDisappearTime);
     }
 
+    /**
+     * Test case for Level 4 settings.
+     */
     @Test
     public void testLevel4() {
         gameManager.startLevel(4);
@@ -52,6 +69,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should be initialized to 20 for level 4", 20, gameManager.oxygenTankDisappearTime);
     }
 
+    /**
+     * Test case for Level 5 settings.
+     */
     @Test
     public void testLevel5() {
         gameManager.startLevel(5);
@@ -60,6 +80,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should be initialized to 15 for level 5", 15, gameManager.oxygenTankDisappearTime);
     }
 
+    /**
+     * Test case for starting an invalid level.
+     */
     @Test
     public void testInvalidLevel() {
         // Save initial GameManager state
@@ -76,6 +99,9 @@ public class TestGameManager {
         assertEquals("Oxygen tank disappear time should remain unchanged for an invalid level", initialOxygenTankDisappearTime, gameManager.oxygenTankDisappearTime);
     }
 
+    /**
+     * Test case for resetting GameManager.
+     */
     @Test
     public void testReset() {
         // Set initial values then test that it reset to 0
@@ -92,6 +118,9 @@ public class TestGameManager {
         assertEquals("Elapsed time should be reset to 0", 0, gameManager.elapsedTime);
     }
 
+    /**
+     * Test case for retrieving an enemy.
+     */
     @Test
     public void getEnemyTest(){
         gameManager.startLevel(1);

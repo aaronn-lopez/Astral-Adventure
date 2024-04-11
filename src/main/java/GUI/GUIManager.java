@@ -40,13 +40,18 @@ public class GUIManager {
     Button controlsButton;
     Button restartLvButton;
 
+    public boolean won;
+    public int score;
+    public int remainingOxygen;
+    public int totalTime;
+
 
     public GUIManager(PApplet p){
         guiManager = this;
         gameManager = GameManager.gameManager;
         this.p = p;
 
-        GUIScreen.init(p);
+        GUIScreen.init(p, this);
 
 
         startButton = new Button(1280 / 2, 720 / 2 + 150, 300, 70, "Start Game", p.color(255, 100));
@@ -137,264 +142,12 @@ public class GUIManager {
     }
 
     /**
-     * <p>Game UI Overlay, drawn over the game every frame.</p>
-     */
-    public void gameGUI(){
-        p.fill(255);
-        p.textSize(30);
-        p.textAlign(PConstants.LEFT, PConstants.CENTER);
-        p.text("Time: " + gameManager.elapsedTime, 10, 25);
-        p.text("Score: " + gameManager.baseScore, 1050, 25);
-        p.text("Oxygen: " + (int)(((float)gameManager.oxygen / gameManager.maxOxygen) * 100) + "%", 1050, 50);
-        p.text("Batteries: " + gameManager.completionCount + "/" + gameManager.totalBatteries, 1050, 75);
-    }
-
-    /**
-     * <p>Game Paused state.</p>
-     */
-    public void pause(){
-        //state = GUIState.Pause;
-        currentScreen = pauseScreen;
-
-        p.fill(0);
-        p.noStroke();
-        p.rectMode(PConstants.CORNERS);
-        p.rect(0, 0, 1280, 720);
-
-        p.fill(255);
-        p.textSize(100);
-        p.textAlign(PConstants.CENTER, PConstants.CENTER);
-        p.text("Paused", 1280/2, 720/3);
-        p.textSize(35);
-        p.text("(Press ESC to unpause)", 1280/2, 720/2 - 30);
-
-        if(mainMenuButton.checkMouse()){
-            //state = GUIState.Start;
-            currentScreen = startScreen;
-        }
-        else if(restartLvButton.checkMouse()){
-            gameManager.startLevel(gameManager.level);
-            Processing.player = (Player)gameManager.player;
-            //state = GUIState.Game;
-            currentScreen = gameScreen;
-        }
-        mainMenuButton.draw();
-        restartLvButton.draw();
-
-    }
-
-    /**
      * <p>Resume the game, without affecting progress.</p>
      */
     public void resume(){
         //state = GUIState.Game;
         currentScreen = gameScreen;
     }
-
-    /**
-     * <p>Game Start screen. Draws the main menu.</p>
-     */
-    public void startScreen(){
-        //state = GUIState.Start;
-        currentScreen = startScreen;
-
-        p.imageMode(PConstants.CORNERS);
-        p.rectMode(PConstants.CORNERS);
-        PImage image = p.loadImage("src/main/Sprites/StartScreenBackground.png");
-        p.image(image, 0, 0, 1280, 720);
-
-        p.noStroke();
-
-        p.fill(255);
-        p.textSize(132);
-        p.textAlign(PConstants.CENTER, PConstants.CENTER);
-        p.text("Astral Adventures", 1280/2, 720/4);
-
-        p.imageMode(PConstants.CORNER);
-
-        if(startButton.checkMouse()){
-            //state = GUIState.DifficultySelect;
-            currentScreen = difficultyScreen;
-        }
-        else if(instructionsButton.checkMouse()) {
-            //state = GUIState.Help;
-            currentScreen = helpScreen;
-        }
-        else if(leaderboardButton.checkMouse()){
-            //state = GUIState.Scoreboard;
-            currentScreen = scoreboardScreen;
-        }
-        else if(controlsButton.checkMouse()){
-            //state = GUIState.Controls;
-            currentScreen = controlsScreen;
-        }
-
-        startButton.draw();
-        instructionsButton.draw();
-        controlsButton.draw();
-        leaderboardButton.draw();
-    }
-
-    /**
-     * <p>Leaderboard screen.</p>
-     */
-    public void scoreboardScreen(){
-        //state = GUIState.Scoreboard;
-        currentScreen = scoreboardScreen;
-
-        int xspacing = 600;
-        int yspacing = 175;
-
-        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
-        p.image(image, 0, 0, 1280, 720);
-
-        p.fill(255);
-        p.textSize(40);
-        p.stroke(255);
-
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                p.textAlign(PConstants.CENTER, PConstants.TOP);
-                p.text("Level " + (2*i+j+1) + " High Scores", 350 + j * xspacing, 50 + i * yspacing);
-                p.line(150 + j * xspacing,80 + i * yspacing,550 + j * xspacing,80 + i * yspacing);
-                p.textAlign(PConstants.LEFT, PConstants.TOP);
-                p.text("1st\n2nd\n3rd", 150 + j * xspacing, 90 + i * yspacing);
-                p.textAlign(PConstants.RIGHT, PConstants.TOP);
-                p.text(gameManager.scoreboard.getScores(2*i+j+1), 550 + j * xspacing, 90 + i * yspacing);
-            }
-        }
-
-        p.textAlign(PConstants.CENTER, PConstants.TOP);
-        p.text("Level 5 High Scores", 600 ,425);
-        p.line(390,454,805 ,454);
-        p.textAlign(PConstants.LEFT, PConstants.TOP);
-        p.text("1st\n2nd\n3rd", 390, 467);
-        p.textAlign(PConstants.RIGHT, PConstants.TOP);
-        p.text(gameManager.scoreboard.getScores(5), 805, 467);
-
-
-        if(backButton.checkMouse()){
-            //state = GUIState.Start;
-            currentScreen = startScreen;
-        }
-        backButton.draw();
-
-    }
-
-    /**
-     * <p>Instructions screen.</p>
-     */
-    public void helpScreen(){
-        //state = GUIState.Help;
-        currentScreen = helpScreen;
-
-        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
-        p.image(image, 0, 0, 1280, 720);
-
-        p.fill(255);
-        p.textSize(30);
-
-        PFont font1;
-        PFont font2;
-        font1 = p.createFont("src/main/Sprites/pixelFont.ttf", 30);
-        font2 = p.createFont("src/main/Sprites/pixelFont2.ttf", 30);
-        p.textFont(font2);
-        p.textAlign(PConstants.LEFT, PConstants.TOP);
-        p.text(
-                    "Your ship ran out of power, stranding you on an unknown planet...\n\n" +
-                        "Your goal is to collect all of the batteries so\nthat you can power your rocket and leave!\n\n" +
-                        "Oxygen is limited, so make sure to pick up some oxygen\ntanks on the way. But be careful, they will disappear!\n" +
-                        "If you run out of oxygen, you will lose\n\n" +
-                        "Avoid the sharp spikes hitting them causes you to lose oxygen!\n\n" +
-                            "Hitting the walking aliens causes you to lose the game immediately!\n\n" +
-                        "Blackholes can teleport you to other blackholes! \nExplore to figure out which one leads where!\n",
-                100, 150);
-        p.textFont(font1);
-
-        if(backButton.checkMouse()){
-            //state = GUIState.Start;
-            currentScreen = startScreen;
-        }
-        backButton.draw();
-    }
-
-    /**
-     * <p>Controls screen.</p>
-     */
-    public void controlsScreen(){
-        //state = GUIState.Controls;
-        currentScreen = controlsScreen;
-
-        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
-        p.image(image, 0, 0, 1280, 720);
-
-        p.fill(255);
-        p.textSize(30);
-
-        PFont font1;
-        PFont font2;
-        font1 = p.createFont("src/main/Sprites/pixelFont.ttf", 50);
-        font2 = p.createFont("src/main/Sprites/pixelFont2.ttf", 50);
-        p.textFont(font2);
-        p.textAlign(PConstants.LEFT, PConstants.TOP);
-        p.text("Move Up:\n\n" + "Move Down:\n\n" + "Move Left:\n\n" + "Move Right:\n\n\n" + "Pause/Unpause Game:", 150, 75);
-        p.textAlign(PConstants.CENTER, PConstants.TOP);
-        p.text("""
-                W
-
-                S
-
-                A
-
-                D
-
-
-                [ESC]""", 950, 75);
-        p.textFont(font1);
-
-        if(backButton.checkMouse()){
-            //state = GUIState.Start;
-            currentScreen = startScreen;
-        }
-        backButton.draw();
-    }
-
-    /**
-     * <p>Difficulty select screen.</p>
-     */
-    public void difficultyScreen(){
-        //state = GUIState.DifficultySelect;
-        currentScreen = difficultyScreen;
-
-        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
-        p.image(image, 0, 0, 1280, 720);
-
-        p.textSize(64);
-        p.text("Select Difficulty", 1280/2, 720/4);
-
-        if(backButton.checkMouse()){
-            //state = GUIState.Start;
-            currentScreen = startScreen;
-        }
-        for(int i = 0; i < levels.length; i++){
-            if(levels[i].checkMouse()){
-                gameManager.startLevel(i + 1);
-                Processing.player = (Player)gameManager.player;
-                //state = GUIState.Game;
-                currentScreen = gameScreen;
-            }
-        }
-
-        backButton.draw();
-        for(int i = 0; i < levels.length; i++){
-            levels[i].draw();
-        }
-    }
-
-    public boolean won;
-    public int score;
-    public int remainingOxygen;
-    public int totalTime;
 
     /**
      * <p>End the game, and send the player to the ending screen.</p>
@@ -412,49 +165,4 @@ public class GUIManager {
         currentScreen = endScreen;
     }
 
-    /**
-     * <p>The ending screen.</p>
-     */
-    public void endingScreen(){
-        PImage image = p.loadImage("src/main/Sprites/Space Background.png");
-        p.imageMode(CORNERS);
-        p.image(image, 0, 0, 1280, 720);
-
-        p.textAlign(CENTER,CENTER);
-        p.textSize(95);
-
-        if(won){
-            p.fill(200, 200, 0);
-            p.text("You won!", 1280/2, 720/9 + 15);
-        }
-        else{
-            p.fill(129, 59, 9);
-            p.text("You lost!", 1280/2, 720/9 + 15);
-        }
-
-        p.textAlign(RIGHT,CENTER);
-        p.stroke(255);
-        p.fill(255,255,255);
-        p.textSize(45);
-
-        p.text("Base Score: " + gameManager.baseScore, 1280/2 + 175, 720/6 + 125);
-        p.text("+ oxygen: " + remainingOxygen, 1280/2 + 175, 720/4 + 100);
-        p.text("- time: " + totalTime, 1280/2 + 175, 720/3 + 70);
-        p.line(465,720/3 + 90,825 ,720/3 + 90);
-        p.text("Final Score: " + score, 1280/2 + 175, 720/3 + 115);
-
-        if(playAgainButton.checkMouse()){
-            gameManager.startLevel(gameManager.level);
-            Processing.player = (Player)gameManager.player;
-            //state = GUIState.Game;
-            currentScreen = gameScreen;
-        }
-        if(exitToMainMenuButton.checkMouse()){
-            //state = GUIState.Start;
-            currentScreen = startScreen;
-        }
-
-        playAgainButton.draw();
-        exitToMainMenuButton.draw();
-    }
 }

@@ -122,7 +122,7 @@ public class Processing extends PApplet {
             key = 0;
 
             if(guiManager.currentScreen == guiManager.gameScreen)
-                guiManager.pause();
+                guiManager.currentScreen = guiManager.pauseScreen;
             else if(guiManager.currentScreen == guiManager.pauseScreen)
                 guiManager.resume();
         }

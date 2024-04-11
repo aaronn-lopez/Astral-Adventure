@@ -27,4 +27,9 @@ public class EndTile extends Mapobject{
             GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
         }
     }
+
+    @Override
+    public void onHit() {
+        gameEndCheck();
+    }
 }

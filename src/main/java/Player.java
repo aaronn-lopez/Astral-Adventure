@@ -31,21 +31,7 @@ public class Player extends Character{
 
         // handle the hit differently
         if(hit != null) {
-            switch (hit) {
-                case Enemy enemy -> {
-                    enemy.decreaseOxygen();
-                    currentCell.enemy = null;
-                    GameManager.gameManager.enemies.remove(hit);
-                }
-                case Blackhole blackhole -> blackhole.teleport();
-                case Collectable collectable -> {
-                    collectable.collect();
-                    currentCell.interactable = null;
-                }
-                case EndTile endTile -> endTile.gameEndCheck();
-                default -> {
-                }
-            }
+            hit.onHit();
         }
     }
 

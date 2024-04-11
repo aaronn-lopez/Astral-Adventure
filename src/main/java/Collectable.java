@@ -28,4 +28,11 @@ public abstract class Collectable extends Mapobject{
      * <p>Function to be called on collision with the player.</p>
      */
     public abstract void collect();
+
+    public void onHit(){
+        collect();
+
+        Cell currentCell = GameManager.getCell(GameManager.gameManager.player.Transform.gridX, GameManager.gameManager.player.Transform.gridY);
+        currentCell.interactable = null;
+    }
 }

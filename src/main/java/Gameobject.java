@@ -61,4 +61,8 @@ public class Gameobject {
         p.imageMode(PConstants.CENTER);
         p.image(this.Sprite, this.Transform.x + this.Transform.offsetX, this.Transform.y + this.Transform.offsetY, Sprite.width * this.Transform.scale, Sprite.height * this.Transform.scale);
     }
+
+    public void onHit() {
+
+    }
 }

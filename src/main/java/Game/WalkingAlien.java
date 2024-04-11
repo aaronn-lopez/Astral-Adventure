@@ -1,3 +1,7 @@
+package Game;
+
+import Game.GameManager;
+
 public class WalkingAlien extends Enemy {
     WalkingAlien(Transform transform){
         super(transform, "src/main/Sprites/Slime.png");
@@ -8,7 +12,7 @@ public class WalkingAlien extends Enemy {
     /**
      * <p>Set the enemy's direction to move towards the player.</p>
      */
-    void Patrol() {
+    public void Patrol() {
         int playerX = GameManager.gameManager.player.Transform.gridX;
         int playerY = GameManager.gameManager.player.Transform.gridY;
 

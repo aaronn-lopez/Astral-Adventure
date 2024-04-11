@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * <p>All possible objects that can be instantiated.</p>
  */

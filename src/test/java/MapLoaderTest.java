@@ -3,6 +3,7 @@ import org.junit.Test;
 import java.io.File;
 import java.util.Scanner;
 import static org.junit.Assert.*;
+import Game.*;
 
 /**
  * Test class for MapLoader.

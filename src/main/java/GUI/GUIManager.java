@@ -1,7 +1,10 @@
+package GUI;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PFont;
+import Game.*;
 
 import static processing.core.PConstants.*;
 
@@ -10,7 +13,17 @@ import static processing.core.PConstants.*;
  */
 
 public class GUIManager {
-    public GUIState state = GUIState.Start;
+    //public GUIState state = GUIState.Start;
+
+    public GUIScreen gameScreen = new GameScreen();
+    public GUIScreen pauseScreen = new PauseScreen();
+    public GUIScreen startScreen = new StartScreen();
+    public GUIScreen endScreen = new EndScreen();
+    public GUIScreen scoreboardScreen = new ScoreboardScreen();
+    public GUIScreen helpScreen = new HelpScreen();
+    public GUIScreen difficultyScreen = new DifficultyScreen();
+    public GUIScreen controlsScreen = new ControlsScreen();
+    public GUIScreen currentScreen = startScreen;
 
     public static GUIManager  guiManager;
     public static GameManager gameManager;
@@ -28,10 +41,13 @@ public class GUIManager {
     Button restartLvButton;
 
 
-    GUIManager(PApplet p){
+    public GUIManager(PApplet p){
         guiManager = this;
         gameManager = GameManager.gameManager;
         this.p = p;
+
+        GUIScreen.init(p);
+
 
         startButton = new Button(1280 / 2, 720 / 2 + 150, 300, 70, "Start Game", p.color(255, 100));
         instructionsButton = new Button(1280 / 2 + 160, 720 / 2 + 250, 300, 70, "Instructions", p.color(255, 100));
@@ -123,7 +139,7 @@ public class GUIManager {
     /**
      * <p>Game UI Overlay, drawn over the game every frame.</p>
      */
-    void gameGUI(){
+    public void gameGUI(){
         p.fill(255);
         p.textSize(30);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
@@ -136,8 +152,9 @@ public class GUIManager {
     /**
      * <p>Game Paused state.</p>
      */
-    void pause(){
-        state = GUIState.Pause;
+    public void pause(){
+        //state = GUIState.Pause;
+        currentScreen = pauseScreen;
 
         p.fill(0);
         p.noStroke();
@@ -152,12 +169,14 @@ public class GUIManager {
         p.text("(Press ESC to unpause)", 1280/2, 720/2 - 30);
 
         if(mainMenuButton.checkMouse()){
-            state = GUIState.Start;
+            //state = GUIState.Start;
+            currentScreen = startScreen;
         }
         else if(restartLvButton.checkMouse()){
             gameManager.startLevel(gameManager.level);
             Processing.player = (Player)gameManager.player;
-            state = GUIState.Game;
+            //state = GUIState.Game;
+            currentScreen = gameScreen;
         }
         mainMenuButton.draw();
         restartLvButton.draw();
@@ -167,15 +186,17 @@ public class GUIManager {
     /**
      * <p>Resume the game, without affecting progress.</p>
      */
-    void resume(){
-        state = GUIState.Game;
+    public void resume(){
+        //state = GUIState.Game;
+        currentScreen = gameScreen;
     }
 
     /**
      * <p>Game Start screen. Draws the main menu.</p>
      */
-    void startScreen(){
-        state = GUIState.Start;
+    public void startScreen(){
+        //state = GUIState.Start;
+        currentScreen = startScreen;
 
         p.imageMode(PConstants.CORNERS);
         p.rectMode(PConstants.CORNERS);
@@ -192,16 +213,20 @@ public class GUIManager {
         p.imageMode(PConstants.CORNER);
 
         if(startButton.checkMouse()){
-            state = GUIState.DifficultySelect;
+            //state = GUIState.DifficultySelect;
+            currentScreen = difficultyScreen;
         }
         else if(instructionsButton.checkMouse()) {
-            state = GUIState.Help;
+            //state = GUIState.Help;
+            currentScreen = helpScreen;
         }
         else if(leaderboardButton.checkMouse()){
-            state = GUIState.Scoreboard;
+            //state = GUIState.Scoreboard;
+            currentScreen = scoreboardScreen;
         }
         else if(controlsButton.checkMouse()){
-            state = GUIState.Controls;
+            //state = GUIState.Controls;
+            currentScreen = controlsScreen;
         }
 
         startButton.draw();
@@ -213,8 +238,10 @@ public class GUIManager {
     /**
      * <p>Leaderboard screen.</p>
      */
-    void scoreboardScreen(){
-        state = GUIState.Scoreboard;
+    public void scoreboardScreen(){
+        //state = GUIState.Scoreboard;
+        currentScreen = scoreboardScreen;
+
         int xspacing = 600;
         int yspacing = 175;
 
@@ -247,7 +274,8 @@ public class GUIManager {
 
 
         if(backButton.checkMouse()){
-            state = GUIState.Start;
+            //state = GUIState.Start;
+            currentScreen = startScreen;
         }
         backButton.draw();
 
@@ -256,8 +284,9 @@ public class GUIManager {
     /**
      * <p>Instructions screen.</p>
      */
-    void helpScreen(){
-        state = GUIState.Help;
+    public void helpScreen(){
+        //state = GUIState.Help;
+        currentScreen = helpScreen;
 
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.image(image, 0, 0, 1280, 720);
@@ -283,7 +312,8 @@ public class GUIManager {
         p.textFont(font1);
 
         if(backButton.checkMouse()){
-            state = GUIState.Start;
+            //state = GUIState.Start;
+            currentScreen = startScreen;
         }
         backButton.draw();
     }
@@ -291,8 +321,9 @@ public class GUIManager {
     /**
      * <p>Controls screen.</p>
      */
-    void controlsScreen(){
-        state = GUIState.Controls;
+    public void controlsScreen(){
+        //state = GUIState.Controls;
+        currentScreen = controlsScreen;
 
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.image(image, 0, 0, 1280, 720);
@@ -322,7 +353,8 @@ public class GUIManager {
         p.textFont(font1);
 
         if(backButton.checkMouse()){
-            state = GUIState.Start;
+            //state = GUIState.Start;
+            currentScreen = startScreen;
         }
         backButton.draw();
     }
@@ -330,8 +362,9 @@ public class GUIManager {
     /**
      * <p>Difficulty select screen.</p>
      */
-    void difficultyScreen(){
-        state = GUIState.DifficultySelect;
+    public void difficultyScreen(){
+        //state = GUIState.DifficultySelect;
+        currentScreen = difficultyScreen;
 
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.image(image, 0, 0, 1280, 720);
@@ -340,13 +373,15 @@ public class GUIManager {
         p.text("Select Difficulty", 1280/2, 720/4);
 
         if(backButton.checkMouse()){
-            state = GUIState.Start;
+            //state = GUIState.Start;
+            currentScreen = startScreen;
         }
         for(int i = 0; i < levels.length; i++){
             if(levels[i].checkMouse()){
                 gameManager.startLevel(i + 1);
                 Processing.player = (Player)gameManager.player;
-                state = GUIState.Game;
+                //state = GUIState.Game;
+                currentScreen = gameScreen;
             }
         }
 
@@ -356,8 +391,8 @@ public class GUIManager {
         }
     }
 
-    boolean won;
-    int score;
+    public boolean won;
+    public int score;
     public int remainingOxygen;
     public int totalTime;
 
@@ -368,18 +403,19 @@ public class GUIManager {
      * @param remainingOxygen the player's remaining oxygen
      * @param totalTime the player's total time in the level
      */
-    void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
+    public void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
         this.won = won;
         this.score = score;
         this.remainingOxygen = (int)(((float)remainingOxygen / gameManager.maxOxygen) * 100);
         this.totalTime = totalTime;
-        state = GUIState.End;
+        //state = GUIState.End;
+        currentScreen = endScreen;
     }
 
     /**
      * <p>The ending screen.</p>
      */
-    void endingScreen(){
+    public void endingScreen(){
         PImage image = p.loadImage("src/main/Sprites/Space Background.png");
         p.imageMode(CORNERS);
         p.image(image, 0, 0, 1280, 720);
@@ -410,10 +446,12 @@ public class GUIManager {
         if(playAgainButton.checkMouse()){
             gameManager.startLevel(gameManager.level);
             Processing.player = (Player)gameManager.player;
-            state = GUIState.Game;
+            //state = GUIState.Game;
+            currentScreen = gameScreen;
         }
         if(exitToMainMenuButton.checkMouse()){
-            state = GUIState.Start;
+            //state = GUIState.Start;
+            currentScreen = startScreen;
         }
 
         playAgainButton.draw();

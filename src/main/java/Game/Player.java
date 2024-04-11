@@ -1,3 +1,8 @@
+package Game;
+
+import GUI.GUIManager;
+import Game.GameManager;
+
 /**
  * <p>Player class, responsible for handling collision between itself, and other cells.</p>
  */

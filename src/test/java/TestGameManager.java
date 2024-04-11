@@ -1,17 +1,19 @@
+import Game.GameManager;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import Game.*;
 
 /**
- * Test class for GameManager functionality.
+ * Test class for GameManager.GameManager functionality.
  */
 public class TestGameManager {
 
     private GameManager gameManager;
 
     /**
-     * Set up method to initialize GameManager and mock dependencies.
+     * Set up method to initialize GameManager.GameManager and mock dependencies.
      */
     @Before
     public void setUp() {
@@ -21,7 +23,7 @@ public class TestGameManager {
         // Mock the static init method
         Gameobject.init(mock(Processing.class));
 
-        // Initialize GameManager
+        // Initialize GameManager.GameManager
         gameManager = new GameManager();
     }
 
@@ -85,7 +87,7 @@ public class TestGameManager {
      */
     @Test
     public void testInvalidLevel() {
-        // Save initial GameManager state
+        // Save initial GameManager.GameManager state
         int initialOxygen = gameManager.oxygen;
         int initialOxygenRate = gameManager.oxygenRate;
         int initialOxygenTankDisappearTime = gameManager.oxygenTankDisappearTime;
@@ -93,14 +95,14 @@ public class TestGameManager {
         // Start an invalid level (level 0)
         gameManager.startLevel(0);
 
-        // Assert that GameManager state remains unchanged
+        // Assert that GameManager.GameManager state remains unchanged
         assertEquals("Oxygen should remain unchanged for an invalid level", initialOxygen, gameManager.oxygen);
         assertEquals("Oxygen rate should remain unchanged for an invalid level", initialOxygenRate, gameManager.oxygenRate);
         assertEquals("Oxygen tank disappear time should remain unchanged for an invalid level", initialOxygenTankDisappearTime, gameManager.oxygenTankDisappearTime);
     }
 
     /**
-     * Test case for resetting GameManager.
+     * Test case for resetting GameManager.GameManager.
      */
     @Test
     public void testReset() {

@@ -1,8 +1,9 @@
+import Game.GameManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import Game.*;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -14,7 +15,7 @@ public class GameOutcomeTests {
     private GameManager gameManager;
 
     /**
-     * Set up method to initialize GameManager.
+     * Set up method to initialize GameManager.GameManager.
      */
     @Before
     public void setUp() {

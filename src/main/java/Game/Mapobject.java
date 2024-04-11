@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * <p>Parent class for all interactable entities</p>
  */

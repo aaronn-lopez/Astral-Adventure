@@ -1,3 +1,5 @@
+package Game;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,77 +7,77 @@ import java.util.List;
  * <p>Singleton. Contains a majority of the internal information about the current game state.</p>
  */
 public class GameManager {
-    static GameManager gameManager;
+    public static GameManager gameManager;
 
     /**
      * <p>The amount of frames per game clock tick.</p>
      */
-    int framesPerTick = 40;
+    public int framesPerTick = 40;
 
     /**
      * <p>The player's current, final score.</p>
      */
-    int score = 0;
+    public int score = 0;
 
     /**
      * <p>The player's score before additional calculations for extra oxygen, and time elapsed.</p>
      */
-    int baseScore = 0;
+    public int baseScore = 0;
 
     /**
      * <p>The player's current amount of collected batteries.</p>
      */
-    int completionCount = 0;
+    public int completionCount = 0;
 
     /**
      * <p>The total amount of batteries in the current level.</p>
      */
-    int totalBatteries = 0;
+    public int totalBatteries = 0;
 
     /**
      * <p>The player's current oxygen levels.</p>
      */
-    int oxygen = 4000;
+    public int oxygen = 4000;
 
     /**
      * <p>The player's maximum oxygen.</p>
      */
-    int maxOxygen = 4000;
+    public int maxOxygen = 4000;
 
     /**
      * <p>The rate at which oxygen is decreased in the current level.</p>
      */
-    int oxygenRate = 1;
+    public int oxygenRate = 1;
 
     /**
      * <p>The x dimension of the game board.</p>
      */
-    int gridX = 8;
+    public int gridX = 8;
 
     /**
      * <p>The y dimension of the game board.</p>
      */
-    int gridY = 8;
+    public int gridY = 8;
 
     /**
      * <p>The amount of time elapsed since starting the level.</p>
      */
-    int elapsedTime = 0;
+    public int elapsedTime = 0;
 
     /**
      * <p>The current level number</p>
      */
-    int level;
+    public int level;
 
     /**
      * <p>The amount of time that should pass before the oxygen tanks disappear.</p>
      */
-    int oxygenTankDisappearTime;
+    public int oxygenTankDisappearTime;
 
     /**
      * <p>Reference to the scoreboard object.</p>
      */
-    Scoreboard scoreboard;
+    public Scoreboard scoreboard;
 
     /**
      * <p>Boolean to check whether or not a player just entered a blackhole.</p>
@@ -85,7 +87,7 @@ public class GameManager {
     /**
      * <p>The cells on the map. Each containing information about the entity on it.</p>
      */
-    Cell[][] cells;
+    public Cell[][] cells;
 
     /**
      * <p>Reference to the player</p>
@@ -97,7 +99,7 @@ public class GameManager {
      */
     public ArrayList<Gameobject> enemies;
 
-    GameManager(){
+    public GameManager(){
         gameManager = this;
         gameManager.enemies = new ArrayList<Gameobject>();
         gameManager.scoreboard = new Scoreboard();
@@ -113,40 +115,40 @@ public class GameManager {
         // instantiate an object at a given x, y coordinate
         Gameobject gameobject = null;
         switch(object){
-            case Player:
+            case Objects.Player:
                 gameobject = new Player(new Transform(x * 64, y * 64, 0, 1));
                 gameManager.cells[x][y].player = gameobject;
                 gameobject.setPosition(x, y);
                 gameManager.player = gameobject;
                 break;
-            case WalkingAlien:
+            case Objects.WalkingAlien:
                 gameobject = new WalkingAlien(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).enemy = gameobject;
                 gameobject.setPosition(x, y);
                 gameManager.enemies.add(gameobject);
                 break;
-            case HidingAlien:
+            case Objects.HidingAlien:
                 gameobject = new Spike(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).enemy = gameobject;
                 gameobject.setPosition(x, y);
                 gameManager.enemies.add(gameobject);
                 break;
-            case OxygenTank:
+            case Objects.OxygenTank:
                 gameobject = new OxygenTank(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).interactable = gameobject;
                 gameobject.setPosition(x, y);
                 break;
-            case Battery:
+            case Objects.Battery:
                 gameobject = new Battery(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).interactable = gameobject;
                 gameobject.setPosition(x, y);
                 break;
-            case Blackhole:
+            case Objects.Blackhole:
                 gameobject = new Blackhole(new Transform(x * 64, y * 64, 0, 1), 0);
                 getCell(x, y).interactable = gameobject;
                 gameobject.setPosition(x, y);
                 break;
-            case EndTile:
+            case Objects.EndTile:
                 gameobject = new EndTile(new Transform(x * 64, y * 64, 0, 1));
                 getCell(x, y).interactable = gameobject;
                 gameobject.setPosition(x, y);

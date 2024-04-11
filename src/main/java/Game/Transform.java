@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * <p>Base class for an object's position, rotation, and scale.</p>
  */
@@ -7,8 +9,8 @@ public class Transform {
     float y;
 
     // Integer grid-based position -> easier collision checks
-    int gridX;
-    int gridY;
+    public int gridX;
+    public int gridY;
 
     // Optional rotation and scale parameters if needed
     float rotation;

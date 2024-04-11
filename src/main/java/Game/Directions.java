@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * <p>The four cardinal directions.</p>
  */

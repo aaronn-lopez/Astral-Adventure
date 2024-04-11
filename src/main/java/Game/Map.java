@@ -1,3 +1,7 @@
+package Game;
+
+import Game.GameManager;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,14 +13,14 @@ import static processing.core.PApplet.println;
  * <p>Object responsible for building the map. Sets the cells in the game manager based on the read map text file.</p>
  */
 public class Map {
-    int gridX;
-    int gridY;
+    public int gridX;
+    public int gridY;
 
     /**
      * <p>Load a new map into the game manager.</p>
      * @param mapFilePath path to text file containing level data.
      */
-    void newMap(String mapFilePath){
+    public void newMap(String mapFilePath){
         // MAP TEXT FORMAT
         // [int gridX]
         // [int gridY]

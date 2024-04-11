@@ -1,3 +1,6 @@
+package Game;
+
+import GUI.GUIManager;
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -6,8 +9,8 @@ import processing.core.PFont;
  */
 public class Processing extends PApplet {
     Gameobject bg;
-    GameManager gameManager = new GameManager();
-    GUIManager guiManager = new GUIManager(this);
+    public GameManager gameManager = new GameManager();
+    public GUIManager guiManager = new GUIManager(this);
 
     static public Player player;
 
@@ -74,40 +77,11 @@ public class Processing extends PApplet {
     @Override
     public void draw(){
         frameRate(40);
-
-        // Switch the state of the game to display different UI
-        switch(guiManager.state){
-            case GUIState.Game:
-                gameUpdate();
-                guiManager.gameGUI();
-                break;
-            case GUIState.Pause:
-                guiManager.pause();
-                break;
-            case GUIState.Start:
-                guiManager.startScreen();
-                break;
-            case GUIState.End:
-                guiManager.endingScreen();
-                break;
-            case GUIState.Scoreboard:
-                guiManager.scoreboardScreen();
-                break;
-            case GUIState.Help:
-                guiManager.helpScreen();
-                break;
-            case GUIState.DifficultySelect:
-                guiManager.difficultyScreen();
-                break;
-            case GUIState.Controls:
-                guiManager.controlsScreen();
-                break;
-            default:
-                break;
-        }
-
-
+        if(guiManager.currentScreen == guiManager.gameScreen)
+            gameUpdate();
+        guiManager.currentScreen.display();
     }
+
 
     /**
      * <p>Called once every game tick to handle enemy patrol.</p>
@@ -118,7 +92,7 @@ public class Processing extends PApplet {
             gameManager.elapsedTime++;
             for(int i = 0; i < gameManager.enemies.size(); i++){
                 if(gameManager.enemies.get(i) instanceof WalkingAlien){
-                         ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
+                    ((WalkingAlien)gameManager.enemies.get(i)).Patrol();
                 }
             }
         }
@@ -126,9 +100,8 @@ public class Processing extends PApplet {
 
     @Override
     public void keyPressed(){
-        // If the player is in game, detect their keyboard input
-        if(guiManager.state == GUIState.Game) {
-            switch (key) {
+        if(guiManager.currentScreen == guiManager.gameScreen){
+            switch(key){
                 case 'w':
                     player.move(Directions.Up);
                     break;
@@ -147,9 +120,10 @@ public class Processing extends PApplet {
         // Toggle pause
         if(key == ESC){
             key = 0;
-            if (guiManager.state == GUIState.Game)
+
+            if(guiManager.currentScreen == guiManager.gameScreen)
                 guiManager.pause();
-            else if (guiManager.state == GUIState.Pause)
+            else if(guiManager.currentScreen == guiManager.pauseScreen)
                 guiManager.resume();
         }
     }

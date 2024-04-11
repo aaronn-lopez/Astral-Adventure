@@ -1,3 +1,5 @@
+package Game;
+
 import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PApplet;

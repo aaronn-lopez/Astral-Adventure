@@ -1,3 +1,7 @@
+package Game;
+
+import Game.GameManager;
+
 /**
  * <p>Immobile enemy that lowers the player's oxygen on collision.</p>
  */

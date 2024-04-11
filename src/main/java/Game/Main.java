@@ -1,3 +1,5 @@
+package Game;
+
 import processing.core.PApplet;
 
 // Program entry point

@@ -1,3 +1,6 @@
+package Game;
+
+import Game.GameManager;
 import processing.core.PConstants;
 
 import static processing.core.PApplet.sin;

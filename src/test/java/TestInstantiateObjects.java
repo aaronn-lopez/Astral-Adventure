@@ -1,7 +1,10 @@
+import Game.GameManager;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
+import Game.*;
 
 /**
  * Test class for instantiating game objects and correctly counting them.
@@ -10,7 +13,7 @@ public class TestInstantiateObjects {
     private GameManager gameManager;
 
     /**
-     * Set up method to initialize GameManager and load map for testing.
+     * Set up method to initialize GameManager.GameManager and load map for testing.
      */
     @Before
     public void setUp() {

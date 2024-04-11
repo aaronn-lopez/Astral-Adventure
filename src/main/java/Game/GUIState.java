@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * <p>All possible states/screens the game can be in.</p>
  */

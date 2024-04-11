@@ -1,3 +1,7 @@
+package Game;
+
+import Game.GameManager;
+
 /**
  * <p>Abstract class for moving entities, such as the player, and the walking alien.</p>
  */
@@ -12,7 +16,7 @@ public abstract class Character extends Gameobject{
      * @param direction Direction to move the object
      * @return returns true if movement is successful, false otherwise
      */
-    boolean move(Directions direction) {
+    public boolean move(Directions direction) {
         int targetX = this.Transform.gridX;
         int targetY = this.Transform.gridY;
 

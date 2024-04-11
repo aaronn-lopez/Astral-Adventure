@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * <p>Class to store information about any given cell on the game board. Includes references to objects on the given cell.</p>
  */
@@ -10,12 +12,12 @@ public class Cell {
     /**
      * <p>A non-enemy interactable.</p>
      */
-    Gameobject interactable;
+    public Gameobject interactable;
 
     /**
      * <p>The enemy currently on this cell.</p>
      */
-    Gameobject enemy;
+    public Gameobject enemy;
 
     /**
      * The three tiles that make up a cell. Rendered in 3 passes to give illusion of connectivity.

@@ -1,3 +1,5 @@
+package Game;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,7 +13,7 @@ public class Scoreboard {
     /**
      * <p>Create a new scoreboard.</p>
      */
-    Scoreboard() {
+    public Scoreboard() {
         // load scoreboard scores on creation (in setup)
         levelScores = new ArrayList[6];
         for (int i = 0; i < 6; i++) {
@@ -33,7 +35,7 @@ public class Scoreboard {
         }
     }
 
-    String getScores(int level) {
+    public String getScores(int level) {
         // get and format the top three scores
         StringBuilder output = new StringBuilder();
         if (level >= 1 && level <= 6) {

@@ -1,10 +1,11 @@
+import Game.GameManager;
 import org.junit.Before;
 import org.junit.Test;
+import Game.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Test class for collision interactions between game objects.
@@ -24,7 +25,7 @@ public class CollisionTests {
         // Mock the static init method
         Gameobject.init(mock(Processing.class));
 
-        // Initialize GameManager
+        // Initialize GameManager.GameManager
         gameManager = new GameManager();
         gameManager.startLevel(1);
     }

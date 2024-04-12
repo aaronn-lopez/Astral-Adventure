@@ -2,6 +2,7 @@ package GUI;
 
 import Game.Player;
 import Game.Processing;
+import Levels.LevelManager;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -40,7 +41,7 @@ public class EndScreen extends GUIScreen{
         p.text("Final Score: " + guiManager.score, 1280/2 + 175, 720/3 + 115);
 
         if(guiManager.playAgainButton.checkMouse()){
-            guiManager.gameManager.startLevel(guiManager.gameManager.level);
+            LevelManager.lvManager.selectedLv.setSpecs();
             Processing.player = (Player)guiManager.gameManager.player;
             //state = GUIState.Game;
             guiManager.currentScreen = guiManager.gameScreen;

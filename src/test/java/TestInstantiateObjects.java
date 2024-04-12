@@ -1,8 +1,9 @@
 import Game.GameManager;
 import org.junit.Before;
 import org.junit.Test;
-
+import Levels.LevelManager;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 import Game.*;
 
@@ -17,9 +18,15 @@ public class TestInstantiateObjects {
      */
     @Before
     public void setUp() {
-        Map map = new Map();
-        map.newMap("src/test/resources/TestLevels/dummyMap.txt");
-        gameManager = GameManager.gameManager;
+
+        // Mock the static init method
+        Gameobject.init(mock(Processing.class));
+
+        // Initialize GameManager.GameManager
+        gameManager = new GameManager();
+
+        LevelManager lvManager = new LevelManager();
+        lvManager.testLv.setSpecs();
     }
 
     /**

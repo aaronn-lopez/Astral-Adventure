@@ -2,6 +2,7 @@ import Game.GameManager;
 import org.junit.Before;
 import org.junit.Test;
 import Game.*;
+import Levels.LevelManager;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -27,7 +28,8 @@ public class CollisionTests {
 
         // Initialize GameManager.GameManager
         gameManager = new GameManager();
-        gameManager.startLevel(1);
+        LevelManager lvManager = new LevelManager();
+        lvManager.easyLv.setSpecs();
     }
 
     /**

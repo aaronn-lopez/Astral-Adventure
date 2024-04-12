@@ -2,6 +2,7 @@ package GUI;
 
 import Game.Player;
 import Game.Processing;
+import Levels.LevelManager;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -29,7 +30,7 @@ public class PauseScreen extends GUIScreen{
             guiManager.currentScreen = guiManager.startScreen;
         }
         else if(guiManager.restartLvButton.checkMouse()){
-            guiManager.gameManager.startLevel(guiManager.gameManager.level);
+            LevelManager.lvManager.selectedLv.setSpecs();
             Processing.player = (Player)guiManager.gameManager.player;
             //state = GUIState.Game;
             guiManager.currentScreen = guiManager.gameScreen;

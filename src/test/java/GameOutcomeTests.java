@@ -1,4 +1,5 @@
 import Game.GameManager;
+import Levels.LevelManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -19,7 +20,15 @@ public class GameOutcomeTests {
      */
     @Before
     public void setUp() {
+
+        // Mock the static init method
+        Gameobject.init(mock(Processing.class));
+
+        // Initialize GameManager.GameManager
         gameManager = new GameManager();
+
+        LevelManager lvManager = new LevelManager();
+        lvManager.easyLv.setSpecs();
     }
 
     /**
@@ -48,7 +57,6 @@ public class GameOutcomeTests {
     public void playerHas1_Oxygen() {
         GameEndListener listenerMock = Mockito.mock(GameEndListener.class);
         gameManager.addGameEndListener(listenerMock);
-        gameManager.startLevel(1);
 
         gameManager.collectedBatteries = 3;
 

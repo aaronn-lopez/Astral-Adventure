@@ -2,10 +2,13 @@ package GUI;
 
 import Game.Player;
 import Game.Processing;
+import Levels.LevelManager;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public class DifficultyScreen extends GUIScreen{
+
+    LevelManager lvManager = new LevelManager();
     @Override
     public void display() {
         //GUIManager.guiManager.difficultyScreen();
@@ -23,7 +26,23 @@ public class DifficultyScreen extends GUIScreen{
         }
         for(int i = 0; i < guiManager.levels.length; i++){
             if(guiManager.levels[i].checkMouse()){
-                guiManager.gameManager.startLevel(i + 1);
+                if(i == 0){
+                    lvManager.selectedLv = lvManager.easyLv;
+                }
+                else if(i == 1) {
+                    lvManager.selectedLv = lvManager.normalLv;
+                }
+                else if(i == 2) {
+                    lvManager.selectedLv = lvManager.intermediateLv;
+                }
+                else if(i == 3) {
+                    lvManager.selectedLv = lvManager.hardLv;
+                }
+                else if(i == 4) {
+                    lvManager.selectedLv = lvManager.veryHardLv;
+                }
+
+                lvManager.selectedLv.setSpecs();
                 Processing.player = (Player)guiManager.gameManager.player;
                 //state = GUIState.Game;
                 guiManager.currentScreen = guiManager.gameScreen;

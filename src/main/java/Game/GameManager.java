@@ -170,47 +170,6 @@ public class GameManager {
     }
 
     /**
-     * <p>Load the proper level parameters, and start the level.</p>
-     * @param level Level number
-     */
-    public void startLevel(int level){
-        Map map = new Map();
-        map.newMap("src/main/maps/Level" + level + "Map.txt");
-        this.level = level;
-
-        switch(level)
-        {
-            case 1:
-                gameManager.currentOxygen = 4000;
-                gameManager.oxygenDecreaseRate = 1;
-                gameManager.oxygenTankDisappearTime = 45;
-                break;
-            case 2:
-                gameManager.currentOxygen = 3500;
-                gameManager.oxygenDecreaseRate = 1;
-                gameManager.oxygenTankDisappearTime = 30;
-                break;
-            case 3:
-                gameManager.currentOxygen = 3000;
-                gameManager.oxygenDecreaseRate = 1;
-                gameManager.oxygenTankDisappearTime = 20;
-                break;
-            case 4:
-                gameManager.currentOxygen = 2500;
-                gameManager.oxygenDecreaseRate = 2;
-                gameManager.oxygenTankDisappearTime = 20;
-                break;
-            case 5:
-                gameManager.currentOxygen = 2000;
-                gameManager.oxygenDecreaseRate = 2;
-                gameManager.oxygenTankDisappearTime = 15;
-                break;
-            default:
-                break;
-        }
-    }
-
-    /**
      * <p>Method to retrieve a given cell given x and y grid coordinates.</p>
      * @param x cell X position
      * @param y cell Y position

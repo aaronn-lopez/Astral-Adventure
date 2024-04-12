@@ -43,7 +43,7 @@ public class CollisionTests {
         // Perform collision check
         ((Player)player).checkCollisions();
 
-        int afterOxygen = gameManager.oxygen;
+        int afterOxygen = gameManager.currentOxygen;
         assertEquals(0, afterOxygen);
     }
 
@@ -53,7 +53,7 @@ public class CollisionTests {
     @Test
     public void playerSpikeCollision() {
         Gameobject player = gameManager.player;
-        int beforeOxygen = gameManager.oxygen;
+        int beforeOxygen = gameManager.currentOxygen;
 
         // Create a spike object
         GameManager.instantiate(Objects.HidingAlien, player.Transform.gridX, player.Transform.gridY);
@@ -61,7 +61,7 @@ public class CollisionTests {
         // Perform collision check
         ((Player)player).checkCollisions();
 
-        int afterOxygen = gameManager.oxygen;
+        int afterOxygen = gameManager.currentOxygen;
         assertEquals(beforeOxygen - 480, afterOxygen);
     }
 
@@ -78,7 +78,7 @@ public class CollisionTests {
         // Perform collision check
         ((Player)player).checkCollisions();
 
-        int afterCompletionCount = gameManager.completionCount;
+        int afterCompletionCount = gameManager.collectedBatteries;
         assertEquals(1, afterCompletionCount);
     }
 
@@ -90,7 +90,7 @@ public class CollisionTests {
         Gameobject player = gameManager.player;
 
         // remove some oxygen so that the tank can refill it
-        gameManager.oxygen -= 100;
+        gameManager.currentOxygen -= 100;
 
         // Create an oxygen tank object
         GameManager.instantiate(Objects.OxygenTank, player.Transform.gridX, player.Transform.gridY);
@@ -98,7 +98,7 @@ public class CollisionTests {
         // Perform collision check
         ((Player)player).checkCollisions();
 
-        int afterOxygen = gameManager.oxygen;
+        int afterOxygen = gameManager.currentOxygen;
         assertEquals(4000, afterOxygen);
     }
 

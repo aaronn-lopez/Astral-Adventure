@@ -1,7 +1,6 @@
 package Game;
 
 import GUI.GUIManager;
-import Game.GameManager;
 
 import static java.lang.Math.sin;
 
@@ -25,11 +24,11 @@ public class EndTile extends Mapobject{
      */
     public void gameEndCheck(){
         // check if the player's collected batteries is equal to the total amount of batteries
-        if(GameManager.gameManager.totalBatteries == GameManager.gameManager.completionCount)
+        if(GameManager.gameManager.totalBatteries == GameManager.gameManager.collectedBatteries)
         {
-            GameManager.gameManager.score = (GameManager.gameManager.baseScore + (int)(((float) GameManager.gameManager.oxygen / GameManager.gameManager.maxOxygen) * 100)) - GameManager.gameManager.elapsedTime;
-            GameManager.gameManager.scoreboard.updateScoreboard(GameManager.gameManager.score, GameManager.gameManager.level);
-            GUIManager.guiManager.gameEnd(true, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
+            GameManager.gameManager.finalScore = (GameManager.gameManager.baseScore + (int)(((float) GameManager.gameManager.currentOxygen / GameManager.gameManager.maxOxygen) * 100)) - GameManager.gameManager.elapsedTime;
+            GameManager.gameManager.scoreboard.updateScoreboard(GameManager.gameManager.finalScore, GameManager.gameManager.level);
+            GUIManager.guiManager.gameEnd(true, GameManager.gameManager.finalScore, GameManager.gameManager.currentOxygen, GameManager.gameManager.elapsedTime);
         }
     }
 

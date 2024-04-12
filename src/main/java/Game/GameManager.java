@@ -17,7 +17,7 @@ public class GameManager {
     /**
      * <p>The player's current, final score.</p>
      */
-    public int score = 0;
+    public int finalScore = 0;
 
     /**
      * <p>The player's score before additional calculations for extra oxygen, and time elapsed.</p>
@@ -27,7 +27,7 @@ public class GameManager {
     /**
      * <p>The player's current amount of collected batteries.</p>
      */
-    public int completionCount = 0;
+    public int collectedBatteries = 0;
 
     /**
      * <p>The total amount of batteries in the current level.</p>
@@ -37,7 +37,7 @@ public class GameManager {
     /**
      * <p>The player's current oxygen levels.</p>
      */
-    public int oxygen = 4000;
+    public int currentOxygen = 4000;
 
     /**
      * <p>The player's maximum oxygen.</p>
@@ -47,7 +47,7 @@ public class GameManager {
     /**
      * <p>The rate at which oxygen is decreased in the current level.</p>
      */
-    public int oxygenRate = 1;
+    public int oxygenDecreaseRate = 1;
 
     /**
      * <p>The x dimension of the game board.</p>
@@ -162,9 +162,9 @@ public class GameManager {
      * <p>Reset the game manager for a new level.</p>
      */
     public static void reset(){
-        gameManager.score = 0;
+        gameManager.finalScore = 0;
         gameManager.enemies.clear();
-        gameManager.completionCount = 0;
+        gameManager.collectedBatteries = 0;
         gameManager.totalBatteries = 0;
         gameManager.elapsedTime = 0;
     }
@@ -181,28 +181,28 @@ public class GameManager {
         switch(level)
         {
             case 1:
-                gameManager.oxygen = 4000;
-                gameManager.oxygenRate = 1;
+                gameManager.currentOxygen = 4000;
+                gameManager.oxygenDecreaseRate = 1;
                 gameManager.oxygenTankDisappearTime = 45;
                 break;
             case 2:
-                gameManager.oxygen = 3500;
-                gameManager.oxygenRate = 1;
+                gameManager.currentOxygen = 3500;
+                gameManager.oxygenDecreaseRate = 1;
                 gameManager.oxygenTankDisappearTime = 30;
                 break;
             case 3:
-                gameManager.oxygen = 3000;
-                gameManager.oxygenRate = 1;
+                gameManager.currentOxygen = 3000;
+                gameManager.oxygenDecreaseRate = 1;
                 gameManager.oxygenTankDisappearTime = 20;
                 break;
             case 4:
-                gameManager.oxygen = 2500;
-                gameManager.oxygenRate = 2;
+                gameManager.currentOxygen = 2500;
+                gameManager.oxygenDecreaseRate = 2;
                 gameManager.oxygenTankDisappearTime = 20;
                 break;
             case 5:
-                gameManager.oxygen = 2000;
-                gameManager.oxygenRate = 2;
+                gameManager.currentOxygen = 2000;
+                gameManager.oxygenDecreaseRate = 2;
                 gameManager.oxygenTankDisappearTime = 15;
                 break;
             default:
@@ -250,7 +250,7 @@ public class GameManager {
      */
     public void checkForGameEnd() {
         // Check if the player has run out of oxygen
-        if (oxygen <= 0) {
+        if (currentOxygen <= 0) {
             notifyGameEndListeners(false); // End the game with a loss
         }
         // Check if the player has reached the end tile

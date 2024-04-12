@@ -43,10 +43,16 @@ public class HighScoreManagerTests {
      */
     @Test
     public void testGetScores() {
-        scoreboard.updateScoreboard(100, 6);
-        scoreboard.updateScoreboard(200, 6);
-        scoreboard.updateScoreboard(300, 6);
-        assertEquals("300\n200\n100\n", scoreboard.getScores(6));
+        int levelToTest = 6;
+
+        scoreboard.updateScoreboard(100, levelToTest);
+        scoreboard.updateScoreboard(200, levelToTest);
+        scoreboard.updateScoreboard(300, levelToTest);
+
+        String expectedOutput = "300\n200\n100\n";
+        String actualOutput = scoreboard.getScores(levelToTest);
+
+        assertEquals(expectedOutput, actualOutput);
         scoreboard.clearTestFile();
     }
 

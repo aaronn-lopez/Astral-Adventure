@@ -35,31 +35,31 @@ public class TestGameManager {
 
         switch (levelInt) {
             case 1:
-                gameManager.startLevel(1);
+                LevelManager.lvManager.easyLv.setSpecs();
                 assertEquals("Oxygen should be initialized to 4000 for level 1", 4000, gameManager.currentOxygen);
                 assertEquals("Oxygen rate should be initialized to 1 on level 1", 1, gameManager.oxygenDecreaseRate);
                 assertEquals("Oxygen tank disappear time should be initialized to 45 for level 1", 45, gameManager.oxygenTankDisappearTime);
                 break;
             case 2:
-                gameManager.startLevel(2);
+                LevelManager.lvManager.normalLv.setSpecs();
                 assertEquals("Oxygen should be initialized to 3500 for level 2", 3500, gameManager.currentOxygen);
                 assertEquals("Oxygen rate should be initialized to 1 on level 2", 1, gameManager.oxygenDecreaseRate);
                 assertEquals("Oxygen tank disappear time should be initialized to 30 for level 2", 30, gameManager.oxygenTankDisappearTime);
                 break;
             case 3:
-                gameManager.startLevel(3);
+                LevelManager.lvManager.intermediateLv.setSpecs();
                 assertEquals("Oxygen should be initialized to 3000 for level 3", 3000, gameManager.currentOxygen);
                 assertEquals("Oxygen rate should be initialized to 1 on level 3", 1, gameManager.oxygenDecreaseRate);
                 assertEquals("Oxygen tank disappear time should be initialized to 20 for level 3", 20, gameManager.oxygenTankDisappearTime);
                 break;
             case 4:
-                gameManager.startLevel(4);
+                LevelManager.lvManager.hardLv.setSpecs();
                 assertEquals("Oxygen should be initialized to 2500 for level 4", 2500, gameManager.currentOxygen);
                 assertEquals("Oxygen rate should be initialized to 2 on level 4", 2, gameManager.oxygenDecreaseRate);
                 assertEquals("Oxygen tank disappear time should be initialized to 20 for level 4", 20, gameManager.oxygenTankDisappearTime);
                 break;
             case 5:
-                gameManager.startLevel(5);
+                LevelManager.lvManager.veryHardLv.setSpecs();
                 assertEquals("Oxygen should be initialized to 2000 for level 5", 2000, gameManager.currentOxygen);
                 assertEquals("Oxygen rate should be initialized to 2 on level 5", 2, gameManager.oxygenDecreaseRate);
                 assertEquals("Oxygen tank disappear time should be initialized to 15 for level 5", 15, gameManager.oxygenTankDisappearTime);

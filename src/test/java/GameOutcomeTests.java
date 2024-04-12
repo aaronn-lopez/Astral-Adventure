@@ -32,7 +32,7 @@ public class GameOutcomeTests {
         gameManager.addGameEndListener(listenerMock);
 
         // Set the player's oxygen to 0
-        gameManager.oxygen = 0;
+        gameManager.currentOxygen = 0;
 
         // Check for game end conditions
         gameManager.checkForGameEnd();
@@ -50,7 +50,7 @@ public class GameOutcomeTests {
         gameManager.addGameEndListener(listenerMock);
         gameManager.startLevel(1);
 
-        gameManager.completionCount = 3;
+        gameManager.collectedBatteries = 3;
 
         GameManager.instantiate(Objects.EndTile, gameManager.player.Transform.gridX, gameManager.player.Transform.gridY);
 

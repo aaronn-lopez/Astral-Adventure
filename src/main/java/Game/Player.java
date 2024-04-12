@@ -1,7 +1,6 @@
 package Game;
 
 import GUI.GUIManager;
-import Game.GameManager;
 
 /**
  * <p>Player class, responsible for handling collision between itself, and other cells.</p>
@@ -45,14 +44,14 @@ public class Player extends Character{
      * @param rate the rate at which oxygen should be decreased by.
      */
     public void checkOxygen(int rate){
-        GameManager.gameManager.oxygen -= rate;
+        GameManager.gameManager.currentOxygen -= rate;
 
         // end the game if the player's oxygen reaches below 0
-        if(GameManager.gameManager.oxygen < 0)
+        if(GameManager.gameManager.currentOxygen < 0)
         {
-            GameManager.gameManager.oxygen = 0;
-            GameManager.gameManager.score = (GameManager.gameManager.baseScore + GUIManager.guiManager.remainingOxygen) / GameManager.gameManager.elapsedTime;
-            GUIManager.guiManager.gameEnd(false, GameManager.gameManager.score, GameManager.gameManager.oxygen, GameManager.gameManager.elapsedTime);
+            GameManager.gameManager.currentOxygen = 0;
+            GameManager.gameManager.finalScore = (GameManager.gameManager.baseScore + GUIManager.guiManager.remainingOxygen) / GameManager.gameManager.elapsedTime;
+            GUIManager.guiManager.gameEnd(false, GameManager.gameManager.finalScore, GameManager.gameManager.currentOxygen, GameManager.gameManager.elapsedTime);
         }
     }
 }

@@ -14,6 +14,6 @@ public class Battery extends Collectable{
     @Override
     public void collect() {
         GameManager.gameManager.baseScore += 100;
-        GameManager.gameManager.completionCount++;
+        GameManager.gameManager.collectedBatteries++;
     }
 }

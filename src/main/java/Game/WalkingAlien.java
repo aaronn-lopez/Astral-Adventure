@@ -1,7 +1,5 @@
 package Game;
 
-import Game.GameManager;
-
 public class WalkingAlien extends Enemy {
     WalkingAlien(Transform transform){
         super(transform, "src/main/Sprites/Slime.png");
@@ -33,6 +31,6 @@ public class WalkingAlien extends Enemy {
     //If you hit a Walking Alien, the game ends
     @Override
     public void decreaseOxygen() {
-        GameManager.gameManager.oxygen = 0;
+        GameManager.gameManager.currentOxygen = 0;
     }
 }

@@ -29,3 +29,7 @@
 ![image](https://media.github.sfu.ca/user/2404/files/31c11186-d73c-4b60-8e78-d077d479a712)
 - Run the test
 - (Optional) Click the three dots near the run button, and select 'Run with Coverage'
+
+## Documentation
+### Buidling Javadocs
+- Execute mvn javadoc:jar to automatically create the javadocs

@@ -25,58 +25,55 @@ public class TestGameManager {
     }
 
     /**
-     * Test case for Level 1 settings.
+     * testLevel helper function to test a valid level initialization
+     * @param levelInt a valid level number (1-5)
      */
-    @Test
-    public void testLevel1() {
-        gameManager.startLevel(1);
-        assertEquals("Oxygen should be initialized to 4000 for level 1", 4000, gameManager.oxygen);
-        assertEquals("Oxygen rate should be initialized to 1 on level 1", 1, gameManager.oxygenRate);
-        assertEquals("Oxygen tank disappear time should be initialized to 45 for level 1", 45, gameManager.oxygenTankDisappearTime);
-    }
+    void testLevel(int levelInt) {
 
-    /**
-     * Test case for Level 2 settings.
-     */
-    @Test
-    public void testLevel2() {
-        gameManager.startLevel(2);
-        assertEquals("Oxygen should be initialized to 3500 for level 2", 3500, gameManager.oxygen);
-        assertEquals("Oxygen rate should be initialized to 1 on level 2", 1, gameManager.oxygenRate);
-        assertEquals("Oxygen tank disappear time should be initialized to 30 for level 2", 30, gameManager.oxygenTankDisappearTime);
+        switch (levelInt) {
+            case 1:
+                gameManager.startLevel(1);
+                assertEquals("Oxygen should be initialized to 4000 for level 1", 4000, gameManager.oxygen);
+                assertEquals("Oxygen rate should be initialized to 1 on level 1", 1, gameManager.oxygenRate);
+                assertEquals("Oxygen tank disappear time should be initialized to 45 for level 1", 45, gameManager.oxygenTankDisappearTime);
+                break;
+            case 2:
+                gameManager.startLevel(2);
+                assertEquals("Oxygen should be initialized to 3500 for level 2", 3500, gameManager.oxygen);
+                assertEquals("Oxygen rate should be initialized to 1 on level 2", 1, gameManager.oxygenRate);
+                assertEquals("Oxygen tank disappear time should be initialized to 30 for level 2", 30, gameManager.oxygenTankDisappearTime);
+                break;
+            case 3:
+                gameManager.startLevel(3);
+                assertEquals("Oxygen should be initialized to 3000 for level 3", 3000, gameManager.oxygen);
+                assertEquals("Oxygen rate should be initialized to 1 on level 3", 1, gameManager.oxygenRate);
+                assertEquals("Oxygen tank disappear time should be initialized to 20 for level 3", 20, gameManager.oxygenTankDisappearTime);
+                break;
+            case 4:
+                gameManager.startLevel(4);
+                assertEquals("Oxygen should be initialized to 2500 for level 4", 2500, gameManager.oxygen);
+                assertEquals("Oxygen rate should be initialized to 2 on level 4", 2, gameManager.oxygenRate);
+                assertEquals("Oxygen tank disappear time should be initialized to 20 for level 4", 20, gameManager.oxygenTankDisappearTime);
+                break;
+            case 5:
+                gameManager.startLevel(5);
+                assertEquals("Oxygen should be initialized to 2000 for level 5", 2000, gameManager.oxygen);
+                assertEquals("Oxygen rate should be initialized to 2 on level 5", 2, gameManager.oxygenRate);
+                assertEquals("Oxygen tank disappear time should be initialized to 15 for level 5", 15, gameManager.oxygenTankDisappearTime);
+                break;
+            default:
+                // easily assert an error because the levelInt value is invalid
+                assertEquals("error in test code: invalid levelInt entry", 1,0);
+                break;
+        }
     }
-
-    /**
-     * Test case for Level 3 settings.
-     */
     @Test
-    public void testLevel3() {
-        gameManager.startLevel(3);
-        assertEquals("Oxygen should be initialized to 3000 for level 3", 3000, gameManager.oxygen);
-        assertEquals("Oxygen rate should be initialized to 1 on level 3", 1, gameManager.oxygenRate);
-        assertEquals("Oxygen tank disappear time should be initialized to 20 for level 3", 20, gameManager.oxygenTankDisappearTime);
-    }
-
-    /**
-     * Test case for Level 4 settings.
-     */
-    @Test
-    public void testLevel4() {
-        gameManager.startLevel(4);
-        assertEquals("Oxygen should be initialized to 2500 for level 4", 2500, gameManager.oxygen);
-        assertEquals("Oxygen rate should be initialized to 2 on level 4", 2, gameManager.oxygenRate);
-        assertEquals("Oxygen tank disappear time should be initialized to 20 for level 4", 20, gameManager.oxygenTankDisappearTime);
-    }
-
-    /**
-     * Test case for Level 5 settings.
-     */
-    @Test
-    public void testLevel5() {
-        gameManager.startLevel(5);
-        assertEquals("Oxygen should be initialized to 2000 for level 5", 2000, gameManager.oxygen);
-        assertEquals("Oxygen rate should be initialized to 2 on level 5", 2, gameManager.oxygenRate);
-        assertEquals("Oxygen tank disappear time should be initialized to 15 for level 5", 15, gameManager.oxygenTankDisappearTime);
+    public void testValidLevels() {
+        testLevel(1);
+        testLevel(2);
+        testLevel(3);
+        testLevel(4);
+        testLevel(5);
     }
 
     /**

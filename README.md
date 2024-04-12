@@ -1,5 +1,18 @@
 # CMPT276S24_group10
 
+#### Java Version - openjdk-21
+
+## Running the Game with Maven
+### How to Run the Game with Maven
+- Ensure Maven and Java are added to your PATH
+- In the terminal, navigate to the project path
+- Execute the command: "mvn compile exec:java -D exec.mainClass="Game.Main"" to compile and run the game
+
+### How to test the Game with Maven
+- In the terminal, navigate to the project path
+- Execute the command: "mvn test" to run all tests
+
+## Running the Game in IntelliJ
 ### How to run the game:
 - Ensure Maven and IntelliJ is installed
 - Open the project

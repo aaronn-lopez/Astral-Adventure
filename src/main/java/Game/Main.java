@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Processing;
 import processing.core.PApplet;
 
 // Program entry point

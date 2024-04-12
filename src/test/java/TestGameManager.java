@@ -17,9 +17,6 @@ public class TestGameManager {
      */
     @Before
     public void setUp() {
-        // Create a mock for Gameobject
-        Gameobject gameobjectMock = mock(Gameobject.class);
-
         // Mock the static init method
         Gameobject.init(mock(Processing.class));
 

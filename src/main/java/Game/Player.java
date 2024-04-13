@@ -6,6 +6,8 @@ import GUI.GUIManager;
  * <p>Player class, responsible for handling collision between itself, and other cells.</p>
  */
 public class Player extends Character{
+
+    private static final int MINIMUM_OXYGEN = 0;
     Player(Transform transform){
         super(transform, "src/main/Sprites/Astronaut.png");
 
@@ -41,15 +43,15 @@ public class Player extends Character{
 
     /**
      * <p>Decreases oxygen, and handles logic for ending the game if the player runs out.</p>
-     * @param rate the rate at which oxygen should be decreased by.
+     * @param decreaseRate the rate at which oxygen should be decreased by.
      */
-    public void checkOxygen(int rate){
-        GameManager.gameManager.currentOxygen -= rate;
+    public void checkOxygen(int decreaseRate){
+        GameManager.gameManager.currentOxygen -= decreaseRate;
 
         // end the game if the player's oxygen reaches below 0
-        if(GameManager.gameManager.currentOxygen < 0)
+        if(GameManager.gameManager.currentOxygen < MINIMUM_OXYGEN)
         {
-            GameManager.gameManager.currentOxygen = 0;
+            GameManager.gameManager.currentOxygen = MINIMUM_OXYGEN;
             GameManager.gameManager.finalScore = (GameManager.gameManager.baseScore + GUIManager.guiManager.remainingOxygen) / GameManager.gameManager.elapsedTime;
             GUIManager.guiManager.gameEnd(false, GameManager.gameManager.finalScore, GameManager.gameManager.currentOxygen, GameManager.gameManager.elapsedTime);
         }

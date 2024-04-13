@@ -162,6 +162,7 @@ public class GameManager {
      * <p>Reset the game manager for a new level.</p>
      */
     public static void reset(){
+        gameManager.baseScore = 0;
         gameManager.finalScore = 0;
         gameManager.enemies.clear();
         gameManager.collectedBatteries = 0;

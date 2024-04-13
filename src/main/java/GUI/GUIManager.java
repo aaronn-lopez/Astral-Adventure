@@ -40,6 +40,8 @@ public class GUIManager {
     Button controlsButton;
     Button restartLvButton;
 
+    private static final int OXYGEN_CONVERSION_RATIO = 40;
+
     public boolean won;
     public int score;
     public int remainingOxygen;
@@ -159,7 +161,7 @@ public class GUIManager {
     public void gameEnd(boolean won, int score, int remainingOxygen, int totalTime){
         this.won = won;
         this.score = score;
-        this.remainingOxygen = (int)(((float)remainingOxygen / gameManager.maxOxygen) * 100);
+        this.remainingOxygen = (int)(((float)remainingOxygen / OXYGEN_CONVERSION_RATIO));
         this.totalTime = totalTime;
         //state = GUIState.End;
         currentScreen = endScreen;

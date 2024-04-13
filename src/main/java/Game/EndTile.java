@@ -8,7 +8,7 @@ import static java.lang.Math.sin;
  * <p>The 'rocket ship' tile. Colliding with this object wins the game, if you have collected all of the batteries.</p>
  */
 public class EndTile extends Mapobject{
-
+    private static final int OXYGEN_CONVERSION_RATIO = 40;
     EndTile(Transform transform){
         super(transform, "src/main/Sprites/Rocket.png");
 
@@ -26,7 +26,7 @@ public class EndTile extends Mapobject{
         // check if the player's collected batteries is equal to the total amount of batteries
         if(GameManager.gameManager.totalBatteries == GameManager.gameManager.collectedBatteries)
         {
-            GameManager.gameManager.finalScore = (GameManager.gameManager.baseScore + (int)(((float) GameManager.gameManager.currentOxygen / GameManager.gameManager.maxOxygen) * 100)) - GameManager.gameManager.elapsedTime;
+            GameManager.gameManager.finalScore = (GameManager.gameManager.baseScore + (int)((float) GameManager.gameManager.currentOxygen / OXYGEN_CONVERSION_RATIO)) - GameManager.gameManager.elapsedTime;
             GameManager.gameManager.scoreboard.updateScoreboard(GameManager.gameManager.finalScore, GameManager.gameManager.level);
             GUIManager.guiManager.gameEnd(true, GameManager.gameManager.finalScore, GameManager.gameManager.currentOxygen, GameManager.gameManager.elapsedTime);
         }

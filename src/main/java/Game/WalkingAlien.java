@@ -1,6 +1,8 @@
 package Game;
 
 public class WalkingAlien extends Enemy {
+
+    private static final int MINIMUM_OXYGEN = 0;
     WalkingAlien(Transform transform){
         super(transform, "src/main/Sprites/Slime.png");
     }
@@ -31,6 +33,6 @@ public class WalkingAlien extends Enemy {
     //If you hit a Walking Alien, the game ends
     @Override
     public void decreaseOxygen() {
-        GameManager.gameManager.currentOxygen = 0;
+        GameManager.gameManager.currentOxygen = MINIMUM_OXYGEN;
     }
 }

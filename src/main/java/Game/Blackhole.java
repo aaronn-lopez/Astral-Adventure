@@ -1,7 +1,5 @@
 package Game;
 
-import Game.GameManager;
-
 import static java.lang.Math.sin;
 
 /**

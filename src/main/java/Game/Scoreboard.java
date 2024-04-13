@@ -94,6 +94,5 @@ public class Scoreboard {
         } catch (IOException e) {
 
         }
-
     }
 }

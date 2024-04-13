@@ -1,13 +1,8 @@
 package Game;
 
-import Game.GameManager;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-import static processing.core.PApplet.print;
-import static processing.core.PApplet.println;
 
 /**
  * <p>Object responsible for building the map. Sets the cells in the game manager based on the read map text file.</p>

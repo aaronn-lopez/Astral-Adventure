@@ -8,7 +8,7 @@ import processing.core.PApplet;
  * <p>Parent Class containing basic information about every object in the game.</p>
  */
 public class Gameobject {
-    // Reference to the "canvas"---where we are drawing the sprites
+    // Reference to the "canvas" where we are drawing the sprites
     protected static PApplet p;
 
     // Class to hold the position, rotation, and scale of the gameobject

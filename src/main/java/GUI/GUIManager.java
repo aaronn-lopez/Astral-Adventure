@@ -2,18 +2,14 @@ package GUI;
 
 import processing.core.PApplet;
 import processing.core.PConstants;
-import processing.core.PImage;
-import processing.core.PFont;
 import Game.*;
 
-import static processing.core.PConstants.*;
 
 /**
  * <p>Singleton. Allows for the transition of game states through GUI buttons.</p>
  */
 
 public class GUIManager {
-    //public GUIState state = GUIState.Start;
 
     public GUIScreen gameScreen = new GameScreen();
     public GUIScreen pauseScreen = new PauseScreen();
@@ -147,7 +143,6 @@ public class GUIManager {
      * <p>Resume the game, without affecting progress.</p>
      */
     public void resume(){
-        //state = GUIState.Game;
         currentScreen = gameScreen;
     }
 
@@ -163,7 +158,6 @@ public class GUIManager {
         this.score = score;
         this.remainingOxygen = (int)(((float)remainingOxygen / OXYGEN_CONVERSION_RATIO));
         this.totalTime = totalTime;
-        //state = GUIState.End;
         currentScreen = endScreen;
     }
 

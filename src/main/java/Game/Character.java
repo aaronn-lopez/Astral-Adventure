@@ -1,7 +1,5 @@
 package Game;
 
-import Game.GameManager;
-
 /**
  * <p>Abstract class for moving entities, such as the player, and the walking alien.</p>
  */
@@ -38,18 +36,18 @@ public abstract class Character extends Gameobject{
 
         // check if inbounds
         if (inBounds(targetX, targetY)) {
-            // if its a player, move the player
+            // if it's a player, move the player
             if(this instanceof Player){
                 GameManager.getCell(this.Transform.gridX, this.Transform.gridY).player = null;
                 GameManager.getCell(targetX, targetY).player = this;
             }
             else {
-                // if its an enemy, and theres already an enemy on the target cell, dont move the current enemy
+                // if it's an enemy, and there's already an enemy on the target cell, don't move the current enemy
                 if(this instanceof WalkingAlien && GameManager.getEnemy(targetX, targetY) != null){
                     return false;
                 }
 
-                // if theres no enemy present, move th3e current enemy
+                // if there's no enemy present, move the current enemy
                 GameManager.getCell(this.Transform.gridX, this.Transform.gridY).enemy = null;
                 GameManager.getCell(targetX, targetY).enemy = this;
             }

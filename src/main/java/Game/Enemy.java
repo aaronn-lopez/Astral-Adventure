@@ -1,7 +1,5 @@
 package Game;
 
-import Game.GameManager;
-
 /**
  * <p>Abstract 'enemy' class for any entity that can cause damage to the player.</p>
  */
